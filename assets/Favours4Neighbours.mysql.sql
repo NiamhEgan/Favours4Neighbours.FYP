@@ -95,7 +95,9 @@ DROP TABLE IF EXISTS `favours4neighbours`.`Tag` ;
 
 CREATE TABLE IF NOT EXISTS `favours4neighbours`.`Tag` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`Id`))
+  `Name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE INDEX `Name_UNIQUE` (`Name` ASC))
 ENGINE = InnoDB;
 
 
@@ -150,3 +152,14 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `favours4neighbours`.`Tag`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `favours4neighbours`;
+INSERT INTO `favours4neighbours`.`Tag` (`Id`, `Name`) VALUES (1, 'Dog Walking');
+INSERT INTO `favours4neighbours`.`Tag` (`Id`, `Name`) VALUES (2, 'Driving');
+
+COMMIT;
+
