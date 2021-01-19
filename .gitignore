@@ -1,3 +1,4 @@
 
 *.bak
 docs/~$*.docx
+/Favours4Neighbours/Favours4Neighbours/src/main/resources/META-INF/persistence.xml
