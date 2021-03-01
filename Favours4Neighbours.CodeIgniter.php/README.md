@@ -1,3 +1,13 @@
+# Favors 4 Neighbours
+
+## How to install and Run
+
+Clone the project from github. 
+Open the project in VSCode. Open a terminal and enter `php spark serve`
+
+## About this project
+
+
 # CodeIgniter 4 Application Starter
 
 ## What is CodeIgniter?
