@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\UserRepository;
 
-
 class Login extends BaseController
 {
 	public function __construct() {
