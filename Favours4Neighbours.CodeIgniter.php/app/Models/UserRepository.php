@@ -13,9 +13,24 @@ class UserRepository extends Model
 
     protected $returnType     = 'array';
 
-    protected $allowedFields = ['name', 'email', "active", "Username", "Password"];
+    protected $allowedFields = [
+        "Active",
+        "AddressLine1",
+        "AddressLine2",
+        "Eircode",
+        "email",
+        "FirstName",
+        "Gender",
+        "Password",
+        "Surname",
+        "Telephone",
+        "Username",
+    ];
 
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
+    protected $createdField  = 'DateCreated';
+    protected $updatedField  = 'DateModified';
+    protected $deletedField  = 'deleted_at';
 
     protected $validationRules    = [];
     protected $validationMessages = [];
@@ -27,12 +42,11 @@ class UserRepository extends Model
 
     protected function hashPassword(array $data)
     {
-        if (! isset($data['data']['password']))
-         return $data;
-    
-        $data['data']['password_hash'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
-        unset($data['data']['password']);
-    
+        if (!isset($data['data']['Password']))
+            return $data;
+
+        $data['data']['Password'] = password_hash($data['data']['Password'], PASSWORD_DEFAULT);
+
         return $data;
     }
 }
