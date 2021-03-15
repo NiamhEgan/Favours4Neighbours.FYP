@@ -8,7 +8,7 @@ Clone the project from github.
 
 Open the project in VSCode. Open a terminal and enter 
 
-`mysql -import -filepath` to create a database [Fix me]
+`mysql -u {user} -p favours4neighbours < Favours4Neighbours.mysql.sql` to create a database
 
 `composer i` to install required codeigniter packages
 
