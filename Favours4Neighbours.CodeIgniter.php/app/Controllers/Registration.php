@@ -15,9 +15,10 @@ class Registration extends BaseController
 	{
 		if ($this->request->getPost("RegisterButton") !== null) {
 			$userValuesArray = $this->createUserValuesArrayFromPostArray();
-			if ($this->UserRepository->insert($userValuesArray) === true) {
+			try {
+				$commandResult = $this->UserRepository->insert($userValuesArray);
 				redirect("Login/index");
-			} else {
+			} catch (Exception $e) {
 				$data = [
 					'mainContent' => view("RegistrationView"),
 					'title' => "Favours 4 Neighbours: Registration",
@@ -30,7 +31,7 @@ class Registration extends BaseController
 				'mainContent' => view("RegistrationView"),
 				'title' => "Favours 4 Neighbours: Registration",
 			];
-			return view('MasterPage', $data);
+		return view('MasterPage', $data);
 	}
 
 	private function createUserValuesArrayFromPostArray()
@@ -40,7 +41,8 @@ class Registration extends BaseController
 			"AddressLine2" => $this->request->getPost("AddressLine2"),
 			"Eircode" => $this->request->getPost("Eircode"),
 			"email" => $this->request->getPost("email"),
-			"Firstname" => $this->request->getPost("Firstname"),
+			"FirstName" => $this->request->getPost("FirstName"),
+			"Gender" => $this->request->getPost("Gender"),
 			"Password" => $this->request->getPost("Password"),
 			"Surname" => $this->request->getPost("Surname"),
 			"Telephone" => $this->request->getPost("Telephone"),

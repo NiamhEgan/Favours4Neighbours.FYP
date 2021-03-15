@@ -13,10 +13,10 @@
 						<div class="form-row">
 							<div class="col form-group">
 								<label>First name </label>
-								<input type="text" name="Firstname" class="form-control" placeholder="">
+								<input type="text" name="FirstName" class="form-control" placeholder="">
 							</div> <!-- form-group end.// -->
 							<div class="col form-group">
-								<label>Last name</label>
+								<label>Surname</label>
 								<input type="text" name="Surname" class="form-control" placeholder=" ">
 							</div> <!-- form-group end.// -->
 						</div> <!-- form-row end.// -->
