@@ -29,6 +29,10 @@
 							<label>Email address</label>
 							<input name="email" type="email" class="form-control" placeholder="" required>
 							<small class="form-text text-muted">We'll never share your email with anyone else.</small>
+							<div class="form-group">
+							<label>Re-enter Email address</label>
+							<input name="email" type="email" class="form-control" placeholder="" required>
+							<small class="form-text text-muted"></small>
 						</div> <!-- form-group end.// -->
 						<div class="form-group">
 							<label>Telephone</label>
@@ -54,6 +58,9 @@
 								<label>Address Line 2</label>
 								<input name="AddressLine2" type="text" class="form-control">
 							</div> <!-- form-group end.// -->
+							<div class="form-group col-md-6">
+								<label>County</label>
+								<input name="County" type="text" class="form-control">
 						</div> <!-- form-row.// -->
 						<div class="form-group">
 							<label>Eircode</label>
@@ -62,6 +69,9 @@
 						</div> <!-- form-group end.// -->
 												<div class="form-group">
 							<label>Create password</label>
+							<input name="Password" class="form-control" type="password">
+						</div> <!-- form-group end.// -->
+						<label>Re-enter password</label>
 							<input name="Password" class="form-control" type="password">
 						</div> <!-- form-group end.// -->
 						<div class="form-group">
