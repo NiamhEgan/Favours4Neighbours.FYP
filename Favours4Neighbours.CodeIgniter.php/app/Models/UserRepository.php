@@ -45,8 +45,19 @@ class UserRepository extends Model
         if (!isset($data['data']['Password']))
             return $data;
 
-        $data['data']['Password'] = password_hash($data['data']['Password'], PASSWORD_DEFAULT);
+        $data['data']['Password'] = $this->createPasswordHash($data['data']['Password']);
 
         return $data;
+    }
+
+    public function createPasswordHash($plainTextPassword)
+	{
+		return hash("ripemd160", $plainTextPassword);
+	}
+
+
+    public function hashText(String $password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
     }
 }
