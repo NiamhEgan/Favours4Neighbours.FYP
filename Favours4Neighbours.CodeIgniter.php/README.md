@@ -3,7 +3,16 @@
 ## How to install and Run
 
 Clone the project from github. 
-Open the project in VSCode. Open a terminal and enter `php spark serve`
+
+
+
+Open the project in VSCode. Open a terminal and enter 
+
+`mysql -import -filepath` to create a database [Fix me]
+
+`composer i` to install required codeigniter packages
+
+`php spark serve` to run the website.
 
 ## About this project
 
