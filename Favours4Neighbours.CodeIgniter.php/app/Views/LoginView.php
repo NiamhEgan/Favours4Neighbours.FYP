@@ -15,7 +15,7 @@
 		<?php if (isset($error)) { ?><p class="error"><?php echo $error ?></p><?php } ?>
 	</form>
 	<form action="/login/demo/" method="post">
-		<h2 class="h3 mb-3 fw-normal">Demo login</h2>
-		<button class="w-100 btn btn-lg btn-primary" type="submit">Demo Login</button>
+		<h2 class="h3 mb-3 fw-normal">If you are not registered please register below</h2>
+		<button class="w-100 btn btn-lg btn-primary" type="submit">Register New User</button>
 	</form>
 </main>

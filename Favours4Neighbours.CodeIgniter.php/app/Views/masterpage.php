@@ -71,15 +71,7 @@
             <h3>Profile </h3>
             <p>Profile Image </p>
 
-            <img src="">
-            <p> Profile Description <br>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-        </div>
-       
-    </aside>
-
-    <footer>
-        
-    </footer>
+ 
 </body>
 
 </html>

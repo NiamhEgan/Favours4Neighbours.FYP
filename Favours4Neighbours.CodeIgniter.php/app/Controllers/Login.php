@@ -37,7 +37,7 @@ class Login extends BaseController
 				$this->loadPageWithError("User " . $username . " has been disabled. Please contact the system administrator.");
 			}
 		} else {
-			$this->loadPageWithError("Not user found for your credientqqls");
+			$this->loadPageWithError("Not user found for your credientials");
 		}
 	}
 	private function handleLogin1()

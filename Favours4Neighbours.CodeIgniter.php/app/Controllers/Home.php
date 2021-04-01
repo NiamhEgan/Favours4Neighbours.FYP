@@ -14,9 +14,6 @@ class Home extends BaseController
 		echo view('MasterPage', $data);
 	}
 
-	public function aboutus()
-	{
-		return view('welcome_message3');
-	}
+	
 
 }
