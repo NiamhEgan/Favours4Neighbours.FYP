@@ -8,6 +8,7 @@ class JobRepository extends Model
 {
     protected $table      = 'job';
     protected $primaryKey = 'id';
+    protected $foreignKey = 'fk_Job_User1';
 
     protected $useAutoIncrement = true;
 
@@ -25,8 +26,8 @@ class JobRepository extends Model
     ];
 
     protected $useTimestamps = true;
-    protected $createdField  = 'DateCreated';
-    protected $updatedField  = 'DateModified';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
     protected $validationRules    = [];
