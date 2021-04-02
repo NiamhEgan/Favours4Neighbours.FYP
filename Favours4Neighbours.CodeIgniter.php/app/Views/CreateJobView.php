@@ -1,11 +1,8 @@
-<?php $usernameValue = isset($username) ? 'value="' . $username . '"' : ""; ?>
 <main>
-
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 			<div class="card">
 				<header class="card-header">
-					
 					<h4 class="card-title mt-2">Create Job</h4>
 				</header>
 				<article class="card-body">

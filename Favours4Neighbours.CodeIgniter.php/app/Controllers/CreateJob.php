@@ -14,10 +14,11 @@ class CreateJob extends BaseController
 	public function index()
 	{
 		if ($this->request->getPost("CreateButton") !== null) {
-			$createJobValuesArray = $this->createJobValuesArrayFromPostArray();
-			try {
-				$commandResult = $this->JobRepository->insert($createJobValuesArray);
-				redirect("Login/index");
+		$createJobValuesArray = $this->createJobValuesArrayFromPostArray();
+		try {
+			$commandResult = $this->JobRepository->insert($createJobValuesArray);
+				return redirect()->to("/login");
+
 			} catch (Exception $e) {
 				$data = [
 					'mainContent' => view("CreateJobView"),
@@ -26,7 +27,7 @@ class CreateJob extends BaseController
 				];
 				return view('MasterPage', $data);
 			}
-		} else
+			} else
 			$data = [
 				'mainContent' => view("CreateJobView"),
 				'title' => "Favours 4 Neighbours: Create Job",
