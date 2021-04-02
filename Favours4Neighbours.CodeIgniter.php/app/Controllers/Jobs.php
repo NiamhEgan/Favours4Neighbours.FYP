@@ -105,17 +105,13 @@ class Jobs extends BaseController
 	private function createJobValuesArrayFromPostArray()
 	{
 		return [
-
-
-			"CreatedBy" => $this->request->getPost("CreatedBy"),
+			"CreatedBy" =>  $this->session->get("UserId"),
 			"jobDetails" => $this->request->getPost("jobDetails"),
 			"JobStatus" => $this->request->getPost("JobStatus"),
 			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
 			"DurationEstimate" => $this->request->getPost("DurationEstimate"),
 			"JobPrice" => $this->request->getPost("JobPrice"),
-			"DateCreated" => $this->request->getPost("DateCreated"),
-
-
+			"DateCreated" => $this->request->getPost("DateCreated"),//DateTime.Now()
 		];
 	}
 }
