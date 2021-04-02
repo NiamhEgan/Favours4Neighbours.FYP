@@ -23,18 +23,18 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="#"> Profile</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Jobs
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">View Jobs</a>
-              <a class="dropdown-item" href="#">Create Job</a>
+            <div class="dropdown-menu active" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item active" href="/jobs">View Jobs</a>
+              <a class="dropdown-item" href="/jobs/new">Create Job</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">View Applications</a>
             </div>
@@ -51,7 +51,7 @@
             </div>
 
           <li class="nav-item">
-            <a class="nav-link" href="#"> Logout</a>
+            <a class="nav-link active" href="/login/logout"> Logout</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
