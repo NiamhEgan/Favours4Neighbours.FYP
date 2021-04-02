@@ -1,6 +1,4 @@
-<?php $usernameValue = isset($username) ? 'value="' . $username . '"' : ""; ?>
 <main>
-
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 			<div class="card">
@@ -13,7 +11,7 @@
 						<div class="form-row">
 							<div class="col form-group">
 								<label>First name </label>
-								<input type="text" name="FirstName" class="form-control" placeholder="">
+								<input type="text" name="FirstName" class="form-control" placeholder="" value="<?= set_value("FirstName"); ?>">
 							</div> <!-- form-group end.// -->
 							<div class="col form-group">
 								<label>Surname</label>

@@ -8,7 +8,7 @@ class UserRepository extends Model
 {
     protected $table      = 'user';
     protected $primaryKey = 'id';
-   
+
 
     protected $useAutoIncrement = true;
 
@@ -43,22 +43,14 @@ class UserRepository extends Model
 
     protected function hashPassword(array $data)
     {
-        if (!isset($data['data']['Password']))
-            return $data;
-
-        $data['data']['Password'] = $this->createPasswordHash($data['data']['Password']);
+        if (isset($data['data']['Password']))
+            $data['data']['Password'] = $this->createPasswordHash($data['data']['Password']);
 
         return $data;
     }
 
     public function createPasswordHash($plainTextPassword)
-	{
-		return hash("ripemd160", $plainTextPassword);
-	}
-
-
-    public function hashText(String $password)
     {
-        return password_hash($password, PASSWORD_DEFAULT);
+        return hash("ripemd160", $plainTextPassword);
     }
 }

@@ -13,11 +13,12 @@ class Registration extends BaseController
 	}
 	public function index()
 	{
-		if ($this->request->getPost("RegisterButton") !== null) {
+		helper(["form"]);
+		if ($this->request->getVar("RegisterButton") !== null) {
 			$userValuesArray = $this->createUserValuesArrayFromPostArray();
 			try {
 				$commandResult = $this->UserRepository->insert($userValuesArray);
-				redirect("Login/index");
+				return redirect()->to("/login");
 			} catch (Exception $e) {
 				$data = [
 					'mainContent' => view("RegistrationView"),
@@ -37,16 +38,16 @@ class Registration extends BaseController
 	private function createUserValuesArrayFromPostArray()
 	{
 		return [
-			"AddressLine1" => $this->request->getPost("AddressLine1"),
-			"AddressLine2" => $this->request->getPost("AddressLine2"),
-			"Eircode" => $this->request->getPost("Eircode"),
-			"email" => $this->request->getPost("email"),
-			"FirstName" => $this->request->getPost("FirstName"),
-			"Gender" => $this->request->getPost("Gender"),
-			"Password" => $this->request->getPost("Password"),
-			"Surname" => $this->request->getPost("Surname"),
-			"Telephone" => $this->request->getPost("Telephone"),
-			"Username" => $this->request->getPost("Username"),
+			"AddressLine1" => $this->request->getVar("AddressLine1"),
+			"AddressLine2" => $this->request->getVar("AddressLine2"),
+			"Eircode" => $this->request->getVar("Eircode"),
+			"email" => $this->request->getVar("email"),
+			"FirstName" => $this->request->getVar("FirstName"),
+			"Gender" => $this->request->getVar("Gender"),
+			"Password" => $this->request->getVar("Password"),
+			"Surname" => $this->request->getVar("Surname"),
+			"Telephone" => $this->request->getVar("Telephone"),
+			"Username" => $this->request->getVar("Username"),
 		];
 	}
 }
