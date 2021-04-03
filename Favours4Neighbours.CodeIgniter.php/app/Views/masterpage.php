@@ -1,68 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title><?php echo $title; ?></title>
+  <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#"> Profile</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Jobs
-            </a>
-            <div class="dropdown-menu active" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item active" href="/jobs">View Jobs</a>
-              <a class="dropdown-item" href="/jobs/new">Create Job</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">View Applications</a>
-            </div>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              FAQ's
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">FAQ's</a>
-              <a class="dropdown-item" href="#">COVID-19</a>
-              <a class="dropdown-item" href="#">Safety Declaration</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">View Applications</a>
-            </div>
-
-          <li class="nav-item">
-            <a class="nav-link active" href="/login/logout"> Logout</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Favours4Neighbours</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/home">Home</a></li>
+      <li class="active"><a href="/profile">Profile</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/jobs">Jobs <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/jobs">View Jobs</a></li>
+          <li><a href="/jobs/new">Create Jobs</a></li>
+          <li><a href="/jobs">My Jobs</a></li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </li>
+      <li><a href="#">My Applications</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">FAQ's <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">FAQ's</a></li>
+          <li><a href="#">COVID-19</a></li>
+          <li><a href="#">Safety Statement</a></li>
+        </ul>
+ 
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="/login/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      <li><form class="form-inline my-8 my-lg-0"></li>
+      <li>   <input class="form-control mr-sm-8" type="search" placeholder="Search" aria-label="Search"></li>
+      <li>  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></li>
         </form>
-      </div>
-    </nav>
+    </ul>
+  </div>
+
+   
+</nav>
+  
+
+
+
 
   </header>
   <?php echo $mainContent; ?>

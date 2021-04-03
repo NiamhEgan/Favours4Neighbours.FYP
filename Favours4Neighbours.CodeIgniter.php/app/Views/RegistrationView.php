@@ -1,4 +1,8 @@
-<main>
+
+
+
+
+
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 			<div class="card">
@@ -95,3 +99,5 @@
 	<?php endif ?>
 	<!--container end.//-->
 </main>
+</body>
+</html>

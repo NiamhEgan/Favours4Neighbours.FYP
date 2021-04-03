@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\JobRepository;
-use phpDocumentor\Reflection\Types\This;
+use App\Models\JobRepository; 
+
 
 class CreateJob extends BaseController
 {
@@ -41,12 +41,14 @@ class CreateJob extends BaseController
 			
 		
 			"CreatedBy" => $this->request->getPost("CreatedBy"),
-			"jobDetails" => $this->request->getPost("jobDetails"),
+			"JobCategory" => $this->request->getPost("JobCategory"),
+			"JobDetails" => $this->request->getPost("JobDetails"),
 			"JobStatus" => $this->request->getPost("JobStatus"),
 			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
 			"DurationEstimate" => $this->request->getPost("DurationEstimate"),
 			"JobPrice" => $this->request->getPost("JobPrice"),
 			"DateCreated" => $this->request->getPost("DateCreated"),
+		
 		
 			
 		];

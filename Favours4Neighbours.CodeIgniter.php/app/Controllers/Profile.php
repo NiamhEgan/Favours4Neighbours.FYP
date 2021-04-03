@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\JobRepository;
+use App\Models\UserRepository;
 
-class Jobs extends BaseController
+class Profile extends BaseController
 {
 	protected $session;
 
@@ -13,19 +13,20 @@ class Jobs extends BaseController
 		$this->session = \Config\Services::session();
 		$this->session->start();
 
-		$this->JobRepository = new JobRepository();
+		$this->UserRepository = new UserRepository();
 	}
+
 
 	public function index()
 	{
 		if ($this->isLoggedIn()) {
-			$jobs = $this->JobRepository->findAll();
+			$profile = $this->UserRepository->findAll();
 
 			$data = [
-				"jobs" => $jobs,
+				"profile" => $profile,
 			];
 			$masterData = [
-				'mainContent' => view("JobsView", $data),
+				'mainContent' => view("ProfileView", $data),
 				'title' => "Favours 4 Neighbours: Create Job",
 			];
 			return view('MasterPage', $masterData);
@@ -42,6 +43,7 @@ class Jobs extends BaseController
 		return ($this->session->get("UserId") !== null);
 	}
 
+	
 	public function new()
 	{
 		if ($this->request->getPost("CreateButton") !== null) {
@@ -102,11 +104,17 @@ class Jobs extends BaseController
 
 
 
+
+
+
+
+
+
 	private function createJobValuesArrayFromPostArray()
 	{
 		return [
 			"CreatedBy" =>  $this->session->get("UserId"),
-			"JobDetails" => $this->request->getPost("JobDetails"),
+			"jobDetails" => $this->request->getPost("jobDetails"),
 			"JobStatus" => $this->request->getPost("JobStatus"),
 			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
 			"DurationEstimate" => $this->request->getPost("DurationEstimate"),

@@ -18,6 +18,7 @@ class UserRepository extends Model
         "Active",
         "AddressLine1",
         "AddressLine2",
+        "Bio",
         "Eircode",
         "email",
         "FirstName",
@@ -26,6 +27,8 @@ class UserRepository extends Model
         "Surname",
         "Telephone",
         "Username",
+        "Photo",
+        
     ];
 
     protected $useTimestamps = true;

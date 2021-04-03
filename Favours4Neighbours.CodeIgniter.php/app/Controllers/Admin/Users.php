@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\JobRepository;
 
-class Jobs extends BaseController
+class Users extends BaseController
 {
 	protected $session;
 
@@ -106,7 +106,7 @@ class Jobs extends BaseController
 	{
 		return [
 			"CreatedBy" =>  $this->session->get("UserId"),
-			"JobDetails" => $this->request->getPost("JobDetails"),
+			"jobDetails" => $this->request->getPost("jobDetails"),
 			"JobStatus" => $this->request->getPost("JobStatus"),
 			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
 			"DurationEstimate" => $this->request->getPost("DurationEstimate"),
