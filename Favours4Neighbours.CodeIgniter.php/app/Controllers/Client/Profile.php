@@ -4,6 +4,8 @@ namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
 use App\Models\UserRepository;
+use App\Models\CountyRepository;
+
 
 class Profile extends BaseController
 {
@@ -14,14 +16,46 @@ class Profile extends BaseController
 		$this->session = \Config\Services::session();
 		$this->session->start();
 
+		$this->CountyRepository = new CountyRepository();
 		$this->UserRepository = new UserRepository();
 	}
+	private function transformObjectArray($objectArray, $objectKeyName, $objectValueName)
+	{
+		$dataArray = [];
+		foreach ($objectArray as $objectItem) {
+			$key = $objectItem[$objectKeyName];
+			$dataArray[$key] = $objectItem[$objectValueName];
+		}
+		return $dataArray;
+	}
+	public function edit()
+	{
+		if ($this->isLoggedIn()) {
+			$userId = $this->session->get("UserId");
+			$user = $this->UserRepository->find($userId);
 
-
+			$data = [
+				"user" => $user,
+				"countyDataSource" => $this->transformObjectArray($this->CountyRepository->findAll(), "ID_county", "county")
+			];
+			$masterData = [
+				'mainContent' => view("ProfileEditView", $data),
+				'navTemplate' => "nav-admin.php",
+				'title' => "Favours 4 Neighbours: Edit Profile",
+			];
+			return view('MasterPage', $masterData);
+		} else {
+			$masterData = [
+				'mainContent' => view("403"),
+				'title' => "Favours 4 Neighbours: Unauthorised access",
+			];
+			return view('MasterPage', $masterData);
+		}
+	}
 	public function index()
 	{
 		if ($this->isLoggedIn()) {
-			$userId =$this->session->get("UserId");
+			$userId = $this->session->get("UserId");
 			$profile = $this->UserRepository->find($userId);
 
 			$data = [
@@ -120,7 +154,7 @@ class Profile extends BaseController
 			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
 			"DurationEstimate" => $this->request->getPost("DurationEstimate"),
 			"JobPrice" => $this->request->getPost("JobPrice"),
-			"DateCreated" => $this->request->getPost("DateCreated"),//DateTime.Now()
+			"DateCreated" => $this->request->getPost("DateCreated"), //DateTime.Now()
 		];
 	}
 }
