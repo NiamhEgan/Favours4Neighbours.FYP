@@ -3,25 +3,39 @@
 namespace App\Controllers;
 
 use App\Models\UserRepository;
-use phpDocumentor\Reflection\Types\This;
+use App\Models\CountyRepository;
 
 class Registration extends BaseController
 {
 	public function __construct()
 	{
 		$this->UserRepository = new UserRepository();
+		$this->CountyRepository = new CountyRepository();
+	}
+	private function transformObjectArray($objectArray, $objectKeyName, $objectValueName)
+	{
+		$dataArray = [];
+		foreach ($objectArray as $objectItem) {
+			$key = $objectItem[$objectKeyName];
+			$dataArray[$key] = $objectItem[$objectValueName];
+		}
+		return $dataArray;
 	}
 	public function index()
 	{
-		helper(["form"]);
+		helper('array');
+		$mainData = [
+			"countyDataSource" =>$this->transformObjectArray($this->CountyRepository->findAll(), "ID_county", "county")
+		];
 		if ($this->request->getVar("RegisterButton") !== null) {
 			$userValuesArray = $this->createUserValuesArrayFromPostArray();
 			try {
 				$commandResult = $this->UserRepository->insert($userValuesArray);
 				return redirect()->to("/login");
 			} catch (Exception $e) {
+
 				$data = [
-					'mainContent' => view("RegistrationView"),
+					'mainContent' => view("RegistrationView", $mainData),
 					'title' => "Favours 4 Neighbours: Registration",
 					'errors' => $this->UserRepository->errors(),
 				];
@@ -29,7 +43,7 @@ class Registration extends BaseController
 			}
 		} else
 			$data = [
-				'mainContent' => view("RegistrationView"),
+				'mainContent' => view("RegistrationView", $mainData),
 				'title' => "Favours 4 Neighbours: Registration",
 			];
 		return view('MasterPage', $data);

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\Client;
 
-use App\Models\JobRepository;
 use App\Controllers\BaseController;
+use App\Models\UserRepository;
 
-class Users extends BaseController
+class Profile extends BaseController
 {
 	protected $session;
 
@@ -14,20 +14,23 @@ class Users extends BaseController
 		$this->session = \Config\Services::session();
 		$this->session->start();
 
-		$this->JobRepository = new JobRepository();
+		$this->UserRepository = new UserRepository();
 	}
+
 
 	public function index()
 	{
 		if ($this->isLoggedIn()) {
-			$jobs = $this->JobRepository->findAll();
+			$userId =$this->session->get("UserId");
+			$profile = $this->UserRepository->find($userId);
 
 			$data = [
-				"jobs" => $jobs,
+				"profile" => $profile,
 			];
 			$masterData = [
-				'mainContent' => view("JobsView", $data),
-				'title' => "Favours 4 Neighbours: Create Job",
+				'mainContent' => view("ProfileView", $data),
+				'navTemplate' => "nav-admin.php",
+				'title' => "Favours 4 Neighbours: Profile",
 			];
 			return view('MasterPage', $masterData);
 		} else {
@@ -42,7 +45,6 @@ class Users extends BaseController
 	{
 		return ($this->session->get("UserId") !== null);
 	}
-
 	public function new()
 	{
 		if ($this->request->getPost("CreateButton") !== null) {
@@ -100,6 +102,12 @@ class Users extends BaseController
 			//error
 		}
 	}
+
+
+
+
+
+
 
 
 

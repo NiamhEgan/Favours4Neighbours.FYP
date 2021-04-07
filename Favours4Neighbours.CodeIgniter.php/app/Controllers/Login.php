@@ -17,7 +17,6 @@ class Login extends BaseController
 
 	public function index()
 	{
-		echo view('templates/header');
 		if ($this->request->getVar("LoginButton") !== null) {
 			$this->handleLogin();
 		} else {
@@ -74,6 +73,9 @@ class Login extends BaseController
 	{
 		$this->session->set("UserId", $user["Id"]);
 		$this->session->set("Username", $user["Username"]);
+
+		redirect()->to("/client/profile");
+
 		$data = [
 			'mainContent' => view("HomeView", ['username' => $user["Username"]]),
 			'title' => "Favours 4 Neighbours",
