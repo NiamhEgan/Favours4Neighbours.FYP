@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 use App\Models\UserRepository;
+use App\Controllers\BaseController;
 
 class Profile extends BaseController
 {
@@ -27,6 +28,7 @@ class Profile extends BaseController
 			];
 			$masterData = [
 				'mainContent' => view("ProfileView", $data),
+				'navTemplate' => "nav-admin.php",
 				'title' => "Favours 4 Neighbours: Create Job",
 			];
 			return view('MasterPage', $masterData);
@@ -43,7 +45,7 @@ class Profile extends BaseController
 		return ($this->session->get("UserId") !== null);
 	}
 
-	
+
 	public function new()
 	{
 		if ($this->request->getPost("CreateButton") !== null) {
@@ -119,7 +121,7 @@ class Profile extends BaseController
 			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
 			"DurationEstimate" => $this->request->getPost("DurationEstimate"),
 			"JobPrice" => $this->request->getPost("JobPrice"),
-			"DateCreated" => $this->request->getPost("DateCreated"),//DateTime.Now()
+			"DateCreated" => $this->request->getPost("DateCreated"), //DateTime.Now()
 		];
 	}
 }
