@@ -19,6 +19,9 @@ class Profile extends BaseController
 
 	public function index()
 	{
+
+		echo view('templates/header');
+
 		if ($this->isLoggedIn()) {
 			$profile = $this->UserRepository->findAll();
 

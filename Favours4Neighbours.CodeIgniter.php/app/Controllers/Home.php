@@ -6,6 +6,7 @@ class Home extends BaseController
 {
 	public function index()
 	{
+		echo view('templates/header');
 		$homeViewData = ["username" => ""];
 		$data = [
 			'mainContent' => view("HomeView", $homeViewData),

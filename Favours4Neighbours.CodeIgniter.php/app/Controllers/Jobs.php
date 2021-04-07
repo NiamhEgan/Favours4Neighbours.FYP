@@ -18,6 +18,7 @@ class Jobs extends BaseController
 
 	public function index()
 	{
+		echo view('templates/header');
 		if ($this->isLoggedIn()) {
 			$jobs = $this->JobRepository->findAll();
 

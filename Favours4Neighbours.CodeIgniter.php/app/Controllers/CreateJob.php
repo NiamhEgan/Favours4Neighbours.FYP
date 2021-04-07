@@ -13,6 +13,8 @@ class CreateJob extends BaseController
 	}
 	public function index()
 	{
+		echo view('templates/header');
+
 		if ($this->request->getPost("CreateButton") !== null) {
 		$createJobValuesArray = $this->createJobValuesArrayFromPostArray();
 		try {
@@ -20,6 +22,7 @@ class CreateJob extends BaseController
 				return redirect()->to("/login");
 
 			} catch (Exception $e) {
+				echo view('templates/header');
 				$data = [
 					'mainContent' => view("CreateJobView"),
 					'title' => "Favours 4 Neighbours: Create Job",
@@ -37,6 +40,7 @@ class CreateJob extends BaseController
 
 	private function createJobValuesArrayFromPostArray()
 	{
+		
 		return [
 			
 		

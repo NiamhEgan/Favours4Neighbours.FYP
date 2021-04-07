@@ -17,6 +17,7 @@ class Login extends BaseController
 
 	public function index()
 	{
+		echo view('templates/header');
 		if ($this->request->getVar("LoginButton") !== null) {
 			$this->handleLogin();
 		} else {
