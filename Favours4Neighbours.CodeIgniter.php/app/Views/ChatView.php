@@ -9,46 +9,7 @@
   <link href="<?php echo base_url(); ?>asset/css/bootstrap.min.css" rel="stylesheet" />
   <style type="text/css">
    
-   #chat_message_area
-   {
-    width: 100%;
-    height: auto;
-    min-height: 80px;
-    overflow: auto;
-    padding:6px 24px 6px 12px;
-    border: 1px solid #CCC;
-       border-radius: 3px;
-   }
-
-   .notification_circle {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: #FF0000;
-    text-align: center;
-    color:#fff;
-    padding:3px 6px;
-   }
-   .online
-   {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: #5cb85c;
-    text-align: center;
-    color:#fff;
-    padding:3px 6px;
-   }
-   .offline
-   {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: #ccc;
-    text-align: center;
-    color:#fff;
-    padding:3px 6px;
-   }
+ 
 
   </style>
  </head>
