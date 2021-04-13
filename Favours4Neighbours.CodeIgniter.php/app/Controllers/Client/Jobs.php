@@ -130,7 +130,7 @@ class Jobs extends BaseController
 				->findAll();*/
 
 
-		var_dump($jobs);
+	//	var_dump($jobs);
 			$data = [
 				"jobs" => $jobs,
 
