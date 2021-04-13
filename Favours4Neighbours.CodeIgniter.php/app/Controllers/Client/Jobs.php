@@ -67,6 +67,7 @@ class Jobs extends BaseController
 		return view('MasterPage', $data);
 	}
 
+	
 	private function executeDelete()
 	{
 		if ($this->request->getPost("CreateButton") !== null) {
