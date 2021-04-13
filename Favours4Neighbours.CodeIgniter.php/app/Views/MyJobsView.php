@@ -7,26 +7,37 @@
 			<th scope="col">Duration Estimate</th>
 			<th scope="col">Price</th>
 			<th scope="col">Category</th>
-			<td>&nbsp;</td>
+			<th scope="col">AssignedTo</th>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 		</tr>
 	</thead>
 	<tbody>
-		
-			<tr>
-				<th scope="row"><?= $myjobs["JobDetails"]; ?></th>
-				<td><?= $myjobs["EquipmentRequired"]; ?></td>
-				<td><?= $myjobs["DurationEstimate"]; ?></td>
-				<td><?= $myjobs["JobPrice"]; ?></td>
-				<td><?= $myjobs["JobCategory"]; ?></td>
-				<td><a href="view/<?= $myjobs["Id"]; ?>">View details</a></td>
-				<td><a href="edit/<?= $myjobs["Id"]; ?>">Edit</a></td>
-				<td><a href="delete/<?= $myjobs["Id"]; ?>">Delete</a></td>
-				<td><a href="apply/<?= $myjobs["Id"]; ?>">Apply</a></td>
-			</tr>
-	
+		<?php if ($jobs != null) : ?>
+			<?php foreach ($jobs as $job) : ?>
+				<tr>
+					<th scope="row"><?= $job["JobDetails"]; ?></th>
+					<td><?= $job["EquipmentRequired"]; ?></td>
+					<td><?= $job["DurationEstimate"]; ?></td>
+					<td><?= $job["JobPrice"]; ?></td>
+					<td><?= $job["JobCategory"]; ?></td>
+					<td>
+						<?php if ($job["JobCategory"] != null) : ?>
+							<?= $job["JobCategory"]; ?>
+						<?php endif ?>
+					</td>
+					<td>
+						<?php if ($job["AssignedTo"] != null) : ?>
+							<?= $job["Username"]; ?>
+						<?php endif ?>
+					</td>
+					<td><a href="edit/<?= $job["Id"]; ?>">Edit</a></td>
+					<td><a href="deactive/<?= $job["Id"]; ?>">Deactive</a></td>
+					<td><a href="view/<?= $job["Id"]; ?>">View details</a></td>
+				</tr>
+			<?php endforeach ?>
+		<?php endif ?>
 	</tbody>
 	<tfoot>
 		<tr>

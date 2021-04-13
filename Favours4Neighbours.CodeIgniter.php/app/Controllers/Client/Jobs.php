@@ -15,6 +15,7 @@ class Jobs extends BaseController
 		$this->session->start();
 
 		$this->JobRepository = new JobRepository();
+		$this->db = \Config\Database::connect();
 	}
 
 	public function index()
@@ -67,7 +68,7 @@ class Jobs extends BaseController
 		return view('MasterPage', $data);
 	}
 
-	
+
 	private function executeDelete()
 	{
 		if ($this->request->getPost("CreateButton") !== null) {
@@ -85,15 +86,15 @@ class Jobs extends BaseController
 			}
 		}
 	}
-	public function delete($jobId)
+	public function delete($userID)
 	{
 		if ($this->isLoggedIn()) {
 
-			$job = $this->JobRepository->find($jobId);
+			$job = $this->JobRepository->find($userID);
 
 			if ($job == null) {
 				//error
-			} else if ($job["CreatedBy"] != $this->session->get("UserId")) {
+			} else if ($job["userID"] != $this->session->get("UserId")) {
 				//error
 			} else {
 				$this->executeDelete();
@@ -108,13 +109,44 @@ class Jobs extends BaseController
 	private function createJobValuesArrayFromPostArray()
 	{
 		return [
-			"CreatedBy" =>  $this->session->get("UserId"),
+			"userID" =>  $this->session->get("UserId"),
 			"JobDetails" => $this->request->getPost("JobDetails"),
 			"JobStatus" => $this->request->getPost("JobStatus"),
 			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
 			"DurationEstimate" => $this->request->getPost("DurationEstimate"),
 			"JobPrice" => $this->request->getPost("JobPrice"),
-			"DateCreated" => $this->request->getPost("DateCreated"),//DateTime.Now()
+			"DateCreated" => $this->request->getPost("DateCreated"), //DateTime.Now()
 		];
+	}
+	public function myjobs()
+	{
+		if ($this->isLoggedIn()) {
+			$userID = $this->session->get("UserId");
+			$jobs = $this->db->query('Call myjobs;')->getResult();
+			/*$this->JobRepository
+				->join('User U', 'U.Id = AssignedTo', "left")
+				->join('jobcategory JC', 'JC.Id = Job.JobCategory', "left")
+				->where("CreatedBy", $userID)
+				->findAll();*/
+
+
+		var_dump($jobs);
+			$data = [
+				"jobs" => $jobs,
+
+			];
+			$masterData = [
+				'mainContent' => view("MyJobsView", $data),
+				'navTemplate' => "nav-admin.php",
+				'title' => "Favours 4 Neighbours: My Jobs",
+			];
+			return view('MasterPage', $masterData);
+		} else {
+			$masterData = [
+				'mainContent' => view("403"),
+				'title' => "Favours 4 Neighbours: Unauthorised access",
+			];
+			return view('MasterPage', $masterData);
+		}
 	}
 }
