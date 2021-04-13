@@ -2,7 +2,10 @@
 
 namespace App\Controllers\Client;
 
+use App\Models\CountyRepository;
 use App\Models\JobRepository;
+use App\Models\UserRepository;
+
 use App\Controllers\BaseController;
 
 class Jobs extends BaseController
@@ -14,7 +17,11 @@ class Jobs extends BaseController
 		$this->session = \Config\Services::session();
 		$this->session->start();
 
-		$this->JobRepository = new JobRepository();
+		$this->countyRepository = new CountyRepository();
+		$this->jobRepository = new JobRepository();
+		$this->userRepository = new UserRepository();
+
+
 		$this->db = \Config\Database::connect();
 	}
 
@@ -22,7 +29,7 @@ class Jobs extends BaseController
 	{
 		echo view('templates/header');
 		if ($this->isLoggedIn()) {
-			$jobs = $this->JobRepository->findAll();
+			$jobs = $this->jobRepository->findAll();
 
 			$data = [
 				"jobs" => $jobs,
@@ -45,52 +52,27 @@ class Jobs extends BaseController
 		return ($this->session->get("UserId") !== null);
 	}
 
-	public function new()
-	{
-		if ($this->request->getPost("CreateButton") !== null) {
-			$createJobValuesArray = $this->createJobValuesArrayFromPostArray();
-			try {
-				$commandResult = $this->JobRepository->insert($createJobValuesArray);
-				return redirect()->to("/login");
-			} catch (Exception $e) {
-				$data = [
-					'mainContent' => view("CreateJobView"),
-					'title' => "Favours 4 Neighbours: Create Job",
-					'errors' => $this->JobRepository->errors(),
-				];
-				return view('MasterPage', $data);
-			}
-		} else
-			$data = [
-				'mainContent' => view("CreateJobView"),
-				'title' => "Favours 4 Neighbours: Create Job",
-			];
-		return view('MasterPage', $data);
-	}
-
-
 	private function executeDelete()
 	{
 		if ($this->request->getPost("CreateButton") !== null) {
 			$createJobValuesArray = $this->createJobValuesArrayFromPostArray();
 			try {
-				$commandResult = $this->JobRepository->insert($createJobValuesArray);
+				$commandResult = $this->jobRepository->insert($createJobValuesArray);
 				return redirect()->to("/login");
 			} catch (Exception $e) {
 				$data = [
 					'mainContent' => view("CreateJobView"),
 					'title' => "Favours 4 Neighbours: Create Job",
-					'errors' => $this->JobRepository->errors(),
+					'errors' => $this->jobRepository->errors(),
 				];
 				return view('MasterPage', $data);
 			}
 		}
 	}
-	public function delete($userID)
+	public function delete($jobId)
 	{
 		if ($this->isLoggedIn()) {
-
-			$job = $this->JobRepository->find($userID);
+			$job = $this->jobRepository->find($jobId);
 
 			if ($job == null) {
 				//error
@@ -104,16 +86,86 @@ class Jobs extends BaseController
 		}
 	}
 
+	public function edit($jobId)
+	{
+		if ($this->isLoggedIn()) {
+			$job = $this->jobRepository->find($jobId);
+
+			if ($job == null) {
+				echo "Not found error";
+			} else if ($job["CreatedBy"] != $this->session->get("UserId")) {
+				echo "User permission error";
+			} else {
+				return $this->getEditView($jobId, $job);
+			}
+		} else {
+			$masterData = [
+				'mainContent' => view("403"),
+				'title' => "Favours 4 Neighbours: Unauthorised access",
+			];
+			return view('MasterPage', $masterData);
+		}
+	}
+	private function transformObjectArray($objectArray, $objectKeyName, $objectValueName)
+	{
+		$dataArray = [];
+		foreach ($objectArray as $objectItem) {
+			$key = $objectItem[$objectKeyName];
+			$dataArray[$key] = $objectItem[$objectValueName];
+		}
+		return $dataArray;
+	}
+	private function transformObjectArrayWithNullValue($objectArray, $objectKeyName, $objectValueName)
+	{
+		$dataArray = [];
+		$dataArray[""] = "";
+		foreach ($objectArray as $objectItem) {
+			$key = $objectItem[$objectKeyName];
+			$dataArray[$key] = $objectItem[$objectValueName];
+		}
+		return $dataArray;
+	}
+	private function getEditView($jobId, $job)
+	{
+		$data = [
+			"countyDataSource" => $this->transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
+			"asssignedToDataSource" => $this->transformObjectArrayWithNullValue($this->userRepository->findAll(), "Id", "Username"),
+			"jobCategoryDataSource" => $this->transformObjectArrayWithNullValue($this->userRepository->findAll(), "Id", "Username"),
+		];
+		if ($this->request->getPost("SaveButton") !== null) {
+			$job = $this->executeSave($data, $jobId);
+		}
+		$data["job"] = $job;
+
+		$masterData = [
+			'mainContent' => view("JobEditView", $data),
+			'navTemplate' => "nav-admin.php",
+			'title' => "Favours 4 Neighbours: Edit Job",
+		];
+		return view('MasterPage', $masterData);
+	}
+	private function executeSave(&$data, $jobId)
+	{
+		$data["message"] = "hey";
+		$jobValuesArray = $this->createJobValuesArrayFromPostArray();
+		try {
+			$commandResult = $this->jobRepository->update($jobId, $jobValuesArray);
+			$data["message"] = "Job Saved";
+		} catch (Exception $e) {
+			$data['errors'] = $this->jobRepository->errors();
+		}
+		return $this->jobRepository->find($jobId);
+	}
 
 
 	private function createJobValuesArrayFromPostArray()
 	{
 		return [
-			"userID" =>  $this->session->get("UserId"),
-			"JobDetails" => $this->request->getPost("JobDetails"),
-			"JobStatus" => $this->request->getPost("JobStatus"),
-			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
-			"DurationEstimate" => $this->request->getPost("DurationEstimate"),
+			"CreatedBy" =>  $this->session->get("UserId"),
+			"JobDetails" => $this->request->getPost("JobDetails") . "asas",
+			"JobStatus" => $this->request->getPost("JobStatus"). "as",
+			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"). "as",
+			"DurationEstimate" => $this->request->getPost("DurationEstimate"). "as",
 			"JobPrice" => $this->request->getPost("JobPrice"),
 			"DateCreated" => $this->request->getPost("DateCreated"), //DateTime.Now()
 		];
@@ -122,15 +174,9 @@ class Jobs extends BaseController
 	{
 		if ($this->isLoggedIn()) {
 			$userID = $this->session->get("UserId");
-			$jobs = $this->db->query('Call myjobs;')->getResult();
-			/*$this->JobRepository
-				->join('User U', 'U.Id = AssignedTo', "left")
-				->join('jobcategory JC', 'JC.Id = Job.JobCategory', "left")
-				->where("CreatedBy", $userID)
-				->findAll();*/
 
+			$jobs = $this->db->query("Call GetMyJobs(?)", $userID)->getResult();
 
-	//	var_dump($jobs);
 			$data = [
 				"jobs" => $jobs,
 
