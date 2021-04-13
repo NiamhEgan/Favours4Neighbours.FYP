@@ -17,7 +17,7 @@
 
 							<div class="form-group col-md-6">
 								<label>JobCategory</label>
-								<?= form_dropdown('Category', $jobcategoryDataSource, set_value("Category"), 'class="form-control"'); ?>
+								<?= form_dropdown('Category', $jobCategoryDataSource, set_value("Category"), 'class="form-control"'); ?>
 								</div> <!-- form-row.// -->
 
 							<div class="form-group">

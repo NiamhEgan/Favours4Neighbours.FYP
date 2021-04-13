@@ -3,6 +3,7 @@
 namespace App\Controllers\Client;
 
 use App\Models\CountyRepository;
+use App\Models\JobCategoryRepository;
 use App\Models\JobRepository;
 use App\Models\UserRepository;
 
@@ -18,6 +19,7 @@ class Jobs extends BaseController
 		$this->session->start();
 
 		$this->countyRepository = new CountyRepository();
+		$this->jobCategoryRepository = new JobCategoryRepository();
 		$this->jobRepository = new JobRepository();
 		$this->userRepository = new UserRepository();
 
@@ -106,6 +108,18 @@ class Jobs extends BaseController
 			return view('MasterPage', $masterData);
 		}
 	}
+	public function create()
+	{
+		if ($this->isLoggedIn()) {
+			return $this->getCreateView();
+		} else {
+			$masterData = [
+				'mainContent' => view("403"),
+				'title' => "Favours 4 Neighbours: Unauthorised access",
+			];
+			return view('MasterPage', $masterData);
+		}
+	}
 	private function transformObjectArray($objectArray, $objectKeyName, $objectValueName)
 	{
 		$dataArray = [];
@@ -125,6 +139,25 @@ class Jobs extends BaseController
 		}
 		return $dataArray;
 	}
+	private function getCreateView()
+	{
+		$data = [
+			"countyDataSource" => $this->transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
+			"asssignedToDataSource" => $this->transformObjectArrayWithNullValue($this->userRepository->findAll(), "Id", "Username"),
+			"jobCategoryDataSource" => $this->transformObjectArray($this->jobCategoryRepository->findAll(), "Id", "JobCategory"),
+		];
+		if ($this->request->getPost("CreateButton") !== null) {
+			$jobId = $this->executeInsert($data);
+		}
+
+		$masterData = [
+			'mainContent' => view("CreateJobView", $data),
+			'navTemplate' => "nav-admin.php",
+			'title' => "Favours 4 Neighbours: Create Job",
+		];
+		return view('MasterPage', $masterData);
+	}
+
 	private function getEditView($jobId, $job)
 	{
 		$data = [
@@ -146,10 +179,20 @@ class Jobs extends BaseController
 	}
 	private function executeSave(&$data, $jobId)
 	{
-		$data["message"] = "hey";
 		$jobValuesArray = $this->createJobValuesArrayFromPostArray();
 		try {
 			$commandResult = $this->jobRepository->update($jobId, $jobValuesArray);
+			$data["message"] = "Job Saved";
+		} catch (Exception $e) {
+			$data['errors'] = $this->jobRepository->errors();
+		}
+		return $this->jobRepository->find($jobId);
+	}
+	private function executeInsert(&$data)
+	{
+		$jobValuesArray = $this->createJobValuesArrayForNewJobFromPostArray();
+		try {
+			$commandResult = $this->jobRepository->insert($jobValuesArray);
 			$data["message"] = "Job Saved";
 		} catch (Exception $e) {
 			$data['errors'] = $this->jobRepository->errors();
@@ -163,11 +206,21 @@ class Jobs extends BaseController
 		return [
 			"CreatedBy" =>  $this->session->get("UserId"),
 			"JobDetails" => $this->request->getPost("JobDetails") . "asas",
-			"JobStatus" => $this->request->getPost("JobStatus"). "as",
-			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"). "as",
-			"DurationEstimate" => $this->request->getPost("DurationEstimate"). "as",
+			"JobStatus" => $this->request->getPost("JobStatus") . "as",
+			"EquipmentRequired" => $this->request->getPost("EquipmentRequired") . "as",
+			"DurationEstimate" => $this->request->getPost("DurationEstimate") . "as",
 			"JobPrice" => $this->request->getPost("JobPrice"),
-			"DateCreated" => $this->request->getPost("DateCreated"), //DateTime.Now()
+		];
+	}
+	private function createJobValuesArrayForNewJobFromPostArray()
+	{
+		return [
+			"CreatedBy" => $this->request->getPost("CreatedBy"),
+			"JobDetails" => $this->request->getPost("JobDetails"),
+			"JobStatus" => $this->request->getPost("JobStatus"),
+			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
+			"DurationEstimate" => $this->request->getPost("DurationEstimate"),
+			"JobPrice" => $this->request->getPost("JobPrice"),
 		];
 	}
 	public function myjobs()
