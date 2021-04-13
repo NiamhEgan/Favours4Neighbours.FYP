@@ -26,7 +26,7 @@ class CreateJob extends BaseController
 	public function index()
 	{
 		helper('array');
-		$mainData = [
+		$categoryData = [
 			"jobcategoryDataSource" =>$this->transformCategoryArray($this->JobCategoryRepository->findAll(), "id", "jobcategory")
 		
 		];
@@ -41,7 +41,7 @@ class CreateJob extends BaseController
 			} catch (Exception $e) {
 				echo view('templates/header');
 				$data = [
-					'mainContent' => view("CreateJobView", $mainData),
+					'mainContent' => view("CreateJobView", $categoryData),
 					'title' => "Favours 4 Neighbours: Create Job",
 					'navTemplate' => "nav-admin.php",
 					'errors' => $this->JobRepository->errors(),

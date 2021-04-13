@@ -10,7 +10,7 @@
         <ul class="dropdown-menu">
           <li><a href="/jobs">View Jobs</a></li>
           <li><a href="/jobs/new">Create Jobs</a></li>
-          <li><a href="/jobs">My Jobs</a></li>
+          <li><a href="/jobs/myjobs">My Jobs</a></li>
         </ul>
       </li>
 

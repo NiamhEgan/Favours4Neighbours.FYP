@@ -17,6 +17,8 @@
 		<?php foreach ($jobs as $jobs) : ?>
 			<tr>
 				<th scope="row"><?= $jobs["JobDetails"]; ?></th>
+				<td><?= $jobs["JobCounty"]; ?></td>
+				<td><?= $jobs["JobPrice"]; ?></td>
 				<td></td>
 				<td></td>
 				<td></td>

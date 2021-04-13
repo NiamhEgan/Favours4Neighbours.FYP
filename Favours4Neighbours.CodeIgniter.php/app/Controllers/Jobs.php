@@ -67,6 +67,35 @@ class Jobs extends BaseController
 		return view('MasterPage', $data);
 	}
 
+	public function myjobs()
+	{
+		if ($this->isLoggedIn()) {
+			$myJobs = $this->session->get("MyJobs");
+			$myjobs = $this->JobRepository->find($myjobs);
+
+			$data = [
+				"jobs" => $jobs,
+				
+			];
+			$masterData = [
+				'mainContent' => view("MyJobsView", $data),
+				'navTemplate' => "nav-admin.php",
+				'title' => "Favours 4 Neighbours: My Jobs",
+			];
+			return view('MasterPage', $masterData);
+		} else {
+			$masterData = [
+				'mainContent' => view("403"),
+				'title' => "Favours 4 Neighbours: Unauthorised access",
+			];
+			return view('MasterPage', $masterData);
+		}
+	}
+
+	
+	
+
+
 	private function executeDelete()
 	{
 		if ($this->request->getPost("CreateButton") !== null) {
