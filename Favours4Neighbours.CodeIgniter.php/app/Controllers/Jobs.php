@@ -28,6 +28,7 @@ class Jobs extends BaseController
 			$masterData = [
 				'mainContent' => view("JobsView", $data),
 				'title' => "Favours 4 Neighbours: Create Job",
+				'navTemplate' => "nav-admin.php",
 			];
 			return view('MasterPage', $masterData);
 		} else {

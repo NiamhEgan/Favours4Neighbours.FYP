@@ -5,7 +5,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/home">Home</a></li>
-      <li class="active"><a href="/profile">Profile</a></li>
+      <li class="active"><a href="/client/profile">Profile</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/jobs">Jobs <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/jobs">View Jobs</a></li>

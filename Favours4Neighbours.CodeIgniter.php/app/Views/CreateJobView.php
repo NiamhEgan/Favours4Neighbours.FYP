@@ -1,4 +1,4 @@
-
+<?php helper(["form"]); ?>
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 			<div class="card">
@@ -10,20 +10,15 @@
 						<div class="form-row">
 							<div class="form-group">
 							<label>Created By  </label>
-								<input type="text" name="CreatedBy" class="form-control" placeholder="">
+								<input name="Username" name="CreatedBy" class="form-control" placeholder="">
 							</div> <!-- form-group end.// -->
 							
 
 
-							<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Job Category
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Gardening</a></li>
-      <li><a href="#">CSS</a></li>
-      <li><a href="#">JavaScript</a></li>
-    </ul>
-  </div>
+							<div class="form-group col-md-6">
+								<label>JobCategory</label>
+								<?= form_dropdown('Category', $jobcategoryDataSource, set_value("Category"), 'class="form-control"'); ?>
+								</div> <!-- form-row.// -->
 
 							<div class="form-group">
 								<label>Job Details  </label>

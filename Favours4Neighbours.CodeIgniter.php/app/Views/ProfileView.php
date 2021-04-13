@@ -29,7 +29,7 @@
 				<td></td>
 				<td></td>
 
-				<td><a href="edit/<?= $profile["Id"]; ?>">Edit</a></td>
+				<td><a href="client/profile/edit<?= $profile["Id"]; ?>">Edit</a></td>
 				<td><a href="delete/<?= $profile["Id"]; ?>">Delete</a></td>
 
 			</tr>

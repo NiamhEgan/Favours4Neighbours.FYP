@@ -79,6 +79,7 @@ class Login extends BaseController
 		$data = [
 			'mainContent' => view("HomeView", ['username' => $user["Username"]]),
 			'title' => "Favours 4 Neighbours",
+			'navTemplate' => "nav-admin.php",
 		];
 		echo view('MasterPage', $data);
 	}

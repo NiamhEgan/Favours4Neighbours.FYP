@@ -11,7 +11,7 @@
           <li><a href="#">COVID-19</a></li>
           <li><a href="#">Safety Statement</a></li>
         </ul>
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>
