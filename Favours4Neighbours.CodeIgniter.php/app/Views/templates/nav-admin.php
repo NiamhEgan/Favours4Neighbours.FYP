@@ -6,7 +6,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="/home">Home</a></li>
       <li class="active"><a href="/client/profile">Profile</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/jobs">Jobs <span class="caret"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/client/jobs">Jobs <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/client/jobs">View Jobs</a></li>
           <li><a href="/client/jobs/create">Create Jobs</a></li>

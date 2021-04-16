@@ -4,27 +4,21 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class JobRepository extends Model
+class JobApplicationRepository extends Model
 {
-    protected $table      = 'job';
+    protected $table      = 'jobapplication';
 
     protected $primaryKey = 'id';
-    protected $foreignKey = 'fk_Job_User1';
 
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
 
     protected $allowedFields = [
-        "CreatedBy",
-        "DurationEstimate",
-        "DateCreated",
-        "EquipmentRequired",
-        "JobDetails",
-        "JobCategory",
-        "JobCounty",
-        "JobPrice",
-        "JobStatus",
+
+        "Job",
+        "Status",
+        "User",
     ];
 
     protected $useTimestamps = true;

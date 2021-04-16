@@ -1,9 +1,7 @@
 <table class="table table-striped">
 	<caption class="caption-top">My Profile</caption>
 	<thead>
-
 		<tr>
-			<th scope="col"> ID</th>
 			<th scope="col">First Name</th>
 			<th scope="col">Surname</th>
 			<th scope="col">Phone Number</th>
@@ -19,13 +17,18 @@
 	</thead>
 	<tbody>
 			<tr>
-				<th scope="row"> <?= $profile["Id"]; ?>
-				<td> <?= $profile["FirstName"]; ?></td>
-				<td><?= $profile["Surname"]; ?></td>
-				<td><?= $profile["Telephone"]; ?></td>
-				<td><?= $profile["Eircode"]; ?></td>
-				<td><?= $profile["Bio"]; ?></td>
-				<td><?= $profile["Photo"]; ?></td>
+				<td> <?= $user["FirstName"]; ?></td>
+				<td><?= $user["Surname"]; ?></td>
+				<td><?= $user["Telephone"]; ?></td>
+				<td><?= $user["Eircode"]; ?></td>
+				<td><?= $user["Bio"]; ?></td>
+				<td><?= $user["Photo"]; ?></td>
+				<td></td>
+
+				<td><a href="/client/profile/edit">Edit</a></td>
+				<td><a href="/client/profile/changepassword">Change Password</a></td>
+				<td><a href="/client/profile/delete/">Delete</a></td>
+
 			</tr>
 	</tbody>
 	<tfoot>

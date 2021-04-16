@@ -41,7 +41,7 @@ class CreateJob extends BaseController
 			} catch (Exception $e) {
 				echo view('templates/header');
 				$data = [
-					'mainContent' => view("CreateJobView", $categoryData),
+					'mainContent' => view("JobCreateView", $categoryData),
 					'title' => "Favours 4 Neighbours: Create Job",
 					'navTemplate' => "nav-admin.php",
 					'errors' => $this->JobRepository->errors(),
@@ -50,7 +50,7 @@ class CreateJob extends BaseController
 			}
 			} else
 			$data = [
-				'mainContent' => view("CreateJobView"),
+				'mainContent' => view("JobCreateView"),
 				'title' => "Favours 4 Neighbours: Create Job",
 				'navTemplate' => "nav-admin.php",
 			];

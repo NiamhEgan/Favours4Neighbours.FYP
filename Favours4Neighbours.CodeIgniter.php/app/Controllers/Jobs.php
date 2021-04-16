@@ -20,6 +20,8 @@ class Jobs extends BaseController
 	{
 		echo view('templates/header');
 		if ($this->isLoggedIn()) {
+			return redirect()->to("/client/jobs");
+		} else {
 			$jobs = $this->JobRepository->findAll();
 
 			$data = [
@@ -29,12 +31,6 @@ class Jobs extends BaseController
 				'mainContent' => view("JobsView", $data),
 				'title' => "Favours 4 Neighbours: Create Job",
 				'navTemplate' => "nav-admin.php",
-			];
-			return view('MasterPage', $masterData);
-		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
 			];
 			return view('MasterPage', $masterData);
 		}

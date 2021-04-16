@@ -2,71 +2,64 @@
 	<?= $message; ?>
 <?php endif ?>
 <?php helper(["form"]); ?>
-<form method="post">
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			<label>Address Line 1</label>
-			<input name="AddressLine1" type="text" class="form-control" value="<?= set_value("AddressLine1", $job["JobDetails"]); ?>">
-		</div> <!-- form-group end.// -->
-		<div class="form-group col-md-6">
-			<label>Address Line 2</label>
-			<input name="AddressLine2" type="text" class="form-control" value="<?= set_value("AddressLine2", $job["EquipmentRequired"]); ?>">
-		</div> <!-- form-group end.// -->
-		<div class="form-group col-md-6">
-			<label>Assigned To:</label>
-			<?= form_dropdown('AssignedTo', $asssignedToDataSource, set_value("AssignedTo", $job["AssignedTo"]), 'class="form-control"'); ?>
-		</div> <!-- form-row.// -->
-		<div class="form-group col-md-6">
-			<label>County</label>
-			<?= form_dropdown('County', $countyDataSource, set_value("County", $job["JobCounty"]), 'class="form-control"'); ?>
-		</div> <!-- form-row.// -->
-		<div class="form-group">
-			<label>Eircode</label>
-			<input name="Eircode" type="text" class="form-control" placeholder="">
-			<small class="form-text text-muted">We'll never share your email with anyone else.</small>
-		</div> <!-- form-group end.// -->
-	</div>
+<div class="row justify-content-center">
+	<div class="col-md-6">
+		<div class="card">
+			<header class="card-header">
+				<h4 class="card-title mt-2">Enter Job Details</h4>
+			</header>
+			<article class="card-body">
+				<form method="post">
+					<div class="form-col">
+						<div class="form-group">
+							<label>Assigned To:</label>
+							<?= form_dropdown('AssignedTo', $asssignedToDataSource, set_value("AssignedTo", $job["AssignedTo"]), 'class="form-control"'); ?>
+						</div> <!-- AssignedTo form-group.// -->
+						<div class="form-group">
+							<label>Category</label>
+							<?= form_dropdown('JobCategory', $jobCategoryDataSource, set_value("JobCategory", $job["JobCategory"]), 'class="form-control"'); ?>
+						</div> <!-- Category form-group.// -->
 
-	<table class="table table-striped">
-		<caption class="caption-top">My Profile</caption>
-		<thead>
-			<tr>
-				<th scope="col"> ID</th>
-			</tr>
-			<tr>
-				<th scope="col">First Name</th>
-				<td> <?= $job["DurationEstimate"]; ?></td>
-			</tr>
-			<tr>
-				<th scope="col">Surname</th>
-				<td><?= $job["JobPrice"]; ?></td>
-			</tr>
-			<tr>
-				<th scope="col">Phone Number</th>
-				<td><?= $job["updated_at"]; ?></td>
-			</tr>
-			<tr>
-				<th scope="col">Eircode</th>
-				<td><?= $job["JobPrice"]; ?></td>
-			</tr>
-			<tr>
-				<th scope="col">Bio</th>
-				<td><?= $job["JobPrice"]; ?></td>
-			</tr>
-			<tr>
-				<th scope="col">Photo</th>
-				<td><?= $job["JobPrice"]; ?></td>
-			</tr>
-			<tr>
-			</tr>
-		</thead>
-		<tbody>
-		<tfoot>
-			<tr>
-				<td colspan="8"></td>
-			</tr>
-		</tfoot>
-	</table>
-	<div class="form-group">
-		<button name="SaveButton" type="submit" class="btn btn-primary btn-block">Save</button>
-</form>
+						<div class="form-group">
+							<label>Details</label>
+							<input type="text" name="JobDetails" class="form-control" placeholder="Enter job description here 200 characters max" , value="<?= set_value("JobDetails", $job["JobDetails"]) ?>" ;>
+						</div> <!-- Details form-group end.// -->
+
+						<div class="form-group">
+							<label>Equipment Required </label>
+							<input name="EquipmentRequired" type="text" class="form-control" placeholder="Enter deials of the equipment the applicant should bring" value="<?= set_value("EquipmentRequired", $job["EquipmentRequired"]) ?>" ;>
+						</div> <!-- Equipment form-group end.// -->
+
+						<div class="form-group">
+							<label>Duration Estimate </label>
+							<input name="DurationEstimate" type="text" class="form-control" placeholder="Indicate the estimate of time required" value="<?= set_value("DurationEstimate", $job["DurationEstimate"]) ?>" ;>
+						</div> <!-- DurationEstimate form-group end.// -->
+
+						<div class="form-group">
+							<label>Willing to Pay </label>
+							<input name="JobPrice" type="text" class="form-control" placeholder="specify amount willing to pay here in Euro" value="<?= set_value("JobPrice", $job["JobPrice"]) ?>" ;>
+						</div> <!-- JobPrice form-group end.// -->
+
+
+						<div class="form-group">
+							<label>County</label>
+							<?= form_dropdown("JobCounty", $jobCountyDataSource, set_value("JobCounty", $job["JobCounty"]), 'class="form-control"'); ?>
+						</div> <!-- County form-group.// -->
+
+
+						<div class="form-group">
+							<button name="SaveButton" type="submit" class="btn btn-primary btn-block">Save</button>
+						</div>
+				</form>
+			</article>
+		</div>
+		<?php if (!empty($errors)) : ?>
+			<div class="alert alert-danger">
+				<?php foreach ($errors as $field => $error) : ?>
+					<p><?= $error ?></p>
+				<?php endforeach ?>
+			</div>
+		<?php endif ?>
+	</div>
+</div>
+<!--container end.//-->

@@ -3,72 +3,47 @@
 namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
+use App\Models\CountyRepository;
+use App\Models\JobApplicationRepository;
+use App\Models\JobCategoryRepository;
+use App\Models\JobRepository;
 use App\Models\UserRepository;
 
-class Profile extends BaseController
+class Applications extends BaseController
 {
+	protected $session;
+
 	public function __construct()
 	{
 		$this->session = \Config\Services::session();
 		$this->session->start();
 
+		$this->countyRepository = new CountyRepository();
+		$this->jobApplicationRepository = new JobApplicationRepository();
+
+		$this->jobCategoryRepository = new JobCategoryRepository();
+		$this->jobRepository = new JobRepository();
 		$this->userRepository = new UserRepository();
+
+		$this->db = \Config\Database::connect();
 	}
 
-	public function changepassword()
-	{
-		if ($this->isLoggedIn()) {
-			$masterData = [
-				'mainContent' => view("MyProfileChangePasswordView"),
-				'navTemplate' => "nav-admin.php",
-				'title' => "Favours 4 Neighbours: My Profile",
-			];
-			return view('MasterPage', $masterData);
-		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
-			];
-			return view('MasterPage', $masterData);
-		}
-	}
-	public function edit()
-	{
-		if ($this->isLoggedIn()) {
-			$userId = $this->session->get("UserId");
-			$user = $this->userRepository->find($userId);
-
-
-			$data = [
-				"user" => $user,
-			];
-			$masterData = [
-				'mainContent' => view("MyProfileEditView", $data),
-				'navTemplate' => "nav-admin.php",
-				'title' => "Favours 4 Neighbours: My Profile",
-			];
-			return view('MasterPage', $masterData);
-		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
-			];
-			return view('MasterPage', $masterData);
-		}
-	}
+	
 	public function index()
 	{
 		if ($this->isLoggedIn()) {
-			$userId = $this->session->get("UserId");
-			$user = $this->userRepository->find($userId);
+			$userID = $this->session->get("UserId");
+
+			$jobApplications = $this->db->query("Call GetJobApplicationsViewByUser(?)", $userID)->getResult();
 
 			$data = [
-				"user" => $user,
+				"jobApplications" => $jobApplications,
+
 			];
 			$masterData = [
-				'mainContent' => view("MyProfileView", $data),
+				'mainContent' => view("MyApplicationsView", $data),
 				'navTemplate' => "nav-admin.php",
-				'title' => "Favours 4 Neighbours: Profile",
+				'title' => "Favours 4 Neighbours: My Jobs",
 			];
 			return view('MasterPage', $masterData);
 		} else {
@@ -79,9 +54,33 @@ class Profile extends BaseController
 			return view('MasterPage', $masterData);
 		}
 	}
-	
+	public function myapplcations()
+	{
+		echo view('templates/header');
+		if ($this->isLoggedIn()) {
+			$jobs = $this->jobRepository->findAll();
+
+			$data = [
+				"jobs" => $jobs,
+			];
+			$masterData = [
+				'mainContent' => view("JobsView", $data),
+				'title' => "Favours 4 Neighbours: Create Job",
+				'navTemplate' => "nav-admin.php",
+			];
+			return view('MasterPage', $masterData);
+		} else {
+			$masterData = [
+				'mainContent' => view("403"),
+				'title' => "Favours 4 Neighbours: Unauthorised access",
+			];
+			return view('MasterPage', $masterData);
+		}
+	}
 	private function isLoggedIn()
 	{
 		return ($this->session->get("UserId") !== null);
 	}
+
+	
 }

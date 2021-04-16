@@ -2,12 +2,12 @@
 
 namespace App\Controllers\Client;
 
+use App\Controllers\BaseController;
 use App\Models\CountyRepository;
+use App\Models\JobApplicationRepository;
 use App\Models\JobCategoryRepository;
 use App\Models\JobRepository;
 use App\Models\UserRepository;
-
-use App\Controllers\BaseController;
 
 class Jobs extends BaseController
 {
@@ -19,15 +19,73 @@ class Jobs extends BaseController
 		$this->session->start();
 
 		$this->countyRepository = new CountyRepository();
+		$this->jobApplicationRepository = new JobApplicationRepository();
 		$this->jobCategoryRepository = new JobCategoryRepository();
 		$this->jobRepository = new JobRepository();
 		$this->userRepository = new UserRepository();
 
-
 		$this->db = \Config\Database::connect();
 	}
 
+	public function accept($jobApplicationId)
+	{
+		$this->executeAcceptJobApplication($jobApplicationId);
+		echo "view";
+	}
+	private  function executeAcceptJobApplication($jobApplicationId)
+	{
+		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
+		$jobApplication["Status"] = 2; //TODO DEfine status later
+		$commandResult = $this->jobApplicationRepository->update($jobApplicationId, $jobApplication);
+
+		$job = $this->jobRepository->find($jobApplication["Job"]);
+		$job["AssignedTo"] = $jobApplication["User"];
+
+		$commandResult = $this->jobRepository->update($job["Id"], $job);
+	}
+	public function reject($jobApplicationId)
+	{
+		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
+		$jobApplication["Status"] = 3; //TODO DEfine status later
+	}
+	public function apply($jobId)
+	{
+		$jobApplicationValuesArray = [
+			"Job" => $jobId,
+			"User" =>  $this->session->get("UserId"),
+		];
+		$this->jobApplicationRepository->insert($jobApplicationValuesArray);
+
+		return $this->index();
+	}
+
+
 	public function index()
+	{
+		if ($this->isLoggedIn()) {
+			$userID = $this->session->get("UserId");
+
+			$jobs = $this->db->query("Call GetAvailableJobsView(?)", $userID)->getResult();
+
+			$data = [
+				"jobs" => $jobs,
+
+			];
+			$masterData = [
+				'mainContent' => view("AvailableJobsView", $data),
+				'navTemplate' => "nav-admin.php",
+				'title' => "Favours 4 Neighbours: My Jobs",
+			];
+			return view('MasterPage', $masterData);
+		} else {
+			$masterData = [
+				'mainContent' => view("403"),
+				'title' => "Favours 4 Neighbours: Unauthorised access",
+			];
+			return view('MasterPage', $masterData);
+		}
+	}
+	private function index__deletelater()
 	{
 		echo view('templates/header');
 		if ($this->isLoggedIn()) {
@@ -39,6 +97,7 @@ class Jobs extends BaseController
 			$masterData = [
 				'mainContent' => view("JobsView", $data),
 				'title' => "Favours 4 Neighbours: Create Job",
+				'navTemplate' => "nav-admin.php",
 			];
 			return view('MasterPage', $masterData);
 		} else {
@@ -63,7 +122,7 @@ class Jobs extends BaseController
 				return redirect()->to("/login");
 			} catch (Exception $e) {
 				$data = [
-					'mainContent' => view("CreateJobView"),
+					'mainContent' => view("JobCreateView"),
 					'title' => "Favours 4 Neighbours: Create Job",
 					'errors' => $this->jobRepository->errors(),
 				];
@@ -87,7 +146,26 @@ class Jobs extends BaseController
 			//error
 		}
 	}
+	public function view($jobId)
+	{
+		if ($this->isLoggedIn()) {
+			$job = $this->jobRepository->find($jobId);
 
+			if ($job == null) {
+				echo "Not found error";
+			} else if ($job["CreatedBy"] != $this->session->get("UserId")) {
+				echo "User permission error";
+			} else {
+				return $this->getView($jobId, $job);
+			}
+		} else {
+			$masterData = [
+				'mainContent' => view("403"),
+				'title' => "Favours 4 Neighbours: Unauthorised access",
+			];
+			return view('MasterPage', $masterData);
+		}
+	}
 	public function edit($jobId)
 	{
 		if ($this->isLoggedIn()) {
@@ -142,28 +220,44 @@ class Jobs extends BaseController
 	private function getCreateView()
 	{
 		$data = [
-			"countyDataSource" => $this->transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
 			"asssignedToDataSource" => $this->transformObjectArrayWithNullValue($this->userRepository->findAll(), "Id", "Username"),
 			"jobCategoryDataSource" => $this->transformObjectArray($this->jobCategoryRepository->findAll(), "Id", "JobCategory"),
+			"jobCountyDataSource" => $this->transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
 		];
 		if ($this->request->getPost("CreateButton") !== null) {
-			$jobId = $this->executeInsert($data);
+			return $this->executeInsert($data);
 		}
 
 		$masterData = [
-			'mainContent' => view("CreateJobView", $data),
+			'mainContent' => view("JobCreateView", $data),
 			'navTemplate' => "nav-admin.php",
 			'title' => "Favours 4 Neighbours: Create Job",
 		];
 		return view('MasterPage', $masterData);
 	}
 
+	private function getView($jobId, $job)
+	{
+		$jobApplications = $this->db->query("Call GetJobApplicationsViewByJob(?)", $jobId)->getResult();
+
+		$data = [
+			"job" => $job,
+			"jobApplications" => $jobApplications,
+		];
+
+		$masterData = [
+			'mainContent' => view("JobView", $data),
+			'navTemplate' => "nav-admin.php",
+			'title' => "Favours 4 Neighbours: View",
+		];
+		return view('MasterPage', $masterData);
+	}
 	private function getEditView($jobId, $job)
 	{
 		$data = [
-			"countyDataSource" => $this->transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
 			"asssignedToDataSource" => $this->transformObjectArrayWithNullValue($this->userRepository->findAll(), "Id", "Username"),
-			"jobCategoryDataSource" => $this->transformObjectArrayWithNullValue($this->userRepository->findAll(), "Id", "Username"),
+			"jobCategoryDataSource" => $this->transformObjectArray($this->jobCategoryRepository->findAll(), "Id", "JobCategory"),
+			"jobCountyDataSource" => $this->transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
 		];
 		if ($this->request->getPost("SaveButton") !== null) {
 			$job = $this->executeSave($data, $jobId);
@@ -194,33 +288,38 @@ class Jobs extends BaseController
 		try {
 			$commandResult = $this->jobRepository->insert($jobValuesArray);
 			$data["message"] = "Job Saved";
+			return redirect()->to("/client/jobs/edit/" . $commandResult);
 		} catch (Exception $e) {
 			$data['errors'] = $this->jobRepository->errors();
 		}
-		return $this->jobRepository->find($jobId);
 	}
 
 
 	private function createJobValuesArrayFromPostArray()
 	{
 		return [
-			"CreatedBy" =>  $this->session->get("UserId"),
-			"JobDetails" => $this->request->getPost("JobDetails") . "asas",
-			"JobStatus" => $this->request->getPost("JobStatus") . "as",
-			"EquipmentRequired" => $this->request->getPost("EquipmentRequired") . "as",
-			"DurationEstimate" => $this->request->getPost("DurationEstimate") . "as",
+			//"CreatedBy" =>  $this->session->get("UserId"),
+			"AssignedTo" => $this->request->getPost("AssignedTo"),
+			"DurationEstimate" => $this->request->getPost("DurationEstimate"),
+			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
+			"JobCategory" => $this->request->getPost("JobCategory"),
+			"JobCounty" => $this->request->getPost("JobCounty"),
+			"JobDetails" => $this->request->getPost("JobDetails"),
 			"JobPrice" => $this->request->getPost("JobPrice"),
+			"JobStatus" => $this->request->getPost("JobStatus"),
 		];
 	}
 	private function createJobValuesArrayForNewJobFromPostArray()
 	{
 		return [
-			"CreatedBy" => $this->request->getPost("CreatedBy"),
-			"JobDetails" => $this->request->getPost("JobDetails"),
-			"JobStatus" => $this->request->getPost("JobStatus"),
-			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
+			"CreatedBy" => $this->session->get("UserId"),
 			"DurationEstimate" => $this->request->getPost("DurationEstimate"),
+			"EquipmentRequired" => $this->request->getPost("EquipmentRequired"),
+			"JobCategory" => $this->request->getPost("JobCategory"),
+			"JobCounty" => $this->request->getPost("JobCounty"),
+			"JobDetails" => $this->request->getPost("JobDetails"),
 			"JobPrice" => $this->request->getPost("JobPrice"),
+			"JobStatus" => $this->request->getPost("JobStatus"),
 		];
 	}
 	public function myjobs()

@@ -52,7 +52,7 @@ class Users extends BaseController
 				return redirect()->to("/login");
 			} catch (Exception $e) {
 				$data = [
-					'mainContent' => view("CreateJobView"),
+					'mainContent' => view("JobCreateView"),
 					'title' => "Favours 4 Neighbours: Create Job",
 					'errors' => $this->JobRepository->errors(),
 				];
@@ -60,7 +60,7 @@ class Users extends BaseController
 			}
 		} else
 			$data = [
-				'mainContent' => view("CreateJobView"),
+				'mainContent' => view("JobCreateView"),
 				'title' => "Favours 4 Neighbours: Create Job",
 			];
 		return view('MasterPage', $data);
@@ -75,7 +75,7 @@ class Users extends BaseController
 				return redirect()->to("/login");
 			} catch (Exception $e) {
 				$data = [
-					'mainContent' => view("CreateJobView"),
+					'mainContent' => view("JobCreateView"),
 					'title' => "Favours 4 Neighbours: Create Job",
 					'errors' => $this->JobRepository->errors(),
 				];
