@@ -3,6 +3,7 @@
 namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
+use App\Libraries\ViewManager;
 use App\Models\CountyRepository;
 use App\Models\JobApplicationRepository;
 use App\Models\JobCategoryRepository;
@@ -228,12 +229,7 @@ class Jobs extends BaseController
 			return $this->executeInsert($data);
 		}
 
-		$masterData = [
-			'mainContent' => view("JobCreateView", $data),
-			'navTemplate' => "nav-admin.php",
-			'title' => "Favours 4 Neighbours: Create Job",
-		];
-		return view('MasterPage', $masterData);
+		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Create Job', 'JobCreateView', $data);
 	}
 
 	private function getView($jobId, $job)
@@ -245,12 +241,7 @@ class Jobs extends BaseController
 			"jobApplications" => $jobApplications,
 		];
 
-		$masterData = [
-			'mainContent' => view("JobView", $data),
-			'navTemplate' => "nav-admin.php",
-			'title' => "Favours 4 Neighbours: View",
-		];
-		return view('MasterPage', $masterData);
+		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: View Job', 'JobView', $data);
 	}
 	private function getEditView($jobId, $job)
 	{
@@ -264,12 +255,7 @@ class Jobs extends BaseController
 		}
 		$data["job"] = $job;
 
-		$masterData = [
-			'mainContent' => view("JobEditView", $data),
-			'navTemplate' => "nav-admin.php",
-			'title' => "Favours 4 Neighbours: Edit Job",
-		];
-		return view('MasterPage', $masterData);
+		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Edit Job', 'JobEditView', $data);
 	}
 	private function executeSave(&$data, $jobId)
 	{
