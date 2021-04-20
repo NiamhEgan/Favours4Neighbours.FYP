@@ -21,7 +21,7 @@ class Profile extends BaseController
 			$masterData = [
 				'mainContent' => view("MyProfileChangePasswordView"),
 				'navTemplate' => "nav-admin.php",
-				'title' => "Favours 4 Neighbours: My Profile",
+				'title' => "Favours 4 Neighbours: My Profile Change Password",
 			];
 			return view('MasterPage', $masterData);
 		} else {
@@ -80,8 +80,22 @@ class Profile extends BaseController
 		}
 	}
 	
+	private function executeSave(&$data, $userId)
+	{
+		$jobValuesArray = $this->createJobValuesArrayFromPostArray();
+		try {
+			$commandResult = $this->userRepository->update($userId, $jobValuesArray);
+			$data["message"] = "Profile Saved";
+		} catch (Exception $e) {
+			$data['errors'] = $this->userRepository->errors();
+		}
+		return $this->userRepository->find($userId);
+	}
+	
 	private function isLoggedIn()
 	{
 		return ($this->session->get("UserId") !== null);
 	}
+
+	
 }

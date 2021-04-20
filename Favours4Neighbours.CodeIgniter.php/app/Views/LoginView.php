@@ -10,7 +10,7 @@
 			<label class="visually-hidden" for="inputPassword">Password</label>
 			<input class="form-control" id="Password" name="Password" placeholder="Password" required type="password">
 
-			<div class="checkbox mb-3"><label><input type="checkbox" value="remember-me"> Remember me</label></div>
+			
 			<button class="w-100 btn btn-lg btn-primary" name="LoginButton" type="submit">Sign in</button>
 
 			<?php if (isset($error)) : ?>
@@ -18,8 +18,8 @@
 			<?php endif ?>
 	</form>
 	<form action="/login/demo/" method="post">
-		<h2 class="h3 mb-3 fw-normal">If you are not registered please register below</h2>
-		<button class="w-100 btn btn-lg btn-primary" type="submit">Register New User</button>
+		<h2 class="h3 mb-3 fw-normal">If you are not registered please Sign Up </h2>
+		<button class="w-100 btn btn-lg btn-primary" type="submit"> Sign Up!</button>
 	</form>
 	</div>
 </main>

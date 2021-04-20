@@ -14,11 +14,12 @@ class Logout extends BaseController
 	{
 		$this->session->destroy();
 
-		return redirect()->to('/login');
+	
+		
 	}
 	public function index()
 	{
-		echo view('templates/header');
+		
 		echo view('LogoutView');
 
 	}

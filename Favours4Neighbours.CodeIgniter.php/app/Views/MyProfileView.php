@@ -6,10 +6,8 @@
 			<th scope="col">Surname</th>
 			<th scope="col">Phone Number</th>
 			<th scope="col">Eircode</th>
-			<th scope="col">Bio</th>
-			<th scope="col">Photo</th>
+
 			<th scope="col"></th>
-			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
@@ -21,8 +19,7 @@
 				<td><?= $user["Surname"]; ?></td>
 				<td><?= $user["Telephone"]; ?></td>
 				<td><?= $user["Eircode"]; ?></td>
-				<td><?= $user["Bio"]; ?></td>
-				<td><?= $user["Photo"]; ?></td>
+			
 				<td></td>
 
 				<td><a href="/client/profile/edit">Edit</a></td>

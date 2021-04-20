@@ -8,16 +8,16 @@
 			<article class="card-body">
 				<form method="post">
 					<div class="form-row">
-						<div class="form-group col-md-6">
+						<div class="form-group ">
 							<label>Category</label>
 							<?= form_dropdown('JobCategory', $jobCategoryDataSource, set_value("JobCategory"), 'class="form-control"'); ?>
 						</div> <!-- Category form-group.// -->
 
 						<div class="form-group">
-							<label>Details</label>
-							<input type="text" name="JobDetails" class="form-control" placeholder="Enter job description here 200 characters max", value="<?= set_value("JobDetails") ?>">
-						</div> <!-- Details form-group end.// -->
-
+							<label class="col-sm-2 col-form-label">Details</label>
+							<textarea class="form-control" name="JobDetails" class="form-control" placeholder="Enter job description here 200 characters max", value="<?= set_value("JobDetails") ?>">
+   </textarea>
+</div>
 						<div class="form-group">
 							<label>Equipment Required </label>
 							<input name="EquipmentRequired" type="text" class="form-control" placeholder="Enter deials of the equipment the applicant should bring", value="<?= set_value("EquipmentRequired") ?>">

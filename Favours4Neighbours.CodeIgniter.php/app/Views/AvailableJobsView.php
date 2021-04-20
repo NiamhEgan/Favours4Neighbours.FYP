@@ -1,5 +1,5 @@
 <table class="table table-striped">
-	<caption class="caption-top">My Jobs</caption>
+	<caption class="caption-top">Available Jobs</caption>
 	<thead>
 		<tr>
 			<th scope="col">Details</th>

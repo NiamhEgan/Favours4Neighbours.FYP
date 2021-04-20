@@ -54,29 +54,18 @@ class Applications extends BaseController
 			return view('MasterPage', $masterData);
 		}
 	}
-	public function myapplcations()
+	public function myapplications()
 	{
-		echo view('templates/header');
-		if ($this->isLoggedIn()) {
-			$jobs = $this->jobRepository->findAll();
-
-			$data = [
-				"jobs" => $jobs,
-			];
-			$masterData = [
-				'mainContent' => view("JobsView", $data),
-				'title' => "Favours 4 Neighbours: Create Job",
-				'navTemplate' => "nav-admin.php",
-			];
-			return view('MasterPage', $masterData);
-		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
-			];
-			return view('MasterPage', $masterData);
-		}
+		echo view('MyApplicationsView');
+		
 	}
+
+	public function withdraw()
+	{
+		
+		
+	}
+	
 	private function isLoggedIn()
 	{
 		return ($this->session->get("UserId") !== null);

@@ -32,7 +32,7 @@
 	<tfoot>
 		<tr>
 
-			<button class="w-100 btn btn-lg btn-primary" name="NewPosts" type="submit">Latest Job Posts </button>
+			
 		</tr>
 	</tfoot>
 </table>

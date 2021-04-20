@@ -16,3 +16,14 @@ body{
 
 }
 
+.table td {
+    text-align: left;   
+
+}
+
+
+
+.form-group{ text-align: left;   }
+
+.form-signin{ text-align: center;
+padding-top: .5em;}
