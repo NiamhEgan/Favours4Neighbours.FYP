@@ -17,6 +17,9 @@
 					<td><?= $jobApplication->Status; ?></td>
 					<td><a href="/client/applications/reject/<?= $jobApplication->Id; ?>">Withdraw</a></td>
 				</tr>
+
+				
+}
 			<?php endforeach ?>
 		<?php endif ?>
 	</tbody>
