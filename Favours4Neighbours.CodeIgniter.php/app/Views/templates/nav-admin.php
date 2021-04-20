@@ -16,7 +16,7 @@
 
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/">Applications <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="/client/applications/myapplcations">My Applications</a></li>
+          <li><a href="/client/applications/myapplications">My Applications</a></li>
           <li><a href="/">Recieved Applications</a></li>
         </ul>
       </li>

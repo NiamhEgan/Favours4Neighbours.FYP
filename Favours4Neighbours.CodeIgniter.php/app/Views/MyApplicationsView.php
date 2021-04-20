@@ -13,13 +13,12 @@
 			<?php foreach ($jobApplications as $jobApplication) : ?>
 				<tr>
 					<td><?= $jobApplication->created_at; ?></td>
-					<td><a href="/client/jobs/view/<?= $jobApplication->JobId; ?>"><?= $jobApplication->JobDetails; ?></a></td>
+					<td><a href="/client/applications/myapplications/<?= $jobApplication->JobId; ?>"><?= $jobApplication->JobDetails; ?></a></td>
 					<td><?= $jobApplication->Status; ?></td>
 					<td><a href="/client/applications/reject/<?= $jobApplication->Id; ?>">Withdraw</a></td>
 				</tr>
 
-				
-}
+
 			<?php endforeach ?>
 		<?php endif ?>
 	</tbody>

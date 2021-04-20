@@ -56,20 +56,37 @@ class Applications extends BaseController
 	}
 	public function myapplications()
 	{
-		echo view('MyApplicationsView');
-		
-	}
+		if ($this->isLoggedIn()) {
+			$userID = $this->session->get("UserId");
 
-	public function withdraw()
-	{
-		
-		
+			$jobApplications = $this->db->query("Call GetJobApplicationsViewByUser(?)", $userID)->getResult();
+
+			$data = [
+				"jobApplications" => $jobApplications,
+
+			];
+			$masterData = [
+				'mainContent' => view("MyApplicationsView", $data),
+				'title' => "Favours 4 Neighbours: My Applications",
+				'navTemplate' => "nav-admin.php",
+			];
+			return view('MasterPage', $masterData);
+		} else {
+			$masterData = [
+				'mainContent' => view("403"),
+				'title' => "Favours 4 Neighbours: Unauthorised access",
+			];
+			return view('MasterPage', $masterData);
+		}
 	}
-	
 	private function isLoggedIn()
 	{
 		return ($this->session->get("UserId") !== null);
 	}
 
+	public function rejectapplications(){
+
+		
+	}
 	
 }
