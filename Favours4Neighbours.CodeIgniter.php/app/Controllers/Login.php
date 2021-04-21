@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\ViewManager;
 use App\Models\UserRepository;
 
 class Login extends BaseController
@@ -39,7 +40,7 @@ class Login extends BaseController
 				//login
 				$this->loginUser($user);
 			} else {
-				$this->loadPageWithError("User " . $username . " has been disabled. Please contact the system administrator.");
+				$this->loadPageWithError("User $username has been disabled. Please contact the system administrator.");
 			}
 		} else {
 			$this->loadPageWithError("Not user found for your credientials");
@@ -76,55 +77,18 @@ class Login extends BaseController
 
 		redirect()->to("/client/profile");
 
-		$data = [
-			'mainContent' => view("HomeView", ['username' => $user["Username"]]),
-			'title' => "Favours 4 Neighbours",
-			'navTemplate' => "nav-admin.php",
-		];
-		echo view('MasterPage', $data);
+		$data = ['username' => $user["Username"]];
+		echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours', 'HomeView', $data);
 	}
 	private function loadPageWithError($errorMessage)
 	{
 		$data = [
 			'errors' => $errorMessage,
-			'mainContent' => view("LoginView"),
-			'title' => "Favours 4 Neighbours",
 		];
-		echo view('MasterPage', $data);
+		echo ViewManager::loadViewIntoMasterPage('Favours 4 Neighbours', 'LoginView', $data);
 	}
 	private function loadPage()
 	{
-		$data = [
-			'mainContent' => view("LoginView"),
-			'title' => "Favours 4 Neighbours",
-		];
-		echo view('MasterPage', $data);
-	}
-
-	public function demo()
-	{
-		$demoUserId = 100; //	Admin
-		$user  = $this->UserRepository->find($demoUserId);
-
-		var_dump($user);
-		if ($user != null) {
-			//$this->websitemanager->createUserSession($user->Id, $user->Username);
-			//redirect("/home");
-			$data = [
-				'mainContent' => "Login Success",
-				'title' => "Favours 4 Neighbours",
-			];
-			echo view('MasterPage', $data);
-		} else {
-			$loginData = [
-				"error" => "Incorrect login details entered",
-				"username" => "Admin Demo"
-			];
-			$data = [
-				'mainContent' => view("LoginView", $loginData),
-				'title' => "Favours 4 Neighbours",
-			];
-			echo view('MasterPage', $data);
-		}
+		echo ViewManager::loadViewIntoMasterPage('Favours 4 Neighbours', 'LoginView');
 	}
 }

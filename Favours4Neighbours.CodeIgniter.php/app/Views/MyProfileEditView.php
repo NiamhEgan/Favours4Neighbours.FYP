@@ -36,7 +36,20 @@
 <h2> Please edit your details </h2>
 	<div class="form-row">
 		
-	
+
+
+
+			<div class="form-group col-md-6">
+			<label>email</label>
+			<input name="email" type="email" class="form-control" value="<?= set_value("email", $user["email"]); ?>">
+		</div> <!-- form-group end.// -->
+		<div class="form-group col-md-6">
+			<label>FirstName</label>
+			<input name="FirstName" type="text" class="form-control" value="<?= set_value("FirstName", $user["FirstName"]); ?>">
+		</div> <!-- form-group end.// -->
+		<div class="form-group col-md-6">
+			<label>Surname</label>
+			<input name="Surname" type="text" class="form-control" value="<?= set_value("Surname", $user["Surname"]); ?>">
 		<div class="form-group col-md-6">
 			<label>Address Line 1</label>
 			<input name="AddressLine1" type="text" class="form-control" value="<?= set_value("AddressLine1", $user["AddressLine1"]); ?>">
