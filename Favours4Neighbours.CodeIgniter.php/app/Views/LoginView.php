@@ -13,8 +13,8 @@
 			
 			<button class="w-100 btn btn-lg btn-primary" name="LoginButton" type="submit">Sign in</button>
 
-			<?php if (isset($error)) : ?>
-				<p class="error"><?php echo $error ?></p>
+			<?php if (isset($errors)) : ?>
+				<p class="error"><?php echo $errors ?></p>
 			<?php endif ?>
 	</form>
 	<form action="/login/demo/" method="post">
