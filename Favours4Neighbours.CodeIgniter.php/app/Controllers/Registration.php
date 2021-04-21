@@ -11,21 +11,13 @@ class Registration extends BaseController
 	{
 		$this->UserRepository = new UserRepository();
 		$this->CountyRepository = new CountyRepository();
-	}
-	private function transformObjectArray($objectArray, $objectKeyName, $objectValueName)
-	{
-		$dataArray = [];
-		foreach ($objectArray as $objectItem) {
-			$key = $objectItem[$objectKeyName];
-			$dataArray[$key] = $objectItem[$objectValueName];
-		}
-		return $dataArray;
+		helper('ArrayTransformer');
 	}
 	public function index()
 	{
 		helper('array');
 		$mainData = [
-			"countyDataSource" =>$this->transformObjectArray($this->CountyRepository->findAll(), "ID_county", "county")
+			"countyDataSource" => transformObjectArray($this->CountyRepository->findAll(), "ID_county", "county")
 		];
 		if ($this->request->getVar("RegisterButton") !== null) {
 			$userValuesArray = $this->createUserValuesArrayFromPostArray();

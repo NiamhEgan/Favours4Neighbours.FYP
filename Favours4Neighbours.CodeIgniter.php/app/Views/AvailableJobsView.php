@@ -31,7 +31,7 @@
 						<?php endif ?>
 					</td>
 					<td><a href="/client/jobs/apply/<?= $job->Id; ?>">Apply</a></td>
-					<td><a href="/client/jobs/view/<?= $job->Id; ?>">View details</a></td>
+					<td><a href="/client/jobs/viewtender/<?= $job->Id; ?>">View details</a></td>
 				</tr>
 			<?php endforeach ?>
 		<?php endif ?>

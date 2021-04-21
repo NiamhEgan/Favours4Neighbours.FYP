@@ -3,6 +3,7 @@
 namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
+use App\Libraries\ViewManager;
 use App\Models\CountyRepository;
 use App\Models\JobApplicationRepository;
 use App\Models\JobCategoryRepository;
@@ -28,7 +29,7 @@ class Applications extends BaseController
 		$this->db = \Config\Database::connect();
 	}
 
-	
+
 	public function index()
 	{
 		if ($this->isLoggedIn()) {
@@ -57,36 +58,28 @@ class Applications extends BaseController
 	public function myapplications()
 	{
 		if ($this->isLoggedIn()) {
-			$userID = $this->session->get("UserId");
-
-			$jobApplications = $this->db->query("Call GetJobApplicationsViewByUser(?)", $userID)->getResult();
-
-			$data = [
-				"jobApplications" => $jobApplications,
-
-			];
-			$masterData = [
-				'mainContent' => view("MyApplicationsView", $data),
-				'title' => "Favours 4 Neighbours: My Applications",
-				'navTemplate' => "nav-admin.php",
-			];
-			return view('MasterPage', $masterData);
+			$userId = $this->session->get("UserId");
+			return $this->getMyApplicationsView($userId);
 		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
-			];
-			return view('MasterPage', $masterData);
+			return ViewManager::load403ErrorViewIntoClientMasterPage();
 		}
 	}
+
+	private function getMyApplicationsView($userId)
+	{
+		$jobApplications = $this->db->query("Call GetJobApplicationsViewByUser(?)", $userId)->getResult();
+		$data = [
+			'jobApplications' => $jobApplications,
+		];
+		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: My Applications', 'MyApplicationsView', $data);
+	}
+
 	private function isLoggedIn()
 	{
 		return ($this->session->get("UserId") !== null);
 	}
 
-	public function rejectapplications(){
-
-		
+	public function rejectapplications()
+	{
 	}
-	
 }
