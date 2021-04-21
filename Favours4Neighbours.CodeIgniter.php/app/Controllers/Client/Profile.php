@@ -11,8 +11,6 @@ class Profile extends BaseController
 	public function __construct()
 	{
 		$this->session = \Config\Services::session();
-		$this->session->start();
-
 		$this->userRepository = new UserRepository();
 	}
 
@@ -24,6 +22,23 @@ class Profile extends BaseController
 			return ViewManager::load403ErrorViewIntoClientMasterPage();
 		}
 	}
+	public function edit()
+	{
+		if ($this->isLoggedIn()) {
+			return $this->getEditView();
+		} else {
+			return ViewManager::load403ErrorViewIntoClientMasterPage();
+		}
+	}
+	public function index()
+	{
+		if ($this->isLoggedIn()) {
+			return $this->getIndexView();
+		} else {
+			return ViewManager::load403ErrorViewIntoClientMasterPage();
+		}
+	}
+
 	private function getChangePasswordView()
 	{
 		$data = [];
@@ -32,17 +47,49 @@ class Profile extends BaseController
 		}
 		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Change Password', 'MyProfileChangePasswordView', $data);
 	}
+	private function getEditView()
+	{
+		$userId = $this->session->get("UserId");
+		$user = null;
+		$data = [
+			//"countyDataSource" => $this->transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
+		];
+		if ($this->request->getVar("SaveButton") !== null) {
+			$user = $this->executeSave($data, $userId);
+		} else {
+			$user = $this->userRepository->find($userId);
+		}
+		$data['user'] = $user;
+
+		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Edit Profile', 'MyProfileEditView', $data);
+	}
+	private function getIndexView()
+	{
+		$userId = $this->session->get("UserId");
+		$user = $this->userRepository->find($userId);
+		$data = [
+			"user" => $user,
+		];
+
+		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Profile', 'MyProfileView', $data);
+	}
+
 	private function executeChangePassword(&$data)
 	{
-		$newPassword = $this->request->getVar("newPassword");
-		$newPasswordConfirmed = $this->request->getVar("newPasswordConfirmed");
+		$newPassword = $this->request->getVar("NewPassword");
+		$newPasswordConfirmed = $this->request->getVar("ConfirmNewPassword");
+
+		if ($newPassword !=	$newPasswordConfirmed) {
+			$data['errors'] = "Passwords do not match";
+			return;
+		}
 
 
 		$currentPassword = $this->request->getVar("CurrentPassword");
-		
+
 		$userId = $this->session->get("UserId");
-		$hashedPassword = $this->UserRepository->createPasswordHash($currentPassword);
-		$user = $this->UserRepository->where('Id', $userId)
+		$hashedPassword = $this->userRepository->createPasswordHash($currentPassword);
+		$user = $this->userRepository->where('Id', $userId)
 			->where('Password',  $hashedPassword)
 			->first();
 
@@ -60,56 +107,8 @@ class Profile extends BaseController
 			$data['errors'] = "invalid Passowrd";
 		}
 	}
-	private function createUserValuesArrayFromPostArray()
-	{
-		return [
-			"AddressLine1" => $this->request->getVar("AddressLine1"),
-			"AddressLine2" => $this->request->getVar("AddressLine2"),
-			"Eircode" => $this->request->getVar("Eircode"),
-			"email" => $this->request->getVar("email"),
-			"FirstName" => $this->request->getVar("FirstName"),
-			"Gender" => $this->request->getVar("Gender"),
-			"Surname" => $this->request->getVar("Surname"),
-			"Telephone" => $this->request->getVar("Telephone"),
-		];
-	}
 
-	public function edit()
-	{
-		if ($this->isLoggedIn()) {
-			$userId = $this->session->get("UserId");
-			$user = $this->userRepository->find($userId);
-			return $this->getEditView($userId, $user);
-		} else {
-			return ViewManager::load403ErrorViewIntoClientMasterPage();
-		}
-	}
-	public function index()
-	{
-		if ($this->isLoggedIn()) {
-			$userId = $this->session->get("UserId");
-			$user = $this->userRepository->find($userId);
-			$data = [
-				"user" => $user,
-			];
 
-			return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Profile', 'MyProfileView', $data);
-		} else {
-			return ViewManager::load403ErrorViewIntoClientMasterPage();
-		}
-	}
-	private function getEditView($userId, $user)
-	{
-		$data = [
-			//"countyDataSource" => $this->transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
-		];
-		if ($this->request->getVar("SaveButton") !== null) {
-			$user = $this->executeSave($data, $userId);
-		}
-		$data['user'] = $user;
-
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Edit Profile', 'MyProfileEditView', $data);
-	}
 
 	private function executeSave(&$data, $userId)
 	{
