@@ -1,0 +1,4 @@
+CRITICAL - 2021-02-19 00:16:34 --> Call to undefined function CodeIgniter\locale_set_default()
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\bootstrap.php(159): CodeIgniter\CodeIgniter->initialize()
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(35): require('C:\\Users\\Niamh\\...')
+#2 {main}

@@ -1,0 +1,162 @@
+CRITICAL - 2021-04-08 05:31:04 --> Call to undefined function form_dropdown()
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\View\View.php(220): include()
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('CreateJobView', Array, true)
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(35): view('CreateJobView')
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#8 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#9 {main}
+CRITICAL - 2021-04-08 05:36:20 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 19, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(28): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 05:40:44 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 19, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(28): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 05:48:18 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 19, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(28): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 05:49:32 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 19, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(28): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 05:50:01 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 19, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(28): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 05:50:30 --> Undefined variable: jobCategory
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\Users\\Niamh\\...', 19, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(28): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 05:51:28 --> Undefined variable: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\Users\\Niamh\\...', 19, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(28): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 05:52:12 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 19, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(28): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 05:52:38 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 19, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(28): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 05:52:44 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 19, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(28): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 05:54:15 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 19, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(28): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 06:00:21 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(21): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 21, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(30): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 06:01:52 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(21): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 21, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(30): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 06:01:59 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(21): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 21, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(30): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 06:03:40 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(21): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 21, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(30): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}
+CRITICAL - 2021-04-08 06:07:06 --> Call to undefined method App\Controllers\CreateJob::transformObjectArray()
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#5 {main}
+CRITICAL - 2021-04-08 06:09:14 --> Undefined index: ID_category
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\Niamh\\...', 20, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\CreateJob.php(30): App\Controllers\CreateJob->transformObjectArray(Array, 'ID_category', 'jobcategory')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\CreateJob->index()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreateJob))
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#7 {main}

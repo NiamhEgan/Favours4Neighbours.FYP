@@ -1,0 +1,81 @@
+CRITICAL - 2021-04-21 03:07:58 --> Cannot redeclare App\Controllers\Client\Profile::createUserValuesArrayFromPostArray()
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2021-04-21 03:40:48 --> Too few arguments to function App\Controllers\Client\Jobs::view(), 0 passed in C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php on line 936 and exactly 1 expected
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Client\Jobs->view()
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Client\Jobs))
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#5 {main}
+CRITICAL - 2021-04-21 12:55:45 --> syntax error, unexpected 'private' (T_PRIVATE)
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Router\Router.php(170): CodeIgniter\Router\Router->autoRoute('client/applicat...')
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(816): CodeIgniter\Router\Router->handle('client/applicat...')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(385): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#6 {main}
+CRITICAL - 2021-04-21 13:10:10 --> syntax error, unexpected 'private' (T_PRIVATE)
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Router\Router.php(170): CodeIgniter\Router\Router->autoRoute('client/applicat...')
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(816): CodeIgniter\Router\Router->handle('client/applicat...')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(385): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#6 {main}
+CRITICAL - 2021-04-21 14:13:21 --> syntax error, unexpected 'private' (T_PRIVATE)
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Router\Router.php(170): CodeIgniter\Router\Router->autoRoute('client/applicat...')
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(816): CodeIgniter\Router\Router->handle('client/applicat...')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(385): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#6 {main}
+CRITICAL - 2021-04-21 14:20:03 --> Too few arguments to function App\Controllers\Client\Applications::getMyApplicationsView(), 0 passed in C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\Client\Applications.php on line 61 and exactly 2 expected
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\Client\Applications.php(61): App\Controllers\Client\Applications->getMyApplicationsView()
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Client\Applications->myapplications()
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Client\Applications))
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#6 {main}
+CRITICAL - 2021-04-21 14:29:32 --> Cannot redeclare App\Controllers\Client\Profile::createUserValuesArrayFromPostArray()
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2021-04-21 14:48:50 --> Undefined property: App\Controllers\Client\Profile::$UserRepository
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\Client\Profile.php(76): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\Users\\Niamh\\...', 76, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\Client\Profile.php(57): App\Controllers\Client\Profile->executeChangePassword(Array)
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\Client\Profile.php(20): App\Controllers\Client\Profile->getChangePasswordView()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Client\Profile->changepassword()
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Client\Profile))
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#7 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#8 {main}
+CRITICAL - 2021-04-21 15:14:39 --> Invalid file: JobTenderView.php
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\View\View.php(203): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('JobTenderView.p...')
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('JobTenderView', Array, true)
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Libraries\ViewManager.php(21): view('JobTenderView', Array)
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\Client\Jobs.php(212): App\Libraries\ViewManager::loadViewIntoClientMasterPage('Favours 4 Neigh...', 'JobTenderView', Array)
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\Client\Jobs.php(134): App\Controllers\Client\Jobs->getTenderView('123456', Array)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Client\Jobs->viewtender('123456')
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Client\Jobs))
+#7 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#10 {main}
+CRITICAL - 2021-04-21 15:17:42 --> Undefined variable: jobApplications
+#0 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Views\JobTenderView.php(47): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\Users\\Niamh\\...', 47, Array)
+#1 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Niamh\\...')
+#2 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('JobTenderView', Array, true)
+#4 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Libraries\ViewManager.php(21): view('JobTenderView', Array)
+#5 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\Client\Jobs.php(212): App\Libraries\ViewManager::loadViewIntoClientMasterPage('Favours 4 Neigh...', 'JobTenderView', Array)
+#6 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\app\Controllers\Client\Jobs.php(134): App\Controllers\Client\Jobs->getTenderView('123456', Array)
+#7 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Client\Jobs->viewtender('123456')
+#8 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Client\Jobs))
+#9 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#11 C:\Users\Niamh\Documents\GitHub\Favours4Neighbours.FYP\Favours4Neighbours.CodeIgniter.php\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(45): require_once('C:\\Users\\Niamh\\...')
+#12 {main}
