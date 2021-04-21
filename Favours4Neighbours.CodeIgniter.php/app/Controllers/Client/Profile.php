@@ -23,38 +23,21 @@ class Profile extends BaseController
 		} else {
 			return ViewManager::load403ErrorViewIntoClientMasterPage();
 		}
-
-		if ($this->isLoggedIn()) {
-			$masterData = [
-				'mainContent' => view("MyProfileChangePasswordView"),
-				'navTemplate' => "nav-admin.php",
-				'title' => "Favours 4 Neighbours: My Profile Change Password",
-			];
-			return view('MasterPage', $masterData);
-		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
-			];
-			return view('MasterPage', $masterData);
-		}
 	}
 	private function getChangePasswordView()
 	{
 		$data = [];
 		if ($this->request->getVar("ChangePasswordButton") !== null) {
-			$user = $this->executeChangePassword($data);
+			$this->executeChangePassword($data);
 		}
-		$data['user'] = $user;
-
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Edit Profile', 'MyProfileEditView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Change Password', 'MyProfileChangePasswordView', $data);
 	}
 	private function executeChangePassword(&$data)
 	{
 		$newPassword = $this->request->getVar("newPassword");
 		$newPasswordConfirmed = $this->request->getVar("newPasswordConfirmed");
 
-		
+
 		$currentPassword = $this->request->getVar("CurrentPassword");
 		
 		$userId = $this->session->get("UserId");
@@ -66,9 +49,7 @@ class Profile extends BaseController
 
 
 		if ($user != null) {
-
-			$hashedNewPassword = $this->UserRepository->createPasswordHash($newPassword);
-			$valuesArray = ['Password' => $hashedNewPassword];
+			$valuesArray = ['Password' => $newPassword];
 			try {
 				$commandResult = $this->userRepository->update($userId, $valuesArray);
 				$data["message"] = "Password Changed";
@@ -78,7 +59,6 @@ class Profile extends BaseController
 		} else {
 			$data['errors'] = "invalid Passowrd";
 		}
-		return $this->userRepository->find($userId);
 	}
 	private function createUserValuesArrayFromPostArray()
 	{
