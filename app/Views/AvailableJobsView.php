@@ -4,9 +4,11 @@
 		<tr>
 			<th scope="col">Details</th>
 			<th scope="col">Equipment Required</th>
+			<th scope="col">County</th>
 			<th scope="col">Duration Estimate</th>
 			<th scope="col">Price</th>
 			<th scope="col">Category</th>
+			<th scope="col">Assigned To</th>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
@@ -18,6 +20,7 @@
 				<tr>
 					<th scope="row"><?= $job->JobDetails; ?></th>
 					<td><?= $job->EquipmentRequired; ?></td>
+					<td><?= $job->JobCounty; ?></td>
 					<td><?= $job->DurationEstimate; ?></td>
 					<td><?= $job->JobPrice; ?></td>
 					<td>
@@ -27,10 +30,10 @@
 					</td>
 					<td>
 						<?php if ($job->AssignedTo != null) : ?>
-							<a href="#" title="<?= $job->AssignedUserFullName; ?>"><?= $job->AssignedUsername; ?></a>
+							<a href="" title="<?= $job->AssignedUserFullName; ?>"><?= $job->AssignedUsername; ?></a>
 						<?php endif ?>
 					</td>
-					<td><a href="/client/jobs/apply/<?= $job->Id; ?>">Apply</a></td>
+			
 					<td><a href="/client/jobs/viewtender/<?= $job->Id; ?>">View details</a></td>
 				</tr>
 			<?php endforeach ?>

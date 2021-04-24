@@ -27,6 +27,8 @@ class Applications extends BaseController
 		$this->userRepository = new UserRepository();
 
 		$this->db = \Config\Database::connect();
+
+		helper('ArrayTransformer');
 	}
 
 
@@ -67,11 +69,31 @@ class Applications extends BaseController
 
 	private function getMyApplicationsView($userId)
 	{
-		$jobApplications = $this->db->query("Call GetJobApplicationsViewByUser(?)", $userId)->getResult();
+		$jobApplications = $this->db->query("Call GetJobApplicationsViewByJob(?)", $userId)->getResult();
 		$data = [
 			'jobApplications' => $jobApplications,
 		];
 		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: My Applications', 'MyApplicationsView', $data);
+	}
+
+	public function recievedapplications()
+	{
+		if ($this->isLoggedIn()) {
+			$userId = $this->session->get("UserId");
+			return $this->getRecievedApplicationsView($userId);
+		} else {
+			return ViewManager::load403ErrorViewIntoClientMasterPage();
+		}
+	}
+	
+
+	private function getRecievedApplicationsView($userId)
+	{
+		$jobApplications = $this->db->query("Call GetJobApplicationsViewByUser(?)", $userId)->getResult();
+		$data = [
+			'recievedApplications' => $jobApplications,
+		];
+		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Recieved Applications', 'RecievedApplicationsView', $data);
 	}
 
 	private function isLoggedIn()

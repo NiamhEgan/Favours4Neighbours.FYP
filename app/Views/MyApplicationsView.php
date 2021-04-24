@@ -16,6 +16,7 @@
 					<td><a href="/client/applications/myapplications/<?= $jobApplication->JobId; ?>"><?= $jobApplication->JobDetails; ?></a></td>
 					<td><?= $jobApplication->Status; ?></td>
 					<td><a href="/client/applications/reject/<?= $jobApplication->Id; ?>">Withdraw</a></td>
+					<td><a href=#<?= $jobApplication->Id; ?>">Complete</a></td>
 				</tr>
 
 

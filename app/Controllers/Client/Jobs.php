@@ -194,6 +194,8 @@ class Jobs extends BaseController
 
 		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: View Job', 'JobTenderView', $data);
 	}
+
+
 	private function getView($jobId, $job)
 	{
 		$jobApplications = $this->db->query("Call GetJobApplicationsViewByJob(?)", $jobId)->getResult();
@@ -295,4 +297,6 @@ class Jobs extends BaseController
 			return view('MasterPage', $masterData);
 		}
 	}
+
+	
 }

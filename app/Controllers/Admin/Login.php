@@ -35,7 +35,7 @@ class Login extends BaseController
 			->first();
 
 		if ($user != null) {
-			if ($user["Active"] == 1) {
+			if ($user["IsAdmin"] == 1) {
 				//login
 				$this->loginUser($user);
 			} else {
