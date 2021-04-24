@@ -31,3 +31,9 @@ class JobApplicationRepository extends Model
 
     protected $skipValidation     = false;
 }
+class JobApplicationStatus
+{
+    //TODO: get names and id
+    public const Open = 1;
+    public const Closed = 2;
+}

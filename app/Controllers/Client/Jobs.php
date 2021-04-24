@@ -8,7 +8,9 @@ use App\Models\CountyRepository;
 use App\Models\JobApplicationRepository;
 use App\Models\JobCategoryRepository;
 use App\Models\JobRepository;
+use App\Models\JobStatus;
 use App\Models\UserRepository;
+use Exception;
 
 class Jobs extends BaseController
 {
@@ -53,15 +55,51 @@ class Jobs extends BaseController
 	}
 	public function apply($jobId)
 	{
-		$jobApplicationValuesArray = [
-			"Job" => $jobId,
-			"User" =>  $this->session->get("UserId"),
-		];
-		$this->jobApplicationRepository->insert($jobApplicationValuesArray);
+		$userId = $this->session->get("UserId");
+		$jobApplication = $this->jobApplicationRepository
+			->where('Job', $jobId)
+			->where('User', $userId)
+			->find();
 
-		return $this->index();
+		if ($jobApplication == null) {
+			$jobApplicationValuesArray = [
+				'Job' => $jobId,
+				'User' =>  $userId,
+			];
+			$this->jobApplicationRepository->insert($jobApplicationValuesArray);
+			return $this->index();
+		} else {
+			$data = ['message' => 'you have alreay applied'];
+			echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Application', 'Message', $data);
+		}
+	}
+	public function close($jobId)
+	{
+		if ($this->isLoggedIn()) {
+			$job = $this->jobRepository->find($jobId);
+
+			if ($job == null) {
+				echo ViewManager::load404ErrorViewIntoClientMasterPage("No Job found for $jobId");
+			} else if ($job["CreatedBy"] != $this->session->get("UserId")) {
+				echo ViewManager::load403ErrorViewIntoClientMasterPage();
+			} else {
+				return $this->executeCloseJob($jobId);
+			}
+		} else {
+			echo  ViewManager::load403ErrorViewIntoClientMasterPage();
+		}
 	}
 
+	private function executeCloseJob($jobId)
+	{
+
+		$jobValuesArray = [
+			'JobStatus' => JobStatus::Closed,
+		];
+		$this->jobRepository->update($jobId, $jobValuesArray);
+		$data = ['message' => "Job: $jobId has been closed"];
+		echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Application', 'Message', $data);
+}
 
 	public function index()
 	{
@@ -297,6 +335,4 @@ class Jobs extends BaseController
 			return view('MasterPage', $masterData);
 		}
 	}
-
-	
 }

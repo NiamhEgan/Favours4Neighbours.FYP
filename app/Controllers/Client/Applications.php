@@ -89,7 +89,7 @@ class Applications extends BaseController
 
 	private function getRecievedApplicationsView($userId)
 	{
-		$jobApplications = $this->db->query("Call GetJobApplicationsViewByUser(?)", $userId)->getResult();
+		$jobApplications = $this->db->query("Call GetJobApplicationsRecievedView(?)", $userId)->getResult();
 		$data = [
 			'recievedApplications' => $jobApplications,
 		];

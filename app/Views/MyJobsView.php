@@ -28,11 +28,11 @@
 					</td>
 					<td>
 						<?php if ($job->AssignedTo != null) : ?>
-							<a href="#" title="<?= $job->AssignedUserFullName; ?>"><?= $job->AssignedUsername; ?></a>
+							<a href="/client/users/view/<?= $job->AssignedId; ?>" title="<?= $job->AssignedUserFullName; ?>"><?= $job->AssignedUsername; ?></a>
 						<?php endif ?>
 					</td>
 					<td><a href="edit/<?= $job->Id; ?>">Edit</a></td>
-					<td><a href="deactive/<?= $job->Id; ?>">Deactive</a></td>
+					<td><a href="close/<?= $job->Id; ?>" title="Close when Job is finshed.">Close</a></td>
 					<td><a href="view/<?= $job->Id; ?>">View details</a></td>
 				</tr>
 			<?php endforeach ?>

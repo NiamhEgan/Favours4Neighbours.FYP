@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\UserRepository;
 use App\Models\CountyRepository;
+use Exception;
 
 class Registration extends BaseController
 {
