@@ -19,7 +19,7 @@ class Home extends BaseController
 		$data = [
 			'mainContent' => view("HomeView", $homeViewData),
 			'title' => "Favours 4 Neighbours",
-			'navTemplate' => "nav-admin.php",
+			'navTemplate' => "nav-client.php",
 		];
 		echo view('MasterPage', $data);
 	}

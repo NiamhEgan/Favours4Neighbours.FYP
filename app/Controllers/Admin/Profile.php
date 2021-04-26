@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UserRepository;
@@ -24,17 +24,17 @@ class Profile extends BaseController
 				"user" => $user,
 			];
 			$masterData = [
-				'mainContent' => view("MyProfileView", $data),
+				'mainContent' => view("AdminProfileView", $data),
 				'navTemplate' => "nav-admin.php",
-				'title' => "Favours 4 Neighbours: My Profile",
+				'title' => "Favours 4 Neighbours: Admin Profile",
 			];
-			return view('MasterPage', $masterData);
+			return view('MasterPageAdmin', $masterData);
 		} else {
 			$masterData = [
 				'mainContent' => view("403"),
 				'title' => "Favours 4 Neighbours: Unauthorised access",
 			];
-			return view('MasterPage', $masterData);
+			return view('MasterPageAdmin', $masterData);
 		}
 	}
 	public function edit()
@@ -46,17 +46,17 @@ class Profile extends BaseController
 				"user" => $user,
 			];
 			$masterData = [
-				'mainContent' => view("MyProfileEditView", $data),
+				'mainContent' => view("AdminProfileEditView", $data),
 				'navTemplate' => "nav-admin.php",
 				'title' => "Favours 4 Neighbours: My Profile",
 			];
-			return view('MasterPage', $masterData);
+			return view('MasterPageAdmin', $masterData);
 		} else {
 			$masterData = [
 				'mainContent' => view("403"),
 				'title' => "Favours 4 Neighbours: Unauthorised access",
 			];
-			return view('MasterPage', $masterData);
+			return view('MasterPageAdmin', $masterData);
 		}
 	}
 

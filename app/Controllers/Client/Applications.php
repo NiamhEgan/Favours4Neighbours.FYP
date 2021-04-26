@@ -45,7 +45,7 @@ class Applications extends BaseController
 			];
 			$masterData = [
 				'mainContent' => view("MyApplicationsView", $data),
-				'navTemplate' => "nav-admin.php",
+				'navTemplate' => "nav-client.php",
 				'title' => "Favours 4 Neighbours: My Jobs",
 			];
 			return view('MasterPage', $masterData);
