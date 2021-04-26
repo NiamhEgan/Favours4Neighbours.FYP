@@ -28,6 +28,7 @@ class UserRepository extends Model
         "Telephone",
         "Username",
         "Photo",
+        "IsAdmin",
         
     ];
 

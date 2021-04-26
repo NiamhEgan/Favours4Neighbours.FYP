@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\ViewManager;
 use App\Models\UserRepository;
 
 class Login extends BaseController
@@ -27,17 +28,18 @@ class Login extends BaseController
 	{
 		$password = $this->request->getVar("Password");
 		$hashedPassword = $this->UserRepository->createPasswordHash($password);
-
 		$username = $this->request->getVar("Username");
+	
 
-		$user = $this->UserRepository->where('Username', $username)
+		$adminuser = $this->UserRepository->where('Username', $username)
+		
 			->where('Password',  $hashedPassword)
 			->first();
 
-		if ($user != null) {
-			if ($user["IsAdmin"] == 1) {
+		if ($adminuser != null) {
+			if ($adminuser["IsAdmin"] == 1) {
 				//login
-				$this->loginUser($user);
+				$this->loginUser($adminuser);
 			} else {
 				$this->loadPageWithError("User " . $username . " has been disabled. Please contact the system administrator.");
 			}

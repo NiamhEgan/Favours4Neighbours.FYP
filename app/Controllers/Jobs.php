@@ -30,7 +30,7 @@ class Jobs extends BaseController
 			$masterData = [
 				'mainContent' => view("JobsView", $data),
 				'title' => "Favours 4 Neighbours: Available Jobs",
-				'navTemplate' => "nav-admin.php",
+				'navTemplate' => "nav-client.php",
 			];
 			return view('MasterPage', $masterData);
 		}

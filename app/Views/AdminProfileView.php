@@ -1,5 +1,5 @@
 <table class="table table-striped">
-	<caption class="caption-top">My Profile</caption>
+	<caption class="caption-top">Admin Profile</caption>
 	<thead>
 		<tr>
 			<th scope="col">First Name</th>
@@ -29,9 +29,5 @@
 			</tr>
 		<?php endforeach ?>
 	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="8"></td><a href="new/">New Job Posts - posted in last 7 days </a>
-		</tr>
-	</tfoot>
+
 </table>

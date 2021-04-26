@@ -24,7 +24,7 @@
 
 				<td><a href="/client/profile/edit">Edit</a></td>
 				<td><a href="/client/profile/changepassword">Change Password</a></td>
-				<td><a href="/client/profile/delete/">Delete</a></td>
+				<td><a href="/client/profile/delete/">Disable</a></td>
 
 			</tr>
 	</tbody>

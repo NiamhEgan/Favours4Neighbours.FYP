@@ -4,29 +4,25 @@
       <a class="navbar-brand" href="#">Favours4Neighbours</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/home">Home</a></li>
-      <li class="active"><a href="/client/profile">Profile</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/client/jobs">Jobs <span class="caret"></span></a>
+      <li class="active"><a href="/admin/home">Home</a></li>
+      <li class="active"><a href="/admin/profile">Profile</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/admin/jobs">Jobs <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="/client/jobs">View Available Jobs</a></li>
-          <li><a href="/client/jobs/create">Create Jobs</a></li>
-          <li><a href="/client/jobs/myjobs">My Jobs</a></li>
+          <li><a href="/admin/jobs">All Jobs</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/admin/users">Users <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/admin/users">View Users</a></li>
+       
         </ul>
       </li>
 
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/">Applications <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="/client/applications/myapplications">My Applications</a></li>
-          <li><a href="/">Recieved Applications</a></li>
-        </ul>
+      <li class="active"><a href="/">Applications </a></li>
+      
       </li>
  
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">FAQ's <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">FAQ's</a></li>
-          <li><a href="#">COVID-19</a></li>
-          <li><a href="#">Safety Statement</a></li>
-        </ul>
+     
       <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       <li>
         <form class="form-inline my-8 my-lg-0">

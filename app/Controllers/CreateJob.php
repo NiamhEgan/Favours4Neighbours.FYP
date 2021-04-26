@@ -43,7 +43,7 @@ class CreateJob extends BaseController
 				$data = [
 					'mainContent' => view("JobCreateView", $categoryData),
 					'title' => "Favours 4 Neighbours: Create Job",
-					'navTemplate' => "nav-admin.php",
+					'navTemplate' => "nav-client.php",
 					'errors' => $this->JobRepository->errors(),
 				];
 				return view('MasterPage', $data);
@@ -52,7 +52,7 @@ class CreateJob extends BaseController
 			$data = [
 				'mainContent' => view("JobCreateView"),
 				'title' => "Favours 4 Neighbours: Create Job",
-				'navTemplate' => "nav-admin.php",
+				'navTemplate' => "nav-client.php",
 			];
 		return view('MasterPage', $data);
 	}
