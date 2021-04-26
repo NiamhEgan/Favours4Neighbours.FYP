@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\ViewManager;
 use App\Models\UserRepository;
 use App\Models\CountyRepository;
 use Exception;
@@ -17,7 +18,7 @@ class Registration extends BaseController
 	public function index()
 	{
 		helper('array');
-		$mainData = [
+		$data = [
 			"countyDataSource" => transformObjectArray($this->CountyRepository->findAll(), "ID_county", "county")
 		];
 		if ($this->request->getVar("RegisterButton") !== null) {
@@ -26,20 +27,10 @@ class Registration extends BaseController
 				$commandResult = $this->UserRepository->insert($userValuesArray);
 				return redirect()->to("/login");
 			} catch (Exception $e) {
-
-				$data = [
-					'mainContent' => view("RegistrationView", $mainData),
-					'title' => "Favours 4 Neighbours: Registration",
-					'errors' => $this->UserRepository->errors(),
-				];
-				return view('MasterPage', $data);
+				$data['errors'] = $this->UserRepository->errors();
 			}
 		} else
-			$data = [
-				'mainContent' => view("RegistrationView", $mainData),
-				'title' => "Favours 4 Neighbours: Registration",
-			];
-		return view('MasterPage', $data);
+		return ViewManager::loadViewIntoClientMasterPage('Registration', 'RegistrationView', $data);
 	}
 
 	private function createUserValuesArrayFromPostArray()

@@ -2,13 +2,13 @@
 	<caption class="caption-top">Available Jobs</caption>
 	<thead>
 		<tr>
+			<th scope="col">Date</th>
 			<th scope="col">Details</th>
 			<th scope="col">Equipment Required</th>
 			<th scope="col">County</th>
 			<th scope="col">Duration Estimate</th>
 			<th scope="col">Price</th>
 			<th scope="col">Category</th>
-			<th scope="col">Assigned To</th>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
@@ -18,6 +18,7 @@
 		<?php if ($jobs != null) : ?>
 			<?php foreach ($jobs as $job) : ?>
 				<tr>
+					<td><?= $job->updated_at; ?></td>
 					<th scope="row"><?= $job->JobDetails; ?></th>
 					<td><?= $job->EquipmentRequired; ?></td>
 					<td><?= $job->JobCounty; ?></td>
@@ -28,12 +29,6 @@
 							<a href="/JobCategory/<?= $job->JobCategoryId; ?>"><?= $job->JobCategory; ?></a>
 						<?php endif ?>
 					</td>
-					<td>
-						<?php if ($job->AssignedTo != null) : ?>
-							<a href="" title="<?= $job->AssignedUserFullName; ?>"><?= $job->AssignedUsername; ?></a>
-						<?php endif ?>
-					</td>
-			
 					<td><a href="/client/jobs/viewtender/<?= $job->Id; ?>">View details</a></td>
 				</tr>
 			<?php endforeach ?>

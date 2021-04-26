@@ -38,8 +38,11 @@ class JobRepository extends Model
     protected $skipValidation     = false;
 }
 
+/**
+ * Job Status values from Database
+ */
 class JobStatus
 {
-    public const Open = 1;
-    public const Closed = 2;
+    public const Closed = 1;
+    public const Open = 2;
 }

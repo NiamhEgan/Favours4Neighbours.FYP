@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Libraries\ViewManager;
 use App\Models\CountyRepository;
 use App\Models\JobApplicationRepository;
+use App\Models\JobApplicationStatus;
 use App\Models\JobCategoryRepository;
 use App\Models\JobRepository;
 use App\Models\JobStatus;
@@ -14,20 +15,15 @@ use Exception;
 
 class Jobs extends BaseController
 {
-	protected $session;
-
 	public function __construct()
 	{
-		$this->session = \Config\Services::session();
-		$this->session->start();
-
+		$this->db = \Config\Database::connect();
 		$this->countyRepository = new CountyRepository();
 		$this->jobApplicationRepository = new JobApplicationRepository();
 		$this->jobCategoryRepository = new JobCategoryRepository();
 		$this->jobRepository = new JobRepository();
 		$this->userRepository = new UserRepository();
-
-		$this->db = \Config\Database::connect();
+		$this->session = \Config\Services::session();
 
 		helper('ArrayTransformer');
 	}
@@ -37,40 +33,69 @@ class Jobs extends BaseController
 		$this->executeAcceptJobApplication($jobApplicationId);
 		echo "view";
 	}
-	private  function executeAcceptJobApplication($jobApplicationId)
+
+	public function create()
+	{
+		if ($this->isLoggedIn()) {
+			return $this->getCreateView();
+		} else {
+			return ViewManager::load403ErrorViewIntoClientMasterPage();
+		}
+	}
+	//
+	// Private Functions: get views
+	//
+	private function getCreateView()
+	{
+		$data = [
+			"asssignedToDataSource" => transformObjectArrayWithNullValue($this->userRepository->findAll(), "Id", "Username"),
+			"jobCategoryDataSource" => transformObjectArray($this->jobCategoryRepository->findAll(), "Id", "JobCategory"),
+			"jobCountyDataSource" => transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
+		];
+		if ($this->request->getPost("CreateButton") !== null) {
+			return $this->executeInsert($data);
+		}
+
+		return ViewManager::loadViewIntoClientMasterPage('Create Job', 'JobCreateView', $data);
+	}
+
+	//
+	// Private Functions
+	//
+	private function executeAcceptJobApplication($jobApplicationId)
 	{
 		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
-		$jobApplication["Status"] = 2; //TODO DEfine status later
+		$jobApplication["Status"] = JobApplicationStatus::Accepted;
 		$commandResult = $this->jobApplicationRepository->update($jobApplicationId, $jobApplication);
 
 		$job = $this->jobRepository->find($jobApplication["Job"]);
-		$job["AssignedTo"] = $jobApplication["User"];
+		$job["AssignedTo"] = $jobApplication['Applicant'];
 
 		$commandResult = $this->jobRepository->update($job["Id"], $job);
 	}
 	public function reject($jobApplicationId)
 	{
 		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
-		$jobApplication["Status"] = 3; //TODO DEfine status later
+		$jobApplication["Status"] = JobApplicationStatus::Rejected;
 	}
 	public function apply($jobId)
 	{
 		$userId = $this->session->get("UserId");
 		$jobApplication = $this->jobApplicationRepository
 			->where('Job', $jobId)
-			->where('User', $userId)
+			->where('Applicant', $userId)
 			->find();
 
 		if ($jobApplication == null) {
 			$jobApplicationValuesArray = [
 				'Job' => $jobId,
-				'User' =>  $userId,
+				'Applicant' =>  $userId,
 			];
 			$this->jobApplicationRepository->insert($jobApplicationValuesArray);
 			return $this->index();
 		} else {
 			$data = ['message' => 'you have alreay applied'];
-			echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Application', 'Message', $data);
+			echo ViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
 		}
 	}
 	public function close($jobId)
@@ -98,8 +123,8 @@ class Jobs extends BaseController
 		];
 		$this->jobRepository->update($jobId, $jobValuesArray);
 		$data = ['message' => "Job: $jobId has been closed"];
-		echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Application', 'Message', $data);
-}
+		echo ViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
+	}
 
 	public function index()
 	{
@@ -109,7 +134,7 @@ class Jobs extends BaseController
 			$data = [
 				"jobs" => $jobs,
 			];
-			echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: My Jobs', 'AvailableJobsView', $data);
+			echo ViewManager::loadViewIntoClientMasterPage('My Jobs', 'AvailableJobsView', $data);
 		} else {
 			echo  ViewManager::load403ErrorViewIntoClientMasterPage();
 		}
@@ -129,7 +154,7 @@ class Jobs extends BaseController
 			$data = [
 				'errors' => $this->jobRepository->errors(),
 			];
-			echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: My Jobs', 'AvailableJobsView', $data);
+			echo ViewManager::loadViewIntoClientMasterPage('My Jobs', 'AvailableJobsView', $data);
 		}
 	}
 	public function delete($jobId)
@@ -190,38 +215,10 @@ class Jobs extends BaseController
 				return $this->getEditView($jobId, $job);
 			}
 		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
-			];
-			return view('MasterPage', $masterData);
+			echo ViewManager::load403ErrorViewIntoClientMasterPage();
 		}
 	}
-	public function create()
-	{
-		if ($this->isLoggedIn()) {
-			return $this->getCreateView();
-		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
-			];
-			return view('MasterPage', $masterData);
-		}
-	}
-	private function getCreateView()
-	{
-		$data = [
-			"asssignedToDataSource" => transformObjectArrayWithNullValue($this->userRepository->findAll(), "Id", "Username"),
-			"jobCategoryDataSource" => transformObjectArray($this->jobCategoryRepository->findAll(), "Id", "JobCategory"),
-			"jobCountyDataSource" => transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
-		];
-		if ($this->request->getPost("CreateButton") !== null) {
-			return $this->executeInsert($data);
-		}
 
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Create Job', 'JobCreateView', $data);
-	}
 
 
 	private function getTenderView($jobId, $job)
@@ -230,7 +227,7 @@ class Jobs extends BaseController
 			"job" => $job,
 		];
 
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: View Job', 'JobTenderView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('View Job', 'JobTenderView', $data);
 	}
 
 
@@ -243,7 +240,7 @@ class Jobs extends BaseController
 			"jobApplications" => $jobApplications,
 		];
 
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: View Job', 'JobView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('View Job', 'JobView', $data);
 	}
 	private function getEditView($jobId, $job)
 	{
@@ -257,7 +254,7 @@ class Jobs extends BaseController
 		}
 		$data["job"] = $job;
 
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Edit Job', 'JobEditView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('Edit Job', 'JobEditView', $data);
 	}
 	private function executeSave(&$data, $jobId)
 	{
@@ -279,6 +276,7 @@ class Jobs extends BaseController
 			return redirect()->to("/client/jobs/edit/" . $commandResult);
 		} catch (Exception $e) {
 			$data['errors'] = $this->jobRepository->errors();
+			return ViewManager::loadViewIntoClientMasterPage('Create Job', 'JobCreateView', $data);
 		}
 	}
 
@@ -307,7 +305,7 @@ class Jobs extends BaseController
 			"JobCounty" => $this->request->getPost("JobCounty"),
 			"JobDetails" => $this->request->getPost("JobDetails"),
 			"JobPrice" => $this->request->getPost("JobPrice"),
-			"JobStatus" => $this->request->getPost("JobStatus"),
+			"JobStatus" => JobStatus::Open,
 		];
 	}
 	public function myjobs()
@@ -321,18 +319,10 @@ class Jobs extends BaseController
 				"jobs" => $jobs,
 
 			];
-			$masterData = [
-				'mainContent' => view("MyJobsView", $data),
-				'navTemplate' => "nav-client.php",
-				'title' => "Favours 4 Neighbours: My Jobs",
-			];
-			return view('MasterPage', $masterData);
+
+			return ViewManager::loadViewIntoClientMasterPage('My Jobs', 'MyJobsView', $data);
 		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
-			];
-			return view('MasterPage', $masterData);
+			return ViewManager::load403ErrorViewIntoClientMasterPage();
 		}
 	}
 
@@ -340,25 +330,12 @@ class Jobs extends BaseController
 	{
 		if ($this->isLoggedIn()) {
 			$userID = $this->session->get("UserId");
-
 			$jobs = $this->db->query("Call GetMyCompletedJobs(?)", $userID)->getResult();
+			$data = ["jobs" => $jobs];
 
-			$data = [
-				"jobs" => $jobs,
-
-			];
-			$masterData = [
-				'mainContent' => view("MyCompletedJobsView", $data),
-				'navTemplate' => "nav-client.php",
-				'title' => "Favours 4 Neighbours: My Completed Jobs",
-			];
-			return view('MasterPage', $masterData);
+			return ViewManager::loadViewIntoClientMasterPage('My Completed Jobs', 'MyCompletedJobsView', $data);
 		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
-			];
-			return view('MasterPage', $masterData);
+			return ViewManager::load403ErrorViewIntoClientMasterPage();
 		}
 	}
 }

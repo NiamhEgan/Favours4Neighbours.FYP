@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\UserRepository;
@@ -26,13 +26,13 @@ class Profile extends BaseController
 			$masterData = [
 				'mainContent' => view("AdminProfileView", $data),
 				'navTemplate' => "nav-admin.php",
-				'title' => "Favours 4 Neighbours: Admin Profile",
+				'title' => "Admin Profile",
 			];
 			return view('MasterPageAdmin', $masterData);
 		} else {
 			$masterData = [
 				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
+				'title' => "Unauthorised access",
 			];
 			return view('MasterPageAdmin', $masterData);
 		}
@@ -48,13 +48,13 @@ class Profile extends BaseController
 			$masterData = [
 				'mainContent' => view("AdminProfileEditView", $data),
 				'navTemplate' => "nav-admin.php",
-				'title' => "Favours 4 Neighbours: My Profile",
+				'title' => "My Profile",
 			];
 			return view('MasterPageAdmin', $masterData);
 		} else {
 			$masterData = [
 				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
+				'title' => "Unauthorised access",
 			];
 			return view('MasterPageAdmin', $masterData);
 		}
@@ -65,6 +65,6 @@ class Profile extends BaseController
 	//
 	private function isLoggedIn()
 	{
-		return ($this->session->get("UserId") !== null);
+		return ($this->session->get("UserId") !== null && $this->session->get("UserIsAdmin") == 1);
 	}
 }

@@ -20,7 +20,7 @@
           <li><a href="/client/applications/recievedapplications">Recieved Applications</a></li>
         </ul>
       </li>
- 
+
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">FAQ's <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/faq'sview/">FAQ's</a></li>
@@ -36,3 +36,6 @@
     </ul>
   </div>
 </nav>
+<?php if (isset($username)) : ?>
+  <div>Hello <?= $username; ?></div>
+<?php endif ?>

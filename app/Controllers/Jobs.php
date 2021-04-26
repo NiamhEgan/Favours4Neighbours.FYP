@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\ViewManager;
 use App\Models\JobRepository;
 
 class Jobs extends BaseController
@@ -27,12 +28,8 @@ class Jobs extends BaseController
 			$data = [
 				"jobs" => $jobs,
 			];
-			$masterData = [
-				'mainContent' => view("JobsView", $data),
-				'title' => "Favours 4 Neighbours: Available Jobs",
-				'navTemplate' => "nav-client.php",
-			];
-			return view('MasterPage', $masterData);
+
+			return ViewManager::loadViewIntoClientMasterPage('Available Jobs', 'JobsView', $data);
 		}
 	}
 	private function isLoggedIn()

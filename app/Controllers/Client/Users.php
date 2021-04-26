@@ -39,7 +39,7 @@ class Users extends BaseController
 			$data = [
 				"jobs" => $jobs,
 			];
-			echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: My Jobs', 'AvailableJobsView', $data);
+			echo ViewManager::loadViewIntoClientMasterPage('My Jobs', 'AvailableJobsView', $data);
 		} else {
 			echo  ViewManager::load403ErrorViewIntoClientMasterPage();
 		}
@@ -75,5 +75,5 @@ class Users extends BaseController
 		];
 
         // use Myprofile view and JobView to make
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: User', 'UserView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('User', 'UserView', $data);
 	}}

@@ -32,31 +32,9 @@ class Applications extends BaseController
 		helper('ArrayTransformer');
 	}
 
-
 	public function index()
 	{
-		if ($this->isLoggedIn()) {
-			$userID = $this->session->get("UserId");
-
-			$jobApplications = $this->db->query("Call GetJobApplicationsViewByUser(?)", $userID)->getResult();
-
-			$data = [
-				"jobApplications" => $jobApplications,
-
-			];
-			$masterData = [
-				'mainContent' => view("MyApplicationsView", $data),
-				'navTemplate' => "nav-client.php",
-				'title' => "Favours 4 Neighbours: My Applications",
-			];
-			return view('MasterPage', $masterData);
-		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
-			];
-			return view('MasterPage', $masterData);
-		}
+		return $this->myapplications();
 	}
 	public function myapplications()
 	{
@@ -70,11 +48,11 @@ class Applications extends BaseController
 
 	private function getMyApplicationsView($userId)
 	{
-		$jobApplications = $this->db->query("Call GetJobApplicationsViewByJob(?)", $userId)->getResult();
+		$jobApplications = $this->db->query("Call GetJobApplicationsViewByApplicant(?)", $userId)->getResult();
 		$data = [
 			'jobApplications' => $jobApplications,
 		];
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: My Applications', 'MyApplicationsView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('My Applications', 'MyApplicationsView', $data);
 	}
 
 	public function recievedapplications()
@@ -86,15 +64,16 @@ class Applications extends BaseController
 			return ViewManager::load403ErrorViewIntoClientMasterPage();
 		}
 	}
-	
+
 
 	private function getRecievedApplicationsView($userId)
 	{
-		$jobApplications = $this->db->query("Call GetJobApplicationsRecievedView(?)", $userId)->getResult();
+		$jobApplications = $this->db->query("Call GetJobApplicationsRecievedView(?)", $userId)
+			->getResult();
 		$data = [
 			'recievedApplications' => $jobApplications,
 		];
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Recieved Applications', 'RecievedApplicationsView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('Recieved Applications', 'RecievedApplicationsView', $data);
 	}
 
 	private function isLoggedIn()
@@ -106,7 +85,7 @@ class Applications extends BaseController
 	{
 	}
 
-	
+
 	public function complete($jobId)
 	{
 		if ($this->isLoggedIn()) {
@@ -117,24 +96,21 @@ class Applications extends BaseController
 			} else if ($job["CreatedBy"] != $this->session->get("UserId")) {
 				echo ViewManager::load403ErrorViewIntoClientMasterPage();
 			} else {
-				return $this->executeCompleteJob($jobId);
+				return $this->executeCloseJob($jobId);
 			}
 		} else {
 			echo  ViewManager::load403ErrorViewIntoClientMasterPage();
 		}
 	}
 
-	private function executeCompleteJob($jobId)
+	private function executeCloseJob($jobId)
 	{
 
 		$jobValuesArray = [
-			'JobStatus' => JobStatus::Complete,
+			'JobStatus' => JobStatus::Closed,
 		];
 		$this->jobRepository->update($jobId, $jobValuesArray);
 		$data = ['message' => "Job: $jobId has been Completed"];
-		echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Application', 'Message', $data);
-}
-
-
-
+		echo ViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
+	}
 }

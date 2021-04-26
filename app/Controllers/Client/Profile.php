@@ -45,7 +45,7 @@ class Profile extends BaseController
 		if ($this->request->getVar("ChangePasswordButton") !== null) {
 			$this->executeChangePassword($data);
 		}
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Change Password', 'MyProfileChangePasswordView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('Change Password', 'MyProfileChangePasswordView', $data);
 	}
 	private function getEditView()
 	{
@@ -61,7 +61,7 @@ class Profile extends BaseController
 		}
 		$data['user'] = $user;
 
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Edit Profile', 'MyProfileEditView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('Edit Profile', 'MyProfileEditView', $data);
 	}
 	private function getIndexView()
 	{
@@ -71,7 +71,7 @@ class Profile extends BaseController
 			"user" => $user,
 		];
 
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Profile', 'MyProfileView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('Profile', 'MyProfileView', $data);
 	}
 
 	private function executeChangePassword(&$data)

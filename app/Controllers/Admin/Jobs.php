@@ -70,7 +70,7 @@ class Jobs extends BaseController
 			return $this->index();
 		} else {
 			$data = ['message' => 'you have alreay applied'];
-			echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Application', 'Message', $data);
+			echo ViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
 		}
 	}
 	public function close($jobId)
@@ -98,7 +98,7 @@ class Jobs extends BaseController
 		];
 		$this->jobRepository->update($jobId, $jobValuesArray);
 		$data = ['message' => "Job: $jobId has been closed"];
-		echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Application', 'Message', $data);
+		echo ViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
 }
 
 	public function index()
@@ -109,7 +109,7 @@ class Jobs extends BaseController
 			$data = [
 				"jobs" => $jobs,
 			];
-			echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: My Jobs', 'AvailableJobsView', $data);
+			echo ViewManager::loadViewIntoClientMasterPage('My Jobs', 'AvailableJobsView', $data);
 		} else {
 			echo  ViewManager::load403ErrorViewIntoClientMasterPage();
 		}
@@ -129,7 +129,7 @@ class Jobs extends BaseController
 			$data = [
 				'errors' => $this->jobRepository->errors(),
 			];
-			echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: My Jobs', 'AvailableJobsView', $data);
+			echo ViewManager::loadViewIntoClientMasterPage('My Jobs', 'AvailableJobsView', $data);
 		}
 	}
 	public function delete($jobId)
@@ -192,7 +192,7 @@ class Jobs extends BaseController
 		} else {
 			$masterData = [
 				'mainContent' => view("403"),
-				'title' => "Favours 4 Neighbours: Unauthorised access",
+				'title' => "Unauthorised access",
 			];
 			return view('MasterPage', $masterData);
 		}
@@ -206,7 +206,7 @@ class Jobs extends BaseController
 			"job" => $job,
 		];
 
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: View Job', 'JobTenderView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('View Job', 'JobTenderView', $data);
 	}
 
 
@@ -219,7 +219,7 @@ class Jobs extends BaseController
 			"jobApplications" => $jobApplications,
 		];
 
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: View Job', 'JobView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('View Job', 'JobView', $data);
 	}
 	private function getEditView($jobId, $job)
 	{
@@ -233,7 +233,7 @@ class Jobs extends BaseController
 		}
 		$data["job"] = $job;
 
-		return ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Edit Job', 'JobEditView', $data);
+		return ViewManager::loadViewIntoClientMasterPage('Edit Job', 'JobEditView', $data);
 	}
 	private function executeSave(&$data, $jobId)
 	{

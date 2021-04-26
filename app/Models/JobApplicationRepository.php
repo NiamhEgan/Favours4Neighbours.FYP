@@ -16,9 +16,9 @@ class JobApplicationRepository extends Model
 
     protected $allowedFields = [
 
+        "Applicant",
         "Job",
         "Status",
-        "User",
     ];
 
     protected $useTimestamps = true;
@@ -33,7 +33,8 @@ class JobApplicationRepository extends Model
 }
 class JobApplicationStatus
 {
-    //TODO: get names and id
-    public const Open = 1;
-    public const Closed = 2;
+    public const Accepted = 1;
+    public const Pending = 2;
+    public const Rejected = 3;
+    public const Withdrawn = 4;
 }

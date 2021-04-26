@@ -23,8 +23,8 @@
 				<td></td>
 				<td></td>
 				
-				<td><a href="admin/user/suspend<?= $profile["Id"]; ?>">Suspend</a></td>
-				<td><a href="admin/user/enable<?= $profile["Id"]; ?>">Enable</a></td>
+				<td><a href="edit/<?= $profile["Id"]; ?>">Edit</a></td>
+				<td><a href="delete/<?= $profile["Id"]; ?>">Delete</a></td>
 			
 			</tr>
 		<?php endforeach ?>

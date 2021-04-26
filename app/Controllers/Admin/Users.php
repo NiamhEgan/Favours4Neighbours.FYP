@@ -39,7 +39,7 @@ class Users extends BaseController
 			$data = [
 				"jobs" => $jobs,
 			];
-			echo ViewManager::loadViewIntoAdminMasterPage('Favours 4 Neighbours: Users', 'UsersView', $data);
+			echo ViewManager::loadViewIntoAdminMasterPage('Users', 'UsersView', $data);
 		} else {
 			echo  ViewManager::load403ErrorViewIntoAdminMasterPage();
 		}
@@ -64,5 +64,55 @@ class Users extends BaseController
 		}
 	}
 
-	
+	public function suspendUser($userId)
+	{
+		if ($this->isLoggedIn()) {
+			$user = $this->userRepository->findall($userId);
+
+			if ($user == null) {
+				echo ViewManager::load404ErrorViewIntoMasterPageAdmin("No User found for $userId");
+			} else {
+				return $this->getView($userId, $user);
+			}
+		} else {
+			echo  ViewManager::load403ErrorViewIntoAdminMasterPage();
+		}
+	}
+	private function executeSuspend(&$data, $userId)
+	{
+		$valuesArray = $this->createUserValuesArrayFromPostArray();
+		try {
+			$commandResult = $this->userRepository->update($userId, $valuesArray);
+			$data["message"] = "User Suspended";
+		} catch (Exception $e) {
+			$data['errors'] = $this->userRepository->errors();
+		}
+		return $this->userRepository->find($userId);
+	}
+
+	public function enableUser($userId)
+	{
+		if ($this->isLoggedIn()) {
+			$user = $this->userRepository->findall($userId);
+
+			if ($user == null) {
+				echo ViewManager::load404ErrorViewIntoMasterPageAdmin("No User found for $userId");
+			} else {
+				return $this->getView($userId, $user);
+			}
+		} else {
+			echo  ViewManager::load403ErrorViewIntoAdminMasterPage();
+		}
+	}
+	private function executeEnable(&$data, $userId)
+	{
+		$valuesArray = $this->createUserValuesArrayFromPostArray();
+		try {
+			$commandResult = $this->userRepository->update($userId, $valuesArray);
+			$data["message"] = "User Enabled";
+		} catch (Exception $e) {
+			$data['errors'] = $this->userRepository->errors();
+		}
+		return $this->userRepository->find($userId);
+	}
 }
