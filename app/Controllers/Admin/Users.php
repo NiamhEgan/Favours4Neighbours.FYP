@@ -64,16 +64,5 @@ class Users extends BaseController
 		}
 	}
 
-	private function getView($userId, $user)
-	{
-        //Change query to get jobs completed GetJobsCompletedByAssignedUserView()
-		$jobsCompleted = $this->db->query("Call GetJobsCompletedByAssignedUserView(?)", $userId)->getResult();
-
-		$data = [
-			"user" => $user,
-			
-		];
-
-        // use Myprofile view and JobView to make
-		return ViewManager::loadViewIntoAdminMasterPage('Favours 4 Neighbours: User', 'UserView', $data);
-	}}
+	
+}
