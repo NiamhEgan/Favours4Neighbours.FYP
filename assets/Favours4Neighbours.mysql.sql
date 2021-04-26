@@ -56,14 +56,17 @@ CREATE TABLE `job` (
   `JobCounty` int NOT NULL,
   `JobDetails` varchar(500) NOT NULL,
   `JobPrice` float DEFAULT NULL,
-  `JobStatus` varchar(25) DEFAULT NULL,
+  `JobStatus` int NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
+  UNIQUE KEY `job_key` (`JobDetails`,`CreatedBy`,`created_at`),
   KEY `fk_Job_User1_idx` (`CreatedBy`),
+  KEY `fk_Job_Status_idx` (`JobStatus`),
+  CONSTRAINT `fk_Job_Status` FOREIGN KEY (`JobStatus`) REFERENCES `jobstatus` (`Id`),
   CONSTRAINT `fk_Job_User1` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=123456839 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=123456840 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +75,7 @@ CREATE TABLE `job` (
 
 LOCK TABLES `job` WRITE;
 /*!40000 ALTER TABLE `job` DISABLE KEYS */;
-INSERT INTO `job` VALUES (123456,NULL,123,'4 hours','Yes Lawnmower',200,15,'Lawn Cutting needed for garden  TEST IF UPDATED',0,NULL,'2021-03-15 19:52:43','2021-03-15 19:52:43','2021-04-20 10:43:23'),(123457,123,123,'1 hour','No',200,15,'Shopping ',10,'New','2021-03-15 19:52:43','2021-03-15 19:52:43','2021-03-15 19:52:43'),(1234579,123,123,'1 hour','No',200,15,'Shopping ',10,'New','2021-03-15 19:52:43','2021-03-15 19:52:43','2021-03-15 19:52:43'),(123456806,NULL,123,'4 hours','No',200,15,'Painitng ',30,NULL,'2021-04-03 06:57:25','2021-04-03 12:57:25','2021-04-03 06:57:25'),(123456807,NULL,123,'2 hours','',202,15,'Fix a old bike',20,NULL,'2021-04-03 07:32:23','2021-04-03 13:32:23','2021-04-20 14:19:52'),(123456826,NULL,123,'30 mins','Car',200,1,'Fix a old bike',5,NULL,'2021-04-16 09:41:06','2021-04-16 15:41:06','2021-04-16 09:41:06'),(123456827,NULL,123,'30 mins','Car',200,1,'Fix a old bike',5,NULL,'2021-04-16 09:43:09','2021-04-16 15:43:09','2021-04-16 09:43:09'),(123456828,NULL,123,'30 mins','Car',200,1,'Fix a old bike',5,NULL,'2021-04-16 09:46:15','2021-04-16 15:46:15','2021-04-16 09:46:15'),(123456829,NULL,123,'Tested``','Tested',200,1,'Tested',123,NULL,'2021-04-16 09:46:45','2021-04-16 15:46:45','2021-04-16 09:46:45'),(123456830,NULL,123,'Tested``','Tested',200,1,'Tested',123,NULL,'2021-04-16 09:47:53','2021-04-16 15:47:53','2021-04-16 09:47:53'),(123456831,NULL,124,'30 mins','Car',200,1,'Fix a old bike',0,NULL,'2021-04-16 09:48:16','2021-04-16 15:48:16','2021-04-16 12:34:28'),(123456832,NULL,124,'30 mins','Car',201,1,'ZFinal Test',24.99,NULL,'2021-04-16 09:53:07','2021-04-16 15:53:07','2021-04-16 09:53:07'),(123456833,NULL,124,'30 mins','Car',200,1,'ZzFinal Test',25.99,NULL,'2021-04-16 09:55:04','2021-04-16 15:55:04','2021-04-16 09:55:04'),(123456834,NULL,123,'2 hours','none',206,14,'Farming help needed ',5,NULL,'2021-04-20 06:10:15','2021-04-20 12:10:15','2021-04-20 06:10:45'),(123456835,124,125,'2 hours','equipment provided',202,16,'Outdoor fence needs painting approx 10 meters ',20,NULL,'2021-04-20 06:30:52','2021-04-20 12:30:52','2021-04-20 06:36:27'),(123456837,NULL,126,'2 hours','Lawnmower',201,5,'   Gardening work neededmoving lawns ',30,NULL,'2021-04-21 03:25:14','2021-04-21 09:25:14','2021-04-21 03:26:13'),(123456838,NULL,126,'1 hour','car',207,1,'   shopping collected',15,NULL,'2021-04-21 03:37:16','2021-04-21 09:37:16','2021-04-21 03:37:16');
+INSERT INTO `job` VALUES (123456,NULL,123,'4 hours','Yes Lawnmower',200,15,'Lawn Cutting needed for garden  TEST IF UPDATED',0,1,'2021-03-15 19:52:43','2021-03-15 19:52:43','2021-04-20 10:43:23'),(123457,123,123,'1 hour','No',200,15,'Shopping ',10,2,'2021-03-15 19:52:43','2021-03-15 19:52:43','2021-04-26 09:52:31'),(123456806,NULL,123,'4 hours','No',200,15,'Painitng ',30,1,'2021-04-03 06:57:25','2021-04-03 12:57:25','2021-04-03 06:57:25'),(123456807,NULL,123,'2 hours','',202,15,'Fix a old bike',20,2,'2021-04-03 07:32:23','2021-04-03 13:32:23','2021-04-20 14:19:52'),(123456826,NULL,123,'30 mins','Car',200,1,'Fix a old bike',5,2,'2021-04-16 09:41:06','2021-04-16 15:41:06','2021-04-16 09:41:06'),(123456827,NULL,123,'30 mins','Car',200,1,'Fix a old bike',5,2,'2021-04-16 09:43:09','2021-04-16 15:43:09','2021-04-16 09:43:09'),(123456828,NULL,123,'30 mins','Car',200,1,'Fix a old bike',5,2,'2021-04-16 09:46:15','2021-04-16 15:46:15','2021-04-16 09:46:15'),(123456829,NULL,123,'Tested``','Tested',200,1,'Tested',123,2,'2021-04-16 09:46:45','2021-04-16 15:46:45','2021-04-16 09:46:45'),(123456830,NULL,123,'Tested``','Tested',200,1,'Tested',123,2,'2021-04-16 09:47:53','2021-04-16 15:47:53','2021-04-16 09:47:53'),(123456831,NULL,124,'30 mins','Car',200,1,'Fix a old bike',0,2,'2021-04-16 09:48:16','2021-04-16 15:48:16','2021-04-16 12:34:28'),(123456832,123,124,'30 mins','Car',201,1,'ZFinal Test',24.99,2,'2021-04-16 09:53:07','2021-04-16 15:53:07','2021-04-16 09:53:07'),(123456833,NULL,124,'30 mins','Car',200,1,'ZzFinal Test',25.99,2,'2021-04-16 09:55:04','2021-04-16 15:55:04','2021-04-16 09:55:04'),(123456834,NULL,123,'2 hours','none',206,14,'Farming help needed ',5,2,'2021-04-20 06:10:15','2021-04-20 12:10:15','2021-04-20 06:10:45'),(123456835,124,125,'2 hours','equipment provided',202,16,'Outdoor fence needs painting approx 10 meters ',20,2,'2021-04-20 06:30:52','2021-04-20 12:30:52','2021-04-20 06:36:27'),(123456837,NULL,126,'2 hours','Lawnmower',201,5,'   Gardening work neededmoving lawns ',30,1,'2021-04-21 03:25:14','2021-04-21 09:25:14','2021-04-21 03:26:13'),(123456838,NULL,126,'1 hour','car',207,1,'   shopping collected',15,2,'2021-04-21 03:37:16','2021-04-21 09:37:16','2021-04-21 03:37:16'),(123456839,NULL,127,'20 minutes','Car',207,18,'   Shopping Collection',7,2,'2021-04-26 15:59:13','2021-04-26 21:59:13','2021-04-26 15:59:13');
 /*!40000 ALTER TABLE `job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,13 +89,16 @@ DROP TABLE IF EXISTS `jobapplication`;
 CREATE TABLE `jobapplication` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Job` int NOT NULL,
-  `User` int NOT NULL,
+  `Applicant` int NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Status` int DEFAULT '1',
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+  `Status` int NOT NULL DEFAULT '1',
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `key_job_applicat` (`Job`,`Applicant`),
+  KEY `fk_jobapplicationstatus_idx` (`Status`),
+  CONSTRAINT `fk_jobapplicationstatus` FOREIGN KEY (`Status`) REFERENCES `jobapplicationstatus` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,8 +107,33 @@ CREATE TABLE `jobapplication` (
 
 LOCK TABLES `jobapplication` WRITE;
 /*!40000 ALTER TABLE `jobapplication` DISABLE KEYS */;
-INSERT INTO `jobapplication` VALUES (6,123456831,123,'2021-04-16 11:28:33','2021-04-16 17:28:33','2021-04-16 12:34:28',2),(7,123456832,123,'2021-04-16 11:28:39','2021-04-16 17:28:39','2021-04-16 11:28:39',1),(8,123456831,123,'2021-04-16 11:29:02','2021-04-16 17:29:02','2021-04-16 11:29:02',1),(9,123456833,123,'2021-04-20 06:08:32','2021-04-20 12:08:32','2021-04-20 06:08:32',1),(10,123456826,125,'2021-04-20 06:28:58','2021-04-20 12:28:58','2021-04-20 06:28:58',1),(11,123456826,125,'2021-04-20 06:29:24','2021-04-20 12:29:24','2021-04-20 06:29:24',1),(12,123456832,125,'2021-04-20 06:38:50','2021-04-20 12:38:50','2021-04-20 06:38:50',1),(13,123456832,125,'2021-04-20 06:39:25','2021-04-20 12:39:25','2021-04-20 06:39:25',1),(14,123456832,125,'2021-04-20 06:39:38','2021-04-20 12:39:38','2021-04-20 06:39:38',1),(15,123456832,125,'2021-04-20 06:40:04','2021-04-20 12:40:04','2021-04-20 06:40:04',1),(16,123456834,125,'2021-04-20 06:50:56','2021-04-20 12:50:56','2021-04-20 06:50:56',1),(17,123456835,123,'2021-04-20 07:16:49','2021-04-20 13:16:49','2021-04-20 07:16:49',1),(18,123456835,123,'2021-04-20 07:17:32','2021-04-20 13:17:32','2021-04-20 07:17:32',1),(19,123456831,123,'2021-04-20 07:38:20','2021-04-20 13:38:20','2021-04-20 07:38:20',1),(20,123456831,123,'2021-04-20 11:25:59','2021-04-20 17:25:59','2021-04-20 11:25:59',1),(21,123456832,123,'2021-04-20 13:20:55','2021-04-20 19:20:55','2021-04-20 13:20:55',1),(22,123456832,123,'2021-04-20 13:22:24','2021-04-20 19:22:25','2021-04-20 13:22:24',1),(23,123456807,126,'2021-04-21 03:26:56','2021-04-21 09:26:56','2021-04-21 03:26:56',1),(24,123456807,126,'2021-04-21 03:27:03','2021-04-21 09:27:03','2021-04-21 03:27:03',1),(25,123456834,126,'2021-04-21 03:39:28','2021-04-21 09:39:28','2021-04-21 03:39:28',1),(26,123456835,126,'2021-04-21 03:42:07','2021-04-21 09:42:07','2021-04-21 03:42:07',1);
+INSERT INTO `jobapplication` VALUES (28,123456831,123,'2021-04-24 07:31:19','2021-04-24 13:31:19','2021-04-24 07:31:19',1),(34,123456827,127,'2021-04-26 05:36:44','2021-04-26 11:36:44','2021-04-26 05:36:44',1),(35,123456830,126,'2021-04-26 05:37:58','2021-04-26 11:37:58','2021-04-26 05:37:58',1),(36,123456806,127,'2021-04-26 08:18:42','2021-04-26 14:18:42','2021-04-26 08:18:42',1),(37,123456831,127,'2021-04-26 14:28:27','2021-04-26 20:28:27','2021-04-26 14:28:27',1),(38,123456837,127,'2021-04-26 14:41:12','2021-04-26 20:41:12','2021-04-26 14:41:12',1);
 /*!40000 ALTER TABLE `jobapplication` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jobapplicationstatus`
+--
+
+DROP TABLE IF EXISTS `jobapplicationstatus`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jobapplicationstatus` (
+  `Id` int NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `Name_UNIQUE` (`Name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jobapplicationstatus`
+--
+
+LOCK TABLES `jobapplicationstatus` WRITE;
+/*!40000 ALTER TABLE `jobapplicationstatus` DISABLE KEYS */;
+INSERT INTO `jobapplicationstatus` VALUES (1,'Accepted'),(2,'Pending'),(3,'Rejected'),(4,'Withdrawn');
+/*!40000 ALTER TABLE `jobapplicationstatus` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -127,6 +158,31 @@ LOCK TABLES `jobcategory` WRITE;
 /*!40000 ALTER TABLE `jobcategory` DISABLE KEYS */;
 INSERT INTO `jobcategory` VALUES (200,'Bike Repairs'),(201,'Gardening'),(202,'Painting - Indoor'),(203,'Painting - Outdoors'),(204,'Change Lightbulbs - Indoor'),(205,'Change Lightbulbs - Outdoor'),(206,'Farming'),(207,'Shopping'),(208,'Collection'),(209,'Technical Support');
 /*!40000 ALTER TABLE `jobcategory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jobstatus`
+--
+
+DROP TABLE IF EXISTS `jobstatus`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jobstatus` (
+  `Id` int NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `Name_UNIQUE` (`Name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jobstatus`
+--
+
+LOCK TABLES `jobstatus` WRITE;
+/*!40000 ALTER TABLE `jobstatus` DISABLE KEYS */;
+INSERT INTO `jobstatus` VALUES (1,'Completed'),(2,'Open');
+/*!40000 ALTER TABLE `jobstatus` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -209,7 +265,7 @@ CREATE TABLE `user` (
   `County` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +274,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (123,'neaegan','aab1cb844c7663565888980086184921d0365a15','neaegan@gmail.com',1,'Niamh','Egan','Derry','','V95TV05','0874609667',NULL,1,'2021-04-13 16:10:30','2021-04-13 22:10:30','2021-04-21 03:19:40',NULL,NULL,1),(124,'jane.doe','aab1cb844c7663565888980086184921d0365a15','jane.doe@lit.ie',1,'Jane','Doe','LIT','Moylish','V95TV05','081 123 12',NULL,0,'2021-04-16 10:17:47','2021-04-16 16:17:47','2021-04-16 10:17:47',NULL,NULL,1),(125,'testtest','aab1cb844c7663565888980086184921d0365a15','test@gmail.com',1,'Test','Test','Derry','','V98TY56','0874564569',NULL,0,'2021-04-20 06:23:54','2021-04-20 12:23:54','2021-04-20 06:23:54',NULL,NULL,1),(126,'pault','aab1cb844c7663565888980086184921d0365a15','pault@gmail.com',1,'Paul','Test','Lahinch','Ennistymon','V95 97456','0874567891',NULL,0,'2021-04-21 03:24:17','2021-04-21 09:24:17','2021-04-21 03:24:17',NULL,NULL,1);
+INSERT INTO `user` VALUES (123,'neaegan','aab1cb844c7663565888980086184921d0365a15','neaegan@gmail.com',1,'Niamh','Egan','Derry','','V95TV05','0874609667',NULL,1,'2021-04-13 16:10:30','2021-04-13 22:10:30','2021-04-21 03:19:40',NULL,NULL,1),(124,'jane.doe','aab1cb844c7663565888980086184921d0365a15','jane.doe@lit.ie',1,'Jane','Doe','LIT','Moylish','V95TV05','081 123 12',NULL,0,'2021-04-16 10:17:47','2021-04-16 16:17:47','2021-04-16 10:17:47',NULL,NULL,1),(125,'testtest','aab1cb844c7663565888980086184921d0365a15','test@gmail.com',1,'Test','Test','Derry','','V98TY56','0874564569',NULL,0,'2021-04-20 06:23:54','2021-04-20 12:23:54','2021-04-20 06:23:54',NULL,NULL,1),(126,'pault','aab1cb844c7663565888980086184921d0365a15','pault@gmail.com',1,'Paul','Test','Lahinch','Ennistymon','V95 97456','0874567891',NULL,0,'2021-04-21 03:24:17','2021-04-21 09:24:17','2021-04-21 03:24:17',NULL,NULL,1),(127,'admin','aab1cb844c7663565888980086184921d0365a15','admin@gmail.com',1,'Sarah','Ryan','Favours4Neighbours',NULL,'V95TV56','061 711200','Female',1,'2021-04-24 09:59:43','2021-04-24 09:59:43','2021-04-24 09:59:43',NULL,NULL,6);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,49 +388,6 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'favours4neighbours'
 --
-/*!50003 DROP PROCEDURE IF EXISTS `GetAvailableJobs` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAvailableJobs`(IN `$_UserID` INT)
-BEGIN
-SELECT `job`.`Id` as Id,
-    `job`.`JobDetails`,
-    `job`.`JobStatus`,
-    `job`.`EquipmentRequired`,
-    `job`.`DurationEstimate`,
-    `job`.`JobPrice`,
-    `job`.`AssignedTo`,
-    `job`.`updated_at`,
-    `job`.`JobCategory`,
-    `job`.`JobCounty`,
-
-    `user`.`Username` as AssignedUsername,
-    concat(`user`.`FirstName`, " ", `user`.`Surname`) as AssignedUserFullName,
-    
-    `jobcategory`.`Id` as JobCategoryId,
-    `jobcategory`.`JobCategory`
-
-
-FROM `favours4neighbours`.`job`
-	Left Join `user`
-		On `job`.`CreatedBy` = `user`.`Id`
-	Left Join `jobcategory`
-		On `job`.`JobCategory` = `jobcategory`.`Id`
-
-WHERE `job`.`CreatedBy` != $_UserID;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `GetAvailableJobsView` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -383,7 +396,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAvailableJobsView`(IN `$_UserID` INT)
 BEGIN
@@ -396,7 +409,8 @@ SELECT `job`.`Id` as Id,
     `job`.`AssignedTo`,
     `job`.`updated_at`,
     `job`.`JobCategory`,
-    `job`.`JobCounty`,
+-- `job`.`JobCounty`,
+    `county`.`county` as JobCounty,
 
     `user`.`Username` as AssignedUsername,
     concat(`user`.`FirstName`, " ", `user`.`Surname`) as AssignedUserFullName,
@@ -410,15 +424,23 @@ FROM `favours4neighbours`.`job`
 		On `job`.`CreatedBy` = `user`.`Id`
 	Left Join `jobcategory`
 		On `job`.`JobCategory` = `jobcategory`.`Id`
+	Inner Join `county`
+		On `job`.`JobCounty` = `county`.`ID_county`
 
-WHERE `job`.`CreatedBy` != $_UserID;
+WHERE `job`.`CreatedBy` != $_UserID
+	AND `job`.`AssignedTo` is null -- Availible Jobs
+	AND `job`.`JobStatus` = 2 -- 2 MEANS jOB IS OPEN,
+
+ORDER BY
+	  `job`.`updated_at` DESC
+;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `GetJobApplicationsByViewUser` */;
+/*!50003 DROP PROCEDURE IF EXISTS `GetJobApplicationsRecievedView` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -426,26 +448,27 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetJobApplicationsByViewUser`(IN `$_UserID` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetJobApplicationsRecievedView`(IN `$_UserID` INT)
 BEGIN
 SELECT  `jobapplication`.`Id`,
     `jobapplication`.`created_at`,
-    `jobapplication`.`Status`,
-    
+
+    `user`.`Id` as UserId,
     `user`.`Username` as Username,
     concat(`user`.`FirstName`, " ", `user`.`Surname`) as UserFullName,
     
     `job`.`Id` as JobId,
-    `job`.`JobDetails`,
-    `job`.`created_at`
+    `job`.`JobDetails`
 FROM `jobapplication`
 	Inner Join `job`
 		On `jobapplication`.`Job` = `Job`.`Id`
 	Inner Join `user`
-		On `jobapplication`.`User` = `user`.`Id`
-WHERE `jobapplication`.`User` = $_UserId
+		On `jobapplication`.`Applicant` = `user`.`Id`
+WHERE `job`.`CreatedBy` = $_UserId
+	AND `job`.`AssignedTo` is null -- Availible Jobs
+    AND `jobapplication`.`Status` = 2 -- Job STATUS IS OPEN
 ;
 END ;;
 DELIMITER ;
@@ -461,7 +484,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetJobApplicationsView`()
 BEGIN
@@ -477,9 +500,44 @@ SELECT `jobapplication`.`Id`,
     `job`.`created_at`
 FROM `jobapplication`
 	Left Join `user`
-		On `jobapplication`.`User` = `user`.`Id`
+		On `jobapplication`.`Applicant` = `user`.`Id`
 	Left Join `job`
 		On `jobapplication`.`Job` = `jobapplication`.`Job`;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetJobApplicationsViewByApplicant` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetJobApplicationsViewByApplicant`(IN `$_ApplicantID` INT)
+BEGIN
+SELECT  `jobapplication`.`Id`,
+    `jobapplication`.`created_at`,
+    `jobapplication`.`Status`,
+    
+    `user`.`Username` as Username,
+    concat(`user`.`FirstName`, " ", `user`.`Surname`) as UserFullName,
+    
+    `job`.`Id` as JobId,
+    `job`.`JobDetails`,
+    `job`.`created_at`
+FROM `jobapplication`
+	Inner Join `job`
+		On `jobapplication`.`Job` = `Job`.`Id`
+	Inner Join `user`
+		On `jobapplication`.`Applicant` = `user`.`Id`
+WHERE `jobapplication`.`Applicant` = $_ApplicantID
+;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -494,7 +552,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetJobApplicationsViewByJob`(IN `$_JobId` INT)
 BEGIN
@@ -508,37 +566,8 @@ SELECT `jobapplication`.`Id`,
 
 FROM `jobapplication`
 	Inner Join `user`
-		On `jobapplication`.`User` = `user`.`Id`
+		On `jobapplication`.`Applicant` = `user`.`Id`
 WHERE `jobapplication`.`Job` = $_JobId
-;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `GetJobApplicationsViewByUser` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetJobApplicationsViewByUser`(IN `$_UserID` INT)
-BEGIN
-SELECT  `jobapplication`.`Id`,
-    `jobapplication`.`created_at`,
-    `jobapplication`.`Status`,
-    
-    `job`.`Id` as JobId,
-    `job`.`JobDetails`
-FROM `jobapplication`
-	Inner Join `job`
-		On `jobapplication`.`Job` = `Job`.`Id`
-WHERE `jobapplication`.`User` = $_UserId
 ;
 END ;;
 DELIMITER ;
@@ -554,7 +583,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetJobApplicationView`()
 BEGIN
@@ -570,7 +599,7 @@ SELECT `jobapplication`.`Id`,
     `job`.`created_at`
 FROM `jobapplication`
 	Left Join `user`
-		On `jobapplication`.`User` = `user`.`Id`
+		On `jobapplication`.`Applicant` = `user`.`Id`
 	Left Join `job`
 		On `jobapplication`.`Job` = `jobapplication`.`Job`;
 END ;;
@@ -620,6 +649,90 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetJobTenderView` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetJobTenderView`(IN `$_UserID` INT)
+BEGIN
+SELECT `job`.`Id` as Id,
+    `job`.`JobDetails`,
+    `job`.`JobStatus`,
+    `job`.`EquipmentRequired`,
+    `job`.`DurationEstimate`,
+    `job`.`JobPrice`,
+    `job`.`AssignedTo`,
+    `job`.`updated_at`,
+-- `job`.`JobCounty`,
+    `county`.`county` as JobCounty,
+
+
+     `user`.`Username` as AssignedUsername,
+    concat(`user`.`FirstName`, " ", `user`.`Surname`) as AssignedUserFullName,
+    
+    `jobcategory`.`Id` as JobCategoryId,
+    `jobcategory`.`JobCategory`
+
+
+FROM `favours4neighbours`.`job`
+	Left Join `user`
+		On `job`.`CreatedBy` = `user`.`Id`
+	Inner Join `jobcategory`
+		On `job`.`JobCategory` = `jobcategory`.`Id`
+
+	Inner Join `county`
+		On `job`.`JobCounty` = `county`.`ID_county`
+
+WHERE `job`.`CreatedBy` != $_UserID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetMyCompletedJobs` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetMyCompletedJobs`(IN `$_UserID` INT)
+BEGIN
+SELECT `job`.`Id` as Id,
+    `job`.`JobDetails`,
+    `job`.`CreatedBy`,
+  
+    `user`.`Id` as AssignedId,
+    `user`.`Username` as AssignedUsername,
+    concat(`user`.`FirstName`, " ", `user`.`Surname`) as AssignedUserFullName,
+    
+    `JobStatus`.`Id` as JobStatusId,
+    `JobStatus`.`Name` as JobStatus
+
+
+FROM `favours4neighbours`.`job`
+	Left Join `user`
+		On `job`.`AssignedTo` = `user`.`Id`
+	Left Join `JobStatus`
+		On `job`.`JobStatus` = `JobStatus`.`Id`
+        
+WHERE `job`.`AssignedTo` = $_UserID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `GetMyJobApplicationsView` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -628,9 +741,9 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetMyJobApplicationsView`(IN `$_UserID` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetMyJobApplicationsView`(IN `$_ApplicantID` INT)
 BEGIN
 SELECT  `jobapplication`.`Id`,
     `jobapplication`.`created_at`,
@@ -646,8 +759,8 @@ FROM `jobapplication`
 	Inner Join `job`
 		On `jobapplication`.`Job` = `Job`.`Id`
 	Inner Join `user`
-		On `jobapplication`.`User` = `user`.`Id`
-WHERE `jobapplication`.`User` = $_UserId
+		On `jobapplication`.`Applicant` = `user`.`Id`
+WHERE `jobapplication`.`Applicant` = $_ApplicantId
 ;
 END ;;
 DELIMITER ;
@@ -663,7 +776,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetMyJobs`(IN `$_UserID` INT)
 BEGIN
@@ -678,6 +791,7 @@ SELECT `job`.`Id` as Id,
     `job`.`JobCategory`,
     `job`.`JobCounty`,
 
+    `user`.`Id` as AssignedId,
     `user`.`Username` as AssignedUsername,
     concat(`user`.`FirstName`, " ", `user`.`Surname`) as AssignedUserFullName,
     
@@ -708,4 +822,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-21 21:35:03
+-- Dump completed on 2021-04-26 22:53:09
