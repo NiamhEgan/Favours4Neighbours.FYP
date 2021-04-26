@@ -48,6 +48,17 @@ class ViewManager
         return view("MasterPageAdmin", $data);
     }
 
+    public static function load404ErrorViewIntoClientMasterPage($viewData = [])
+    {
+        $data = [
+            'mainContent' => view("404", $viewData),
+            'navTemplate' => "nav-client.php",
+            'title' => 'Favours 4 Neighbours: Unauthorised access',
+        ];
+
+        return view("MasterPage", $data);
+    }
+
     public static function loadViewIntoAdminMasterPage($title, $view, $viewData = [])
     {
         $data = [

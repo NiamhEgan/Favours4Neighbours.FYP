@@ -335,4 +335,30 @@ class Jobs extends BaseController
 			return view('MasterPage', $masterData);
 		}
 	}
+
+	public function mycompletedjobs()
+	{
+		if ($this->isLoggedIn()) {
+			$userID = $this->session->get("UserId");
+
+			$jobs = $this->db->query("Call GetMyCompletedJobs(?)", $userID)->getResult();
+
+			$data = [
+				"jobs" => $jobs,
+
+			];
+			$masterData = [
+				'mainContent' => view("MyCompletedJobsView", $data),
+				'navTemplate' => "nav-client.php",
+				'title' => "Favours 4 Neighbours: My Completed Jobs",
+			];
+			return view('MasterPage', $masterData);
+		} else {
+			$masterData = [
+				'mainContent' => view("403"),
+				'title' => "Favours 4 Neighbours: Unauthorised access",
+			];
+			return view('MasterPage', $masterData);
+		}
+	}
 }

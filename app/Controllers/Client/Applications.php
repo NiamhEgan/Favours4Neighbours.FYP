@@ -9,6 +9,7 @@ use App\Models\JobApplicationRepository;
 use App\Models\JobCategoryRepository;
 use App\Models\JobRepository;
 use App\Models\UserRepository;
+use App\Models\JobStatus;
 
 class Applications extends BaseController
 {
@@ -46,7 +47,7 @@ class Applications extends BaseController
 			$masterData = [
 				'mainContent' => view("MyApplicationsView", $data),
 				'navTemplate' => "nav-client.php",
-				'title' => "Favours 4 Neighbours: My Jobs",
+				'title' => "Favours 4 Neighbours: My Applications",
 			];
 			return view('MasterPage', $masterData);
 		} else {
@@ -104,4 +105,36 @@ class Applications extends BaseController
 	public function rejectapplications()
 	{
 	}
+
+	
+	public function complete($jobId)
+	{
+		if ($this->isLoggedIn()) {
+			$job = $this->jobRepository->find($jobId);
+
+			if ($job == null) {
+				echo ViewManager::load404ErrorViewIntoClientMasterPage("No Job found for $jobId");
+			} else if ($job["CreatedBy"] != $this->session->get("UserId")) {
+				echo ViewManager::load403ErrorViewIntoClientMasterPage();
+			} else {
+				return $this->executeCompleteJob($jobId);
+			}
+		} else {
+			echo  ViewManager::load403ErrorViewIntoClientMasterPage();
+		}
+	}
+
+	private function executeCompleteJob($jobId)
+	{
+
+		$jobValuesArray = [
+			'JobStatus' => JobStatus::Complete,
+		];
+		$this->jobRepository->update($jobId, $jobValuesArray);
+		$data = ['message' => "Job: $jobId has been Completed"];
+		echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours: Application', 'Message', $data);
+}
+
+
+
 }

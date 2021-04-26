@@ -14,15 +14,15 @@
 		</tr>
 	</thead>
 	<tbody>
-	<?php if ($jobs != null) : ?>
-			<?php foreach ($jobs as $job) : ?>
 		<tr>
-					<th scope="row"><?= $job->JobDetails; ?></th>
-					<td><?= $job->EquipmentRequired; ?></td>
-					<td><?= $job->JobCounty; ?></td>
-					<td><?= $job->DurationEstimate; ?></td>
-					<td><?= $job->JobPrice; ?></td>
-					<td><a href="/client/jobs/apply/<?= $job['Id']; ?>">Apply</a></td>
-				</tr>
-				</tbody>
+			<th scope="row"><?= $job['JobDetails']; ?></th>
+			<td><?= $job['JobCounty']; ?></td>
+			<td><?= $job['JobPrice']; ?></td>
+			<td><?= $job['DurationEstimate']; ?></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><a href="/client/jobs/apply/<?= $job['Id']; ?>">Apply</a></td>
+		</tr>
+	</tbody>
 </table>

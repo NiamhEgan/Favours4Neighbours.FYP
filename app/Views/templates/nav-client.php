@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse ">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Favours4Neighbours</a>
@@ -17,13 +17,13 @@
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/">Applications <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/client/applications/myapplications">My Applications</a></li>
-          <li><a href="/">Recieved Applications</a></li>
+          <li><a href="/client/applications/recievedapplications">Recieved Applications</a></li>
         </ul>
       </li>
  
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">FAQ's <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">FAQ's</a></li>
+          <li><a href="/faq'sview/">FAQ's</a></li>
           <li><a href="#">COVID-19</a></li>
           <li><a href="#">Safety Statement</a></li>
         </ul>

@@ -1,5 +1,5 @@
 <table class="table table-striped">
-	<caption class="caption-top">My Applications</caption>
+	<caption class="caption-top">My Applications Edit View</caption>
 	<thead>
 		<tr>
 			<th scope="col">Date</th>

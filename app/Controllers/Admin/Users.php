@@ -55,7 +55,7 @@ class Users extends BaseController
 			$user = $this->userRepository->findall($userId);
 
 			if ($user == null) {
-				echo ViewManager::load404ErrorViewIntoAdminMasterPage("No User found for $userId");
+				echo ViewManager::load404ErrorViewIntoMasterPageAdmin("No User found for $userId");
 			} else {
 				return $this->getView($userId, $user);
 			}
