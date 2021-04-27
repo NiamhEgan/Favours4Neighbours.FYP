@@ -7,7 +7,6 @@
 			<th scope="col">Duration Estimate</th>
 			<th scope="col">Price</th>
 			<th scope="col">Category</th>
-			<th scope="col">AssignedTo</th>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>

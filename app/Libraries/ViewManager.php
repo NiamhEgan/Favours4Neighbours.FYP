@@ -15,7 +15,7 @@ class ViewManager
             'username' => $session->get('Username'),
         ];
 
-        return view("MasterPageAdmin", $data);
+        return view("MasterPage", $data);
     }
     public static function load403Error($viewData = [])
     {

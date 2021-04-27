@@ -18,9 +18,7 @@
         </ul>
       </li>
 
-      <li class="active"><a href="/">Applications </a></li>
-      
-      </li>
+  
  
      
       <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

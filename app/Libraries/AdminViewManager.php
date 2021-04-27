@@ -6,7 +6,7 @@ namespace App\Libraries;
  * Admin View Manger
  * load views in to Admin Master Page
  */
-class AdminViewManger
+class AdminViewManager
 {
     public static function loadView($title, $view, $viewData = [])
     {
@@ -30,4 +30,6 @@ class AdminViewManger
         $viewData = ['message' => $message];
         return self::loadView('Resource not found', '404', $viewData);
     }
+
+   
 }
