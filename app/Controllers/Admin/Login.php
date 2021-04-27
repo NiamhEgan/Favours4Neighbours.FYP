@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Libraries\ViewManger;
+use App\Libraries\AdminViewManager;
 use App\Models\UserRepository;
 
 class Login extends BaseController
@@ -61,6 +61,6 @@ class Login extends BaseController
 	}
 	private function loadPage($data = [])
 	{
-		return ViewManger::loadView('Admin Login', 'LoginView');
+		return AdminViewManager::loadView('Admin Login', 'LoginView');
 	}
 }
