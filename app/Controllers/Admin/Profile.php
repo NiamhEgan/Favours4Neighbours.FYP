@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\UserRepository;
+use App\Libraries\AdminViewManager;
 
 class Profile extends BaseController
 {
@@ -15,26 +16,17 @@ class Profile extends BaseController
 		$this->userRepository = new UserRepository();
 	}
 
+
 	public function index()
 	{
+        
 		if ($this->isLoggedIn()) {
-			$user = $this->UserRepository->find($this->session->get("UserId"));
-
-			$data = [
-				"user" => $user,
-			];
-			$masterData = [
-				'mainContent' => view("AdminProfileView", $data),
-				'navTemplate' => "nav-admin.php",
-				'title' => "Admin Profile",
-			];
-			return view('MasterPageAdmin', $masterData);
+	
+			$this->session->set("UserId", $user["Id"]);
+		
+			echo AdminViewManager::loadView('Admin Profile', 'AdminProfileView' );
 		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Unauthorised access",
-			];
-			return view('MasterPageAdmin', $masterData);
+			echo  AdminViewManager::load403Error();
 		}
 	}
 	public function edit()

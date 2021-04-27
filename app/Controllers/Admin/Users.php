@@ -39,9 +39,9 @@ class Users extends BaseController
 			$data = [
 				"jobs" => $jobs,
 			];
-			echo AdminViewManager::loadViewIntoAdminMasterPage('Users', 'UsersView', $data);
+			echo AdminViewManager::loadView('Users', 'UsersView', $data);
 		} else {
-			echo  AdminViewManager::load403ErrorViewIntoAdminMasterPage();
+			echo  AdminViewManager::load403Error();
 		}
 	}
 	private function isLoggedIn()
@@ -55,12 +55,12 @@ class Users extends BaseController
 			$user = $this->userRepository->findall($userId);
 
 			if ($user == null) {
-				echo AdminViewManager::load404ErrorViewIntoMasterPageAdmin("No User found for $userId");
+				echo AdminViewManager::load404Error("No User found for $userId");
 			} else {
 				return $this->getView($userId, $user);
 			}
 		} else {
-			echo  AdminViewManager::load403ErrorViewIntoAdminMasterPage();
+			echo  AdminViewManager::load403Error();
 		}
 	}
 
@@ -70,12 +70,12 @@ class Users extends BaseController
 			$user = $this->userRepository->findall($userId);
 
 			if ($user == null) {
-				echo AdminViewManager::load404ErrorViewIntoMasterPageAdmin("No User found for $userId");
+				echo AdminViewManager::load404Error("No User found for $userId");
 			} else {
 				return $this->getView($userId, $user);
 			}
 		} else {
-			echo  AdminViewManager::load403ErrorViewIntoAdminMasterPage();
+			echo  AdminViewManager::load403Error();
 		}
 	}
 	private function executeSuspend(&$data, $userId)
@@ -96,12 +96,12 @@ class Users extends BaseController
 			$user = $this->userRepository->findall($userId);
 
 			if ($user == null) {
-				echo AdminViewManager::load404ErrorViewIntoMasterPageAdmin("No User found for $userId");
+				echo AdminViewManager::load404Error("No User found for $userId");
 			} else {
 				return $this->getView($userId, $user);
 			}
 		} else {
-			echo  AdminViewManager::load403ErrorViewIntoAdminMasterPage();
+			echo  AdminViewManager::load403Error();
 		}
 	}
 	private function executeEnable(&$data, $userId)
@@ -131,7 +131,7 @@ class Users extends BaseController
 				$data['errors'] = $this->UserRepository->errors();
 			}
 		} else
-		return AdminViewManager::loadViewIntoMasterPageAdmin('Users', 'UsersView', $data);
+		return AdminViewManager::loadView('Users', 'SearchUsersView', $data);
 	}
 
 }
