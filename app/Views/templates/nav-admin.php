@@ -8,12 +8,14 @@
       <li class="active"><a href="/admin/profile">Profile</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/admin/jobs">Jobs <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="/admin/jobs">All Jobs</a></li>
+          <li><a href="/admin/jobs">All Active Jobs</a></li>
+          <li><a href="/admin/completedjobs">Completed Jobs</a></li>
         </ul>
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/admin/users">Users <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/admin/users">View Users</a></li>
+          <li><a href="/admin/users">View Suspended Users</a></li>
        
         </ul>
       </li>

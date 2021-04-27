@@ -40,9 +40,9 @@ class Jobs extends BaseController
 			$data = [
 				"jobs" => $jobs,
 			];
-			echo AdminViewManager::loadViewIntoMasterPageAdmin('My Jobs', 'AvailableJobsView', $data);
+			echo AdminViewManager::loadView('Current Active Jobs', 'AdminAvailableJobsView', $data);
 		} else {
-			echo  AdminViewManager::load403ErrorViewIntoMasterPageAdmin();
+			echo  AdminViewManager::load403Error();
 		}
 	}
 	private function isLoggedIn()
@@ -54,13 +54,13 @@ class Jobs extends BaseController
 	public function completedjobs()
 	{
 		if ($this->isLoggedIn()) {
-			$userID = $this->session->get("UserId");
-			$jobs = $this->db->query("Call GetAllCompletedJobs(?)", $userID)->getResult();
+		
+			$jobs = $this->db->query("Call GetAllCompletedJobs(?)", $jobID)->getResult();
 			$data = ["jobs" => $jobs];
 
-			return AdminViewManager::loadViewIntoMasterPageAdmin('Completed Jobs', 'CompletedJobsView', $data);
+			return AdminViewManager::loadView('Completed Jobs', 'CompletedJobsView', $data);
 		} else {
-			return AdminViewManager::load403ErrorViewIntoMasterPageAdmin();
+			return AdminViewManager::load403Error();
 		}
 	}
 
@@ -71,14 +71,14 @@ class Jobs extends BaseController
 			$job = $this->jobRepository->find($jobId);
 
 			if ($job == null) {
-				echo AdminViewManager::load404ErrorViewIntoMasterPageAdmin("No Job found for $jobId");
+				echo AdminViewManager::load40Error("No Job found for $jobId");
 			} else if ($job["CreatedBy"] != $this->session->get("UserId")) {
-				echo AdminViewManager::load403ErrorViewIntoMasterPageAdmin();
+				echo AdminViewManager::load403Error();
 			} else {
 				return $this->executeCloseJob($jobId);
 			}
 		} else {
-			echo  AdminViewManager::load403ErrorViewIntoMasterPageAdmin();
+			echo  AdminViewManager::load403Error();
 		}
 	}
 

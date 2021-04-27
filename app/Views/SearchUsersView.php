@@ -3,7 +3,7 @@
 	<div class="col-md-6">
 		<div class="card">
 			<header class="card-header">
-				<a href="" class="float-right btn btn-outline-primary mt-1">Log in</a>
+				
 				<h4 class="card-title mt-2">User Look Up</h4>
 			</header>
 			<article class="card-body">
@@ -33,29 +33,24 @@
 							<input name="Telephone" type="telephone" class="form-control" placeholder="">
 							<small class="form-text text-muted">We'll never share your email with anyone else.</small>
 						</div> <!-- form-group end.// -->
-						<div class="form-group">
-							<label class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender" value="option1">
-								<span class="form-check-label"> Male </span>
-							</label>
-							<label class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender" value="option2">
-								<span class="form-check-label"> Female</span>
-							</label>
-						</div> <!-- form-group end.// -->
+						
+				
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label>Address Line 1</label>
 								<input name="AddressLine1" type="text" class="form-control">
 							</div> <!-- form-group end.// -->
+
 							<div class="form-group col-md-6">
 								<label>Address Line 2</label>
 								<input name="AddressLine2" type="text" class="form-control">
 							</div> <!-- form-group end.// -->
+
 							<div class="form-group col-md-6">
 								<label>County</label>
 								<?= form_dropdown('County', $countyDataSource, set_value("County"), 'class="form-control"'); ?>
 							</div> <!-- form-row.// -->
+							
 							<div class="form-group">
 								<label>Eircode</label>
 								<input name="Eircode" type="text" class="form-control" placeholder="">
