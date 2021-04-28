@@ -29,7 +29,7 @@ class UserRepository extends Model
         "Username",
         "Photo",
         "IsAdmin",
-        
+
     ];
 
     protected $useTimestamps = true;
@@ -57,4 +57,17 @@ class UserRepository extends Model
     {
         return hash("ripemd160", $plainTextPassword);
     }
+}
+/**
+ * User Status values from Database
+ */
+class UserStatus
+{
+    public const Active = 1;
+    public const Suspended = 0;
+}
+class AdminType
+{
+    public const Admin = 1;
+    public const Client = 0;
 }

@@ -23,13 +23,9 @@
 			<?php endforeach ?>
 		<?php endif ?>
 	</tbody>
-
-	
-</table>
-<table class="table table-striped">
-	<caption class="caption-top">My Accepted Applications</caption>
 	<thead>
-		<tr>
+	<tr><td class="caption-top" colspan="4">My Accepted Applications</td></tr>
+			<tr>
 			<th scope="col">Date</th>
 			<th scope="col">Job Details</th>
 			<th scope="col">Status</th>
@@ -52,10 +48,8 @@
 			<?php endforeach ?>
 		<?php endif ?>
 	</tbody>
-</table>
-<table class="table table-striped">
-	<caption class="caption-top">My Rejected Applications</caption>
 	<thead>
+		<tr><td class="caption-top" colspan="4">My Rejected Applications</td></tr>
 		<tr>
 			<th scope="col">Date</th>
 			<th scope="col">Job Details</th>

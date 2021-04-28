@@ -14,7 +14,6 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ($profile as $profile) : ?>
 			<tr>
 				<th scope="row"><?= $profile["FirstName"]; ?></th>
 				<td><?= $profile["Surname"]; ?></td>
@@ -27,7 +26,6 @@
 				<td><a href="admin/user/enable<?= $profile["Id"]; ?>">Enable</a></td>
 			
 			</tr>
-		<?php endforeach ?>
 	</tbody>
 
 </table>

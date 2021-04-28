@@ -1,8 +1,3 @@
 <main>
-	
-
-
-<h1> 404 Page not found</h1>
-
-	</div>
+	<h1>403 Unathorised Access Exception</h1>
 </main>

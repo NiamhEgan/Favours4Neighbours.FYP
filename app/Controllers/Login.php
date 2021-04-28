@@ -7,8 +7,6 @@ use App\Models\UserRepository;
 
 class Login extends BaseController
 {
-	protected $session;
-
 	public function __construct()
 	{
 		$this->UserRepository = new UserRepository();
