@@ -2,43 +2,23 @@
 
 namespace App\Controllers;
 
+use App\Libraries\PublicViewManager;
+
 class Home extends BaseController
 {
+	
+	public function sampleMVC()
+	{
+		$modelData = ['message' => "Hello", 'time'=>'April 28, 2021'];
+		$viewName = 'sampleMVC';
+		echo view($viewName, $modelData);
+	}
 	public function index()
 	{
-		$homeViewData = ["username" => ""];
-		$data = [
-			'mainContent' => view("HomeView", $homeViewData),
-			'title' => "Favours 4 Neighbours",
-		];
-		echo view('MasterPage', $data);
+		return PublicViewManager::loadView('Home', 'HomeView');
 	}
 	public function faq1()
 	{
-		$homeViewData = ["username" => ""];
-		$data = [
-			'mainContent' => view("HomeView", $homeViewData),
-			'title' => "Favours 4 Neighbours",
-			'navTemplate' => "nav-client.php",
-		];
-		echo view('MasterPage', $data);
-	}
-	public function login1()
-	{
-		$homeViewData = ["username" => ""];
-		$data = [
-			'mainContent' => view("HomeView", $homeViewData),
-			'title' => "Favours 4 Neighbours",
-		];
-		echo view('MasterPage', $data);
-	}
-	public function signup1()
-	{
-		$homeViewData = ["username" => ""];
-		$data = [
-			'mainContent' => view("HomeView", $homeViewData),
-			'title' => "Favours 4 Neighbours",
-		];
-		echo view('MasterPage', $data);
+		return PublicViewManager::loadView('FAQ', 'HomeView');
 	}
 }

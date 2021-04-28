@@ -2,34 +2,17 @@
 
 namespace App\Controllers;
 
-use App\Models\UserRepository;
+use App\Libraries\PublicViewManager;
 
 class Logout extends BaseController
 {
-	protected $session;
-
-
-
-	public function logout()
+	public function __construct()
 	{
-		$this->session->destroy();
-
-	
-		
+		$this->session = \Config\Services::session();
 	}
 	public function index()
 	{
-		
-		echo view('LogoutView');
-
+		$this->session->destroy();
+		return PublicViewManager::loadView('Logout', 'LogoutView');
 	}
-
-
-
-
-	
-
-	
-
-
 }
