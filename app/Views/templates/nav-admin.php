@@ -17,19 +17,17 @@
           <li><a href="/admin/users/">View Users</a></li>
           <li><a href="/admin/users/suspendedusers/">View Suspended Users</a></li>
           <li><a href="/admin/users/search/">Search Users</a></li>
-       
+
         </ul>
       </li>
-
-  
- 
-     
       <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       <li>
         <form class="form-inline my-8 my-lg-0">
       </li>
-
       </form>
     </ul>
   </div>
 </nav>
+<?php if (isset($username)) : ?>
+  <div>Hello <?= $username; ?></div>
+<?php endif ?>

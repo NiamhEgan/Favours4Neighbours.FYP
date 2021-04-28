@@ -14,20 +14,16 @@
           <li><a href="/client/jobs/mycompletedjobs/">My Completed Jobs</a></li>
         </ul>
       </li>
-
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/">Applications <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/client/applications/myapplications/">My Applications</a></li>
           <li><a href="/client/applications/recievedapplications/">Recieved Applications</a></li>
         </ul>
       </li>
-
-       
       <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       <li>
         <form class="form-inline my-8 my-lg-0">
       </li>
-
       </form>
     </ul>
   </div>
