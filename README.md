@@ -12,6 +12,8 @@ Open the project in VSCode. Open a terminal and enter
 
 `composer i` to install required codeigniter packages
 
+edit .env file database variables to match yours
+ 
 `php spark serve` to run the website.
 
 ## About this project

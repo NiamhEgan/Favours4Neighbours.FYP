@@ -55,8 +55,8 @@ class Jobs extends BaseController
 	{
 		if ($this->isLoggedIn()) {
 		
-			$jobs = $this->db->query("Call GetAllCompletedJobs(?)", $jobID)->getResult();
-			$data = ["jobs" => $jobs];
+			$jobs = $this->db->query('Call GetAllCompletedJobs()')->getResult();
+			$data = ['jobs' => $jobs];
 
 			return AdminViewManager::loadView('Completed Jobs', 'CompletedJobsView', $data);
 		} else {

@@ -1,4 +1,4 @@
-<?php helper(["form"]); ?>
+<?php helper(['form']); ?>
 <form method="post">
 
 <table class="table table-striped">

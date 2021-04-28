@@ -12,7 +12,16 @@
 		</tr>
 	</thead>
 	<tbody>
-	
+	<?php if ($jobs != null) : ?>
+			<?php foreach ($jobs as $job) : ?>
+				<tr>
+					<td><?= $job->updated_at; ?></td>
+					<th scope="row"><?= $job->JobDetails; ?></th>
+
+					<td><a href="/client/jobs/viewtender/<?= $job->Id; ?>">View details</a></td>
+				</tr>
+			<?php endforeach ?>
+		<?php endif ?>
 	
 	</tbody>
 </table>
