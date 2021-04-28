@@ -40,7 +40,7 @@ class Profile extends BaseController
 			$masterData = [
 				'mainContent' => view("AdminProfileEditView", $data),
 				'navTemplate' => "nav-admin.php",
-				'title' => "My Profile",
+				'title' => "Admin Profile",
 			];
 			return view('MasterPageAdmin', $masterData);
 		} else {

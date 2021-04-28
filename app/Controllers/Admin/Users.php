@@ -189,4 +189,21 @@ class Users extends BaseController
 		} else
 			return AdminViewManager::loadView('Users', 'SearchUsersView', $data);
 	}
+
+	public function resetPassword(){
+
+
+	}
+	public function suspendedUsers(){
+		if ($this->isLoggedIn()) {
+			$users = $this->userRepository->findAll();
+			$data = ['users' => $users,];
+			echo AdminViewManager::loadView('Users', 'SuspendedUsersView', $data);
+		} else {
+			echo AdminViewManager::load403Error();
+		}
+
+	}
+
+
 }

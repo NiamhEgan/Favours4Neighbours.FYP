@@ -85,7 +85,7 @@ class Applications extends BaseController
 	{
 	}
 
-
+//ToDo not working 
 	public function complete($jobId)
 	{
 		if ($this->isLoggedIn()) {
@@ -113,4 +113,56 @@ class Applications extends BaseController
 		$data = ['message' => "Job: $jobId has been Completed"];
 		echo ViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
 	}
+
+	public function accept($jobApplicationId)
+	{
+		$this->executeAcceptJobApplication($jobApplicationId);
+		echo "view";
+	}
+
+	public function create()
+	{
+		if ($this->isLoggedIn()) {
+			return $this->getCreateView();
+		} else {
+			return ViewManager::load403ErrorViewIntoClientMasterPage();
+		}
+	}
+	private function executeAcceptJobApplication($jobApplicationId)
+	{
+		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
+		$jobApplication["Status"] = JobApplicationStatus::Accepted;
+		$commandResult = $this->jobApplicationRepository->update($jobApplicationId, $jobApplication);
+
+		$job = $this->jobRepository->find($jobApplication["Job"]);
+		$job["AssignedTo"] = $jobApplication['Applicant'];
+
+		$commandResult = $this->jobRepository->update($job["Id"], $job);
+	}
+	public function reject($jobApplicationId)
+	{
+		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
+		$jobApplication["Status"] = JobApplicationStatus::Rejected;
+	}
+	public function apply($jobId)
+	{
+		$userId = $this->session->get("UserId");
+		$jobApplication = $this->jobApplicationRepository
+			->where('Job', $jobId)
+			->where('Applicant', $userId)
+			->find();
+
+		if ($jobApplication == null) {
+			$jobApplicationValuesArray = [
+				'Job' => $jobId,
+				'Applicant' =>  $userId,
+			];
+			$this->jobApplicationRepository->insert($jobApplicationValuesArray);
+			return $this->index();
+		} else {
+			$data = ['message' => 'you have alreay applied'];
+			echo ViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
+		}
+	}
+
 }

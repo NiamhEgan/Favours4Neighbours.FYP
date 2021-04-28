@@ -6,7 +6,7 @@
 	<div class="col-md-6">
 		<div class="card">
 			<header class="card-header">
-				<h4 class="card-title mt-2">Enter Job Details</h4>
+				<h4 class="card-title mt-2">Edit Job Details</h4>
 			</header>
 			<article class="card-body">
 				<form method="post">

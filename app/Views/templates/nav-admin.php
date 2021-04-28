@@ -9,13 +9,14 @@
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/admin/jobs">Jobs <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/admin/jobs">All Active Jobs</a></li>
-          <li><a href="/admin/completedjobs">Completed Jobs</a></li>
+          <li><a href="/admin/jobs/completedjobs/">Completed Jobs</a></li>
         </ul>
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/admin/users">Users <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="/admin/users">View Users</a></li>
-          <li><a href="/admin/users">View Suspended Users</a></li>
+          <li><a href="/admin/users/">View Users</a></li>
+          <li><a href="/admin/users/suspendedusers/">View Suspended Users</a></li>
+          <li><a href="/admin/users/search/">Search Users</a></li>
        
         </ul>
       </li>

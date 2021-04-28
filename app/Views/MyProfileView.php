@@ -28,9 +28,5 @@
 
 			</tr>
 	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="8"></td><a href="new/">New Job Posts - posted in last 7 days </a>
-		</tr>
-	</tfoot>
+	
 </table>
