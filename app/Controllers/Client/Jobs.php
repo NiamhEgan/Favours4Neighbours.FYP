@@ -28,10 +28,53 @@ class Jobs extends BaseController
 		helper('ArrayTransformer');
 	}
 
+	public function apply($jobId)
+	{
+		if ($this->isLoggedIn()) {
+			$job = $this->jobRepository->find($jobId);
+			if ($job == null)
+				return ViewManager::load404ErrorViewIntoClientMasterPage("No job found for Job #:$jobId");
+			else
+				return $this->getApplyView($jobId);
+		} else {
+			return ViewManager::load403ErrorViewIntoClientMasterPage();
+		}
+	}
+	public function getApplyView($jobId)
+	{
+		$userId = $this->session->get("UserId");
+		$jobApplication = $this->jobApplicationRepository
+			->where('Job', $jobId)
+			->where('Applicant', $userId)
+			->find();
+
+		if ($jobApplication == null) {
+			$jobApplicationValuesArray = [
+				'Job' => $jobId,
+				'Applicant' =>  $userId,
+				//'Status'=> JobApplicationStatus::Pending,
+			];
+			$this->jobApplicationRepository->insert($jobApplicationValuesArray);
+			return $this->index();
+		} else {
+			$data = ['message' => 'you have alreay applied for this job'];
+			return ViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
+		}
+	}
 	public function accept($jobApplicationId)
 	{
-		$this->executeAcceptJobApplication($jobApplicationId);
-		echo "view";
+		if ($this->isLoggedIn()) {
+			$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
+			if ($jobApplication == null)
+				return ViewManager::load404ErrorViewIntoClientMasterPage("No Job Application found for Job Application #:$jobApplicationId");
+			else {
+				//TODO: return $this->getAcceptView($jobApplicationId);
+				$this->executeAcceptJobApplication($jobApplicationId);
+				return ViewManager::loadViewIntoClientMasterPage('', 'message', ['message' => 'Application has been accepted.']);
+			}
+		} else {
+			return ViewManager::load403ErrorViewIntoClientMasterPage();
+		}
 	}
 
 	public function create()
@@ -78,26 +121,7 @@ class Jobs extends BaseController
 		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
 		$jobApplication["Status"] = JobApplicationStatus::Rejected;
 	}
-	public function apply($jobId)
-	{
-		$userId = $this->session->get("UserId");
-		$jobApplication = $this->jobApplicationRepository
-			->where('Job', $jobId)
-			->where('Applicant', $userId)
-			->find();
 
-		if ($jobApplication == null) {
-			$jobApplicationValuesArray = [
-				'Job' => $jobId,
-				'Applicant' =>  $userId,
-			];
-			$this->jobApplicationRepository->insert($jobApplicationValuesArray);
-			return $this->index();
-		} else {
-			$data = ['message' => 'you have alreay applied'];
-			echo ViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
-		}
-	}
 	public function close($jobId)
 	{
 		if ($this->isLoggedIn()) {

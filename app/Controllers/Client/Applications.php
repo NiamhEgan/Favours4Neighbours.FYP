@@ -3,6 +3,7 @@
 namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
+use App\Libraries\ClientViewManager;
 use App\Libraries\ViewManager;
 use App\Models\CountyRepository;
 use App\Models\JobApplicationRepository;
@@ -49,10 +50,13 @@ class Applications extends BaseController
 	private function getMyApplicationsView($userId)
 	{
 		$jobApplications = $this->db->query("Call GetJobApplicationsViewByApplicant(?)", $userId)->getResult();
+		//TODO: accpetedJobApplications, rejectedJobApplications
 		$data = [
 			'jobApplications' => $jobApplications,
+			'accpetedJobApplications' => $jobApplications,
+			'rejectedJobApplications' => $jobApplications,
 		];
-		return ViewManager::loadViewIntoClientMasterPage('My Applications', 'MyApplicationsView', $data);
+		return ClientViewManager::loadView('My Applications', 'MyApplicationsView', $data);
 	}
 
 	public function recievedapplications()
@@ -61,7 +65,7 @@ class Applications extends BaseController
 			$userId = $this->session->get("UserId");
 			return $this->getRecievedApplicationsView($userId);
 		} else {
-			return ViewManager::load403ErrorViewIntoClientMasterPage();
+			return ClientViewManager::load403Error();
 		}
 	}
 

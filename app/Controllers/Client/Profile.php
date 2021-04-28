@@ -5,6 +5,7 @@ namespace App\Controllers\Client;
 use App\Libraries\ViewManager;
 use App\Controllers\BaseController;
 use App\Models\UserRepository;
+use Exception;
 
 class Profile extends BaseController
 {
