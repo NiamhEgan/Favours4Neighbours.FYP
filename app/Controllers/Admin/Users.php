@@ -10,6 +10,7 @@ use App\Models\JobCategoryRepository;
 use App\Models\JobRepository;
 use App\Models\JobStatus;
 use App\Models\UserRepository;
+use App\Models\UserStatus;
 use Exception;
 
 class Users extends BaseController
@@ -66,7 +67,7 @@ class Users extends BaseController
 	}
 	private function isLoggedIn()
 	{
-		return ($this->session->get("UserId") !== null);
+		return ($this->session->get("UserId") !== null && $this->session->get("UserIsAdmin") == 1);
 	}
 
 	public function view($userId)
@@ -146,7 +147,7 @@ class Users extends BaseController
 	}
 
 
-	public function enableUser($userId)
+	public function enable($userId)
 	{
 		if ($this->isLoggedIn()) {
 			$user = $this->userRepository->findall($userId);
@@ -154,7 +155,9 @@ class Users extends BaseController
 			if ($user == null) {
 				echo AdminViewManager::load404Error("No User found for $userId");
 			} else {
-				return $this->getView($userId, $user);
+				$data=[];
+				$this->executeSetUserActive($data, $userId, 1);
+				echo $this->suspendedUsers();
 			}
 		} else {
 			echo  AdminViewManager::load403Error();
@@ -190,20 +193,19 @@ class Users extends BaseController
 			return AdminViewManager::loadView('Users', 'SearchUsersView', $data);
 	}
 
-	public function resetPassword(){
-
-
+	public function resetPassword()
+	{
 	}
-	public function suspendedUsers(){
+	public function suspendedUsers()
+	{
 		if ($this->isLoggedIn()) {
-			$users = $this->userRepository->findAll();
+			$users = $this->userRepository
+				->where('Active', UserStatus::Suspended)
+				->findAll();
 			$data = ['users' => $users,];
 			echo AdminViewManager::loadView('Users', 'SuspendedUsersView', $data);
 		} else {
 			echo AdminViewManager::load403Error();
 		}
-
 	}
-
-
 }

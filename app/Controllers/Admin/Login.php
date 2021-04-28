@@ -61,6 +61,6 @@ class Login extends BaseController
 	}
 	private function loadPage($data = [])
 	{
-		return AdminViewManager::loadView('Admin Login', 'LoginView');
+		return AdminViewManager::loadView('Admin Login', 'LoginView', $data);
 	}
 }

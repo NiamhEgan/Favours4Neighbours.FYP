@@ -19,12 +19,11 @@ class Profile extends BaseController
 
 	public function index()
 	{
-        
 		if ($this->isLoggedIn()) {
-	
-			$this->session->set("UserId", $user["Id"]);
-		
-			echo AdminViewManager::loadView('Admin Profile', 'AdminProfileView' );
+			$userId = $this->session->get('UserId');
+			$user = $this->userRepository->find($userId);
+			$data = ['profile' => $user,];
+			return AdminViewManager::loadView('Profile', 'AdminProfileView', $data);
 		} else {
 			echo  AdminViewManager::load403Error();
 		}
@@ -32,23 +31,16 @@ class Profile extends BaseController
 	public function edit()
 	{
 		if ($this->isLoggedIn()) {
-			$user = $this->UserRepository->find($this->session->get("UserId"));
+			$userId = $this->session->get('UserId');
+			$user = $this->userRepository->find($userId);
 
 			$data = [
-				"user" => $user,
+				'profile' => $user,
 			];
-			$masterData = [
-				'mainContent' => view("AdminProfileEditView", $data),
-				'navTemplate' => "nav-admin.php",
-				'title' => "Admin Profile",
-			];
-			return view('MasterPageAdmin', $masterData);
+
+			return AdminViewManager::loadView('Edit Profile', 'AdminProfileEditView', $data);
 		} else {
-			$masterData = [
-				'mainContent' => view("403"),
-				'title' => "Unauthorised access",
-			];
-			return view('MasterPageAdmin', $masterData);
+			echo  AdminViewManager::load403Error();
 		}
 	}
 
