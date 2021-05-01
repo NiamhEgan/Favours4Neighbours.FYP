@@ -1,9 +1,9 @@
 <table class="table table-striped">
-	<caption class="caption-top">Current Active Jobs</caption>
+	<caption class="caption-top">My Current Active Jobs</caption>
 	<thead>
 		<tr>
 			<th scope="col">Details</th>
-			<th scope="col">County</th>
+			<th scope="col">Equipment Required</th>
 			<th scope="col">Payment</th>
 			<th scope="col"></th>
 			<th scope="col"></th>
@@ -16,23 +16,18 @@
 	<tbody>
 		<tr>
 			<th scope="row"><?= $job["JobDetails"]; ?></th>
-			<td><?= $job["JobCounty"]; ?></td>
+			<td><?= $job["EquipmentRequired"]; ?></td>
 			<td><?= $job["JobPrice"]; ?></td>
 			<td></td>
 			<td></td>
 			<td></td>
-			<td><a href="view/<?= $job["Id"]; ?>">View details</a></td>
-			<td><a href="edit/<?= $job["Id"]; ?>">Edit</a></td>
-			<td><a href="delete/<?= $job["Id"]; ?>">Delete</a></td>
-			<td><a href="apply/<?= $job["Id"]; ?>">Apply</a></td>
+			<td><a href="/client/jobs/view/<?= $job["Id"]; ?>">View details</a></td>
+			<td><a href="/client/jobs/edit/<?= $job["Id"]; ?>">Edit</a></td>
+			<td><a href="/client/jobs/close/<?= $job["Id"]; ?>">Close Job</a></td>
+			
 		</tr>
 	</tbody>
-	<tfoot>
-		<tr>
-
-			<button class="w-100 btn btn-lg btn-primary" name="NewPosts" type="submit">Latest Job Posts </button>
-		</tr>
-	</tfoot>
+	
 	<table class="table table-striped">
 		<caption class="caption-top">Applications</caption>
 		<thead>
@@ -48,7 +43,7 @@
 				<?php foreach ($jobApplications as $jobApplication) : ?>
 					<tr>
 						<td><?= $jobApplication->created_at; ?></td>
-						<td><a href="/client/users/view/<?= $jobApplication->UserId; ?>" title="<?= $jobApplication->UserFullName; ?>"><?= $jobApplication->Username; ?></a></td>
+						<td><?=$jobApplication->UserFullName; ?></td>
 						<td><a href="/client/jobs/accept/<?= $jobApplication->Id; ?>">Accept</a></td>
 						<td><a href="/client/jobs/reject/<?= $jobApplication->Id; ?>">Reject</a></td>
 					</tr>

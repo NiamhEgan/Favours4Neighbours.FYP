@@ -22,7 +22,7 @@
 					<td><?= $job->JobPrice; ?></td>
 					<td>
 						<?php if ($job->JobCategoryId != null) : ?>
-							<a href="/JobCategory/<?= $job->JobCategoryId; ?>"><?= $job->JobCategory; ?></a>
+			<?= $job->JobCategory; ?></td>
 						<?php endif ?>
 					</td>
 					<td>
@@ -37,9 +37,5 @@
 			<?php endforeach ?>
 		<?php endif ?>
 	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="8"></td><a href="new/">New Job Posts in the last 7 days</a>
-		</tr>
-	</tfoot>
+	
 </table>

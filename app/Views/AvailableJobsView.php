@@ -24,9 +24,11 @@
 					<td><?= $job->JobCounty; ?></td>
 					<td><?= $job->DurationEstimate; ?></td>
 					<td><?= $job->JobPrice; ?></td>
-					<td>
-						<?php if ($job->JobCategoryId != null) : ?>
-							<a href="/JobCategory/<?= $job->JobCategoryId; ?>"><?= $job->JobCategory; ?></a>
+				
+
+							<td><?= $job->JobCategory; ?></td>
+							<?php if ($job->JobCategoryId != null) : ?>
+							
 						<?php endif ?>
 					</td>
 					<td><a href="/client/jobs/viewtender/<?= $job->Id; ?>">View details</a></td>
@@ -34,9 +36,5 @@
 			<?php endforeach ?>
 		<?php endif ?>
 	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="8"></td><a href="">New Job Posts in the last 7 days</a>
-		</tr>
-	</tfoot>
+
 </table>

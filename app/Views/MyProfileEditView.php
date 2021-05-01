@@ -16,14 +16,27 @@
 				<td><?= $user["Surname"]; ?></td>
 			</tr>
 			<tr>
-				<th scope="col">Phone Number</th>
-				<td><?= $user["Telephone"]; ?></td>
+				<th scope="col">Email</th>
+				<td><?= $user["email"]; ?></td>
+			</tr>
+			<tr>
+				<th scope="col">Address Line 1</th>
+				<td><?= $user["AddressLine1"]; ?></td>
+			</tr>
+			<tr>
+			<th scope="col">Address Line 2</th>
+				<td><?= $user["AddressLine2"]; ?></td>
 			</tr>
 			<tr>
 				<th scope="col">Eircode</th>
 				<td><?= $user["Eircode"]; ?></td>
 			</tr>
 		
+			<tr>
+				<th scope="col">Phone Number</th>
+				<td><?= $user["Telephone"]; ?></td>
+			</tr>
+			
 		
 		</thead>
 		<tbody>
