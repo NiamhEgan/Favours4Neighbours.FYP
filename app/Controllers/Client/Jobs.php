@@ -55,7 +55,7 @@ class Jobs extends BaseController
 				//'Status'=> JobApplicationStatus::Pending,
 			];
 			$this->jobApplicationRepository->insert($jobApplicationValuesArray);
-			return $this->index();
+			return ClientViewManager::loadView('', 'message', ['message' => 'You have applied for a job! Best of Luck!.']);
 		} else {
 			$data = ['message' => 'you have alreay applied for this job'];
 			return ClientViewManager::loadView('Application', 'Message', $data);
@@ -97,6 +97,7 @@ class Jobs extends BaseController
 		];
 		if ($this->request->getPost("CreateButton") !== null) {
 			return $this->executeInsert($data);
+			return ClientViewManager::loadView('', 'message', ['message' => 'Job has been created.']);
 		}
 
 		return ClientViewManager::loadView('Create Job', 'JobCreateView', $data);
@@ -116,6 +117,8 @@ class Jobs extends BaseController
 
 		$commandResult = $this->jobRepository->update($job["Id"], $job);
 	}
+
+
 	public function reject($jobApplicationId)
 	{
 		if ($this->isLoggedIn()) {
@@ -125,7 +128,8 @@ class Jobs extends BaseController
 			else {
 				//TODO: return $this->getAcceptView($jobApplicationId);
 				$this->executeRejectJobApplication($jobApplicationId);
-				return ClientViewManager::loadView('', 'message', ['message' => 'Application has been rejected.']);
+				
+				return ClientViewManager::loadView('', 'message', ['message' => 'This Application has been rejected.']);
 			}
 		} else {
 			return ClientViewManager::load403Error();
@@ -133,7 +137,7 @@ class Jobs extends BaseController
 	}
 
 
-	public function executeRejectJobApplication($jobApplicationId)
+	private function executeRejectJobApplication($jobApplicationId)
 	{
 		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
 		$jobApplication["Status"] = JobApplicationStatus::Rejected;

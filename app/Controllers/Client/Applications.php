@@ -180,7 +180,7 @@ class Applications extends BaseController
 			if ($jobApplication == null)
 				return ClientViewManager::load404Error("No Job Application found for Job Application #:$jobApplicationId");
 			else {
-				$this->executeRejectJobApplication($jobApplication, $jobApplicationId);
+				$this->executeWithdrawJobApplication($jobApplication, $jobApplicationId);
 				return ClientViewManager::loadView('', 'message', ['message' => 'Application has been Withdrawn.']);
 			}
 		} else {

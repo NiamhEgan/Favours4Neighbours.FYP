@@ -1,13 +1,18 @@
 body{
 
-    background-color:whitesmoke;
+    background-color: white;
     text-align: center;
     font-size: large;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 1em;
+    color:black;
 
 
 }
+
+
+
+
 
 .login-form-to-align{
     width: 75%;
