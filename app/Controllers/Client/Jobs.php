@@ -118,8 +118,31 @@ class Jobs extends BaseController
 	}
 	public function reject($jobApplicationId)
 	{
+		if ($this->isLoggedIn()) {
+			$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
+			if ($jobApplication == null)
+				return ViewManager::load404ErrorViewIntoClientMasterPage("No Job Application found for Job Application #:$jobApplicationId");
+			else {
+				//TODO: return $this->getAcceptView($jobApplicationId);
+				$this->executeRejectJobApplication($jobApplicationId);
+				return ViewManager::loadViewIntoClientMasterPage('', 'message', ['message' => 'Application has been rejected.']);
+			}
+		} else {
+			return ViewManager::load403ErrorViewIntoClientMasterPage();
+		}
+	}
+
+
+	public function executeRejectJobApplication($jobApplicationId)
+	{
 		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
 		$jobApplication["Status"] = JobApplicationStatus::Rejected;
+		$commandResult = $this->jobApplicationRepository->update($jobApplicationId, $jobApplication);
+
+		$job = $this->jobRepository->find($jobApplication["Job"]);
+		$job["AssignedTo"] = $jobApplication['Applicant'];
+
+		$commandResult = $this->jobRepository->update($job["Id"], $job);
 	}
 
 	public function close($jobId)
