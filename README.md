@@ -6,9 +6,11 @@ Clone the project from github.
 
 
 
-Open the project in VSCode. Open a terminal and enter 
+Install the database in 'assets\Favours4Neighbours.mysql.sql' first
 
-`mysql -u {user} -p favours4neighbours < Favours4Neighbours.mysql.sql` to create a database
+` mysql -u {user} -p favours4neighbours < ` to create a database
+
+` mysql.exe --defaults-file="C:\Users\Niamh\AppData\Local\Temp\tmpw4r4vsoa.cnf"  --protocol=tcp --host=127.0.0.1 --user=root --port=3306 --default-character-set=utf8 --comments --database=newschema  < "C:\\Users\\Niamh\\Documents\\GitHub\\Favours4Neighbours.FYP\\assets\\Favours4Neighbours.mysql.sql"`
 
 `composer i` to install required codeigniter packages
 
