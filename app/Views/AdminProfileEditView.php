@@ -9,19 +9,19 @@
 			</tr>
 			<tr>
 				<th scope="col">First Name</th>
-				<td> <?= $user["FirstName"]; ?></td>
+				<td> <?= $profile["FirstName"]; ?></td>
 			</tr>
 			<tr>
 				<th scope="col">Surname</th>
-				<td><?= $user["Surname"]; ?></td>
+				<td><?= $profile["Surname"]; ?></td>
 			</tr>
 			<tr>
 				<th scope="col">Phone Number</th>
-				<td><?= $user["Telephone"]; ?></td>
+				<td><?= $profile["Telephone"]; ?></td>
 			</tr>
 			<tr>
 				<th scope="col">Eircode</th>
-				<td><?= $user["Eircode"]; ?></td>
+				<td><?= $profile["Eircode"]; ?></td>
 			</tr>
 		
 		
@@ -40,32 +40,32 @@
 		
 		<div class="form-inline col-md-6 ">
 			<label>First Name</label>
-			<input name="FirstName" type="text" class="form-control" value="<?= set_value("FirstName", $user["FirstName"]); ?>">
+			<input name="FirstName" type="text" class="form-control" value="<?= set_value("FirstName", $profile["FirstName"]); ?>">
 			</div>
 			<div class="form-inline col-md-6 ">
 			<label>Surname</label>
-			<input name="Surname" type="text" class="form-control" value="<?= set_value("Surname", $user["Surname"]); ?>">
+			<input name="Surname" type="text" class="form-control" value="<?= set_value("Surname", $profile["Surname"]); ?>">
 			</div>
 		<div class="form-inline col-md-6 ">
 			<label>Email</label>
-			<input name="email" type="email" class="form-control" value="<?= set_value("email", $user["email"]); ?>">
+			<input name="email" type="email" class="form-control" value="<?= set_value("email", $profile["email"]); ?>">
 			</div>
 			<div class="form-inline col-md-6 ">
 			<label>Address Line 1</label>
-			<input name="AddressLine1" type="text" class="form-control" value="<?= set_value("AddressLine1", $user["AddressLine1"]); ?>">
+			<input name="AddressLine1" type="text" class="form-control" value="<?= set_value("AddressLine1", $profile["AddressLine1"]); ?>">
 			</div>
 		<div class="form-inline col-md-6 ">
 			<label>Address Line 2</label>
-			<input name="AddressLine2" type="text" class="form-control" value="<?= set_value("AddressLine2", $user["AddressLine2"]); ?>">
+			<input name="AddressLine2" type="text" class="form-control" value="<?= set_value("AddressLine2",$profile["AddressLine2"]); ?>">
 			</div>
 		
 		<div class="form-inline col-md-6 ">
 			<label>Eircode</label>
-			<input name="Eircode" type="text" class="form-control" value="<?= set_value("Eircode", $user["Eircode"]); ?>">
+			<input name="Eircode" type="text" class="form-control" value="<?= set_value("Eircode", $profile["Eircode"]); ?>">
 			</div>
 		<div class="form-inline col-md-6 ">
 			<label>Phone Number</label>
-			<input name="Telephone" type="text" class="form-control" value="<?= set_value("Telephone", $user["Telephone"]); ?>">
+			<input name="Telephone" type="text" class="form-control" value="<?= set_value("Telephone", $profile["Telephone"]); ?>">
 	
 	</div>
 

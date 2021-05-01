@@ -45,7 +45,7 @@ class Jobs extends BaseController
 			echo  AdminViewManager::load403Error();
 		}
 	}
-	
+
 	private function isLoggedIn()
 	{
 		return ($this->session->get("UserId") !== null);
@@ -70,7 +70,7 @@ class Jobs extends BaseController
 			$job = $this->jobRepository->find($jobId);
 
 			if ($job == null) {
-				echo AdminViewManager::load40Error("No Job found for $jobId");
+				echo AdminViewManager::load404Error("No Job found for $jobId");
 			} else if ($job["CreatedBy"] != $this->session->get("UserId")) {
 				echo AdminViewManager::load403Error();
 			} else {
