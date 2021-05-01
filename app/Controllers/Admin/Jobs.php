@@ -45,16 +45,16 @@ class Jobs extends BaseController
 			echo  AdminViewManager::load403Error();
 		}
 	}
+	
 	private function isLoggedIn()
 	{
 		return ($this->session->get("UserId") !== null);
 	}
 
-
 	public function completedjobs()
 	{
 		if ($this->isLoggedIn()) {
-		
+
 			$jobs = $this->db->query('Call GetAllCompletedJobs()')->getResult();
 			$data = ['jobs' => $jobs];
 
@@ -63,7 +63,6 @@ class Jobs extends BaseController
 			return AdminViewManager::load403Error();
 		}
 	}
-
 
 	public function close($jobId)
 	{
@@ -84,16 +83,13 @@ class Jobs extends BaseController
 
 	private function executeCloseJob($jobId)
 	{
-
 		$jobValuesArray = [
 			'JobStatus' => JobStatus::Closed,
 		];
 		$this->jobRepository->update($jobId, $jobValuesArray);
 		$data = ['message' => "Job: $jobId has been closed"];
-		echo AdminViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
-}
-
-	
+		echo AdminViewManager::loadView('Application', 'Message', $data);
+	}
 
 	private function executeDelete($jobId)
 	{
@@ -105,7 +101,7 @@ class Jobs extends BaseController
 			$data = [
 				'errors' => $this->jobRepository->errors(),
 			];
-			echo ViewManager::loadViewIntoClientMasterPage('My Jobs', 'AvailableJobsView', $data);
+			echo AdminViewManager::loadView('My Jobs', 'AvailableJobsView', $data);
 		}
 	}
 	public function delete($jobId)
@@ -113,14 +109,14 @@ class Jobs extends BaseController
 		if ($this->isLoggedIn()) {
 			$job = $this->jobRepository->find($jobId);
 			if ($job == null) {
-				echo ViewManager::load404ErrorViewIntoClientMasterPage("No Job found for $jobId");
+				echo AdminViewManager::load404Error("No Job found for $jobId");
 			} else if ($job["userID"] != $this->session->get("UserId")) {
-				echo ViewManager::load403ErrorViewIntoClientMasterPage();
+				echo AdminViewManager::load403Error();
 			} else {
 				$this->executeDelete($jobId);
 			}
 		} else {
-			echo  ViewManager::load403ErrorViewIntoClientMasterPage();
+			echo  AdminViewManager::load403Error();
 		}
 	}
 	public function view($jobId)
@@ -129,17 +125,18 @@ class Jobs extends BaseController
 			$job = $this->jobRepository->find($jobId);
 
 			if ($job == null) {
-				echo ViewManager::load404ErrorViewIntoClientMasterPage("No Job found for $jobId");
+				echo AdminViewManager::load404Error("No Job found for $jobId");
 			} else if ($job["CreatedBy"] != $this->session->get("UserId")) {
-				echo ViewManager::load403ErrorViewIntoClientMasterPage();
+				echo AdminViewManager::load403Error();
 			} else {
+				//TODO: View
 				return $this->getView($jobId, $job);
 			}
 		} else {
-			echo  ViewManager::load403ErrorViewIntoClientMasterPage();
+			echo  AdminViewManager::load403Error();
 		}
 	}
-	
+
 
 	private function createJobValuesArrayFromPostArray()
 	{
@@ -168,5 +165,4 @@ class Jobs extends BaseController
 			"JobStatus" => $this->request->getPost("JobStatus"),
 		];
 	}
-	
 }

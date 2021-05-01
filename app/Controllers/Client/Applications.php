@@ -4,9 +4,9 @@ namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
 use App\Libraries\ClientViewManager;
-use App\Libraries\ViewManager;
 use App\Models\CountyRepository;
 use App\Models\JobApplicationRepository;
+use App\Models\JobApplicationStatus;
 use App\Models\JobCategoryRepository;
 use App\Models\JobRepository;
 use App\Models\UserRepository;
@@ -43,7 +43,7 @@ class Applications extends BaseController
 			$userId = $this->session->get("UserId");
 			return $this->getMyApplicationsView($userId);
 		} else {
-			return ViewManager::load403ErrorViewIntoClientMasterPage();
+			return ClientViewManager::load403Error();
 		}
 	}
 
@@ -77,7 +77,7 @@ class Applications extends BaseController
 		$data = [
 			'recievedApplications' => $jobApplications,
 		];
-		return ViewManager::loadViewIntoClientMasterPage('Recieved Applications', 'RecievedApplicationsView', $data);
+		return ClientViewManager::loadView('Recieved Applications', 'RecievedApplicationsView', $data);
 	}
 
 	private function isLoggedIn()
@@ -96,14 +96,14 @@ class Applications extends BaseController
 			$job = $this->jobRepository->find($jobId);
 
 			if ($job == null) {
-				echo ViewManager::load404ErrorViewIntoClientMasterPage("No Job found for $jobId");
+				echo ClientViewManager::load404Error("No Job found for $jobId");
 			} else if ($job["CreatedBy"] != $this->session->get("UserId")) {
-				echo ViewManager::load403ErrorViewIntoClientMasterPage();
+				echo ClientViewManager::load403Error();
 			} else {
 				return $this->executeCloseJob($jobId);
 			}
 		} else {
-			echo  ViewManager::load403ErrorViewIntoClientMasterPage();
+			echo  ClientViewManager::load403Error();
 		}
 	}
 
@@ -115,7 +115,7 @@ class Applications extends BaseController
 		];
 		$this->jobRepository->update($jobId, $jobValuesArray);
 		$data = ['message' => "Job: $jobId has been Completed"];
-		echo ViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
+		echo ClientViewManager::loadView('Application', 'Message', $data);
 	}
 
 	public function accept($jobApplicationId)
@@ -124,14 +124,6 @@ class Applications extends BaseController
 		echo "view";
 	}
 
-	public function create()
-	{
-		if ($this->isLoggedIn()) {
-			return $this->getCreateView();
-		} else {
-			return ViewManager::load403ErrorViewIntoClientMasterPage();
-		}
-	}
 	private function executeAcceptJobApplication($jobApplicationId)
 	{
 		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
@@ -150,14 +142,14 @@ class Applications extends BaseController
 		if ($this->isLoggedIn()) {
 			$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
 			if ($jobApplication == null)
-				return ViewManager::load404ErrorViewIntoClientMasterPage("No Job Application found for Job Application #:$jobApplicationId");
+				return ClientViewManager::load404Error("No Job Application found for Job Application #:$jobApplicationId");
 			else {
 				//TODO: return $this->getAcceptView($jobApplicationId);
 				$this->executeRejectJobApplication($jobApplicationId);
-				return ViewManager::loadViewIntoClientMasterPage('', 'message', ['message' => 'Application has been rejected.']);
+				return ClientViewManager::loadView('', 'message', ['message' => 'Application has been rejected.']);
 			}
 		} else {
-			return ViewManager::load403ErrorViewIntoClientMasterPage();
+			return ClientViewManager::load403Error();
 		}
 	}
 
@@ -179,14 +171,14 @@ class Applications extends BaseController
 		if ($this->isLoggedIn()) {
 			$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
 			if ($jobApplication == null)
-				return ViewManager::load404ErrorViewIntoClientMasterPage("No Job Application found for Job Application #:$jobApplicationId");
+				return ClientViewManager::load404Error("No Job Application found for Job Application #:$jobApplicationId");
 			else {
 				//TODO: return $this->getWithdrawnView($jobApplicationId);
 				$this->executeRejectJobApplication($jobApplicationId);
-				return ViewManager::loadViewIntoClientMasterPage('', 'message', ['message' => 'Application has been Withdrawn.']);
+				return ClientViewManager::loadView('', 'message', ['message' => 'Application has been Withdrawn.']);
 			}
 		} else {
-			return ViewManager::load403ErrorViewIntoClientMasterPage();
+			return ClientViewManager::load403Error();
 		}
 	}
 
@@ -221,7 +213,7 @@ class Applications extends BaseController
 			return $this->index();
 		} else {
 			$data = ['message' => 'you have alreay applied'];
-			echo ViewManager::loadViewIntoClientMasterPage('Application', 'Message', $data);
+			echo ClientViewManager::loadView('Application', 'Message', $data);
 		}
 	}
 

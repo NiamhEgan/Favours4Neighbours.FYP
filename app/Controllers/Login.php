@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Libraries\ViewManager;
+use App\Libraries\PublicViewManager;
 use App\Models\UserRepository;
 
 class Login extends BaseController
@@ -48,26 +48,6 @@ class Login extends BaseController
 	{
 		$this->session->destroy();
 	}
-	private function handleLogin1()
-	{
-		$password = $this->request->getPost("Password");
-		$username = $this->request->getPost("Username");
-
-		$user = $this->UserRepository->where('Username', $username)->first();
-
-		if ($user == null) {
-			$this->loadPageWithError("Invalid user credentials");
-		} else if ($user["Active"] == 0) {
-			$this->loadPageWithError("User " . $username . " has been disabled. Please contact the system administrator.");
-		} else {
-			$validPassword = password_verify($password, $user["Password"]);
-			if ($validPassword == true)
-				$this->loginUser($user);
-			else {
-				$this->loadPageWithError("Invalid user credentials");
-			}
-		}
-	}
 	private function loginUser($user)
 	{
 		$this->session->set("UserId", $user["Id"]);
@@ -76,17 +56,17 @@ class Login extends BaseController
 		redirect()->to("/client/profile");
 
 		$data = ['username' => $user["Username"]];
-		echo ViewManager::loadViewIntoClientMasterPage('Favours 4 Neighbours', 'HomeView', $data);
+		echo PublicViewManager::loadView('Login', 'HomeView', $data);
 	}
 	private function loadPageWithError($errorMessage)
 	{
 		$data = [
 			'errors' => $errorMessage,
 		];
-		echo ViewManager::loadViewIntoMasterPage('Favours 4 Neighbours', 'LoginView', $data);
+		echo PublicViewManager::loadView('Login', 'LoginView', $data);
 	}
 	private function loadPage()
 	{
-		echo ViewManager::loadViewIntoMasterPage('Favours 4 Neighbours', 'LoginView');
+		echo PublicViewManager::loadView('Login', 'LoginView');
 	}
 }

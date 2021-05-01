@@ -28,9 +28,5 @@
 			</tr>
 		<?php endforeach ?>
 	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="8"></td><a href="new/">New Job Posts in the last 7 days</a>
-		</tr>
-	</tfoot>
+
 </table>

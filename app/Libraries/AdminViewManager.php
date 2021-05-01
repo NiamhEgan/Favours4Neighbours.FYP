@@ -25,7 +25,13 @@ class AdminViewManager
     {
         return self::loadView('Unauthorised access', '403', $viewData);
     }
-    public static function load404Error($message)
+    /**
+     * Loads 404 Error Page for view
+     * 
+     * @param string $message A string message to give the page
+     * @return returns the webpage html
+     */
+    public static function load404Error(string $message)
     {
         $viewData = ['message' => $message];
         return self::loadView('Resource not found', '404', $viewData);

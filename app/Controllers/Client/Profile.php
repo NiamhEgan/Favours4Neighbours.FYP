@@ -2,8 +2,9 @@
 
 namespace App\Controllers\Client;
 
-use App\Libraries\ViewManager;
 use App\Controllers\BaseController;
+use App\Libraries\ClientViewManager;
+use App\Models\CountyRepository;
 use App\Models\UserRepository;
 use Exception;
 
@@ -12,7 +13,9 @@ class Profile extends BaseController
 	public function __construct()
 	{
 		$this->session = \Config\Services::session();
+		$this->countyRepository = new CountyRepository();
 		$this->userRepository = new UserRepository();
+		helper('ArrayTransformer');
 	}
 
 	public function changepassword()
@@ -20,7 +23,7 @@ class Profile extends BaseController
 		if ($this->isLoggedIn()) {
 			return $this->getChangePasswordView();
 		} else {
-			return ViewManager::load403ErrorViewIntoClientMasterPage();
+			return ClientViewManager::load403Error();
 		}
 	}
 	public function edit()
@@ -28,7 +31,7 @@ class Profile extends BaseController
 		if ($this->isLoggedIn()) {
 			return $this->getEditView();
 		} else {
-			return ViewManager::load403ErrorViewIntoClientMasterPage();
+			return ClientViewManager::load403Error();
 		}
 	}
 	public function index()
@@ -36,7 +39,7 @@ class Profile extends BaseController
 		if ($this->isLoggedIn()) {
 			return $this->getIndexView();
 		} else {
-			return ViewManager::load403ErrorViewIntoClientMasterPage();
+			return ClientViewManager::load403Error();
 		}
 	}
 
@@ -46,33 +49,33 @@ class Profile extends BaseController
 		if ($this->request->getVar("ChangePasswordButton") !== null) {
 			$this->executeChangePassword($data);
 		}
-		return ViewManager::loadViewIntoClientMasterPage('Change Password', 'MyProfileChangePasswordView', $data);
+		return ClientViewManager::loadView('Change Password', 'MyProfileChangePasswordView', $data);
 	}
 	private function getEditView()
 	{
 		$userId = $this->session->get("UserId");
 		$user = null;
 		$data = [
-			//"countyDataSource" => $this->transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
+			"countyDataSource" => transformObjectArray($this->countyRepository->findAll(), "ID_county", "county"),
 		];
-		if ($this->request->getVar("SaveButton") !== null) {
+		if ($this->request->getVar('SaveButton') !== null) {
 			$user = $this->executeSave($data, $userId);
 		} else {
 			$user = $this->userRepository->find($userId);
 		}
 		$data['user'] = $user;
 
-		return ViewManager::loadViewIntoClientMasterPage('Edit Profile', 'MyProfileEditView', $data);
+		return ClientViewManager::loadView('Edit Profile', 'MyProfileEditView', $data);
 	}
 	private function getIndexView()
 	{
-		$userId = $this->session->get("UserId");
+		$userId = $this->session->get('UserId');
 		$user = $this->userRepository->find($userId);
 		$data = [
 			"user" => $user,
 		];
 
-		return ViewManager::loadViewIntoClientMasterPage('Profile', 'MyProfileView', $data);
+		return ClientViewManager::loadView('Profile', 'MyProfileView', $data);
 	}
 
 	private function executeChangePassword(&$data)

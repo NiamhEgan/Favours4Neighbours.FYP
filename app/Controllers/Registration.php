@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Libraries\ViewManager;
+use App\Libraries\PublicViewManager;
 use App\Models\UserRepository;
 use App\Models\CountyRepository;
 use Exception;
@@ -30,7 +30,7 @@ class Registration extends BaseController
 				$data['errors'] = $this->UserRepository->errors();
 			}
 		} else
-		return ViewManager::loadViewIntoClientMasterPage('Registration', 'RegistrationView', $data);
+		return PublicViewManager::loadView('Registration', 'RegistrationView', $data);
 	}
 
 	private function createUserValuesArrayFromPostArray()

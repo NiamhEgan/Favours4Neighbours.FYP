@@ -8,7 +8,6 @@ use App\Models\CountyRepository;
 use App\Models\JobApplicationRepository;
 use App\Models\JobCategoryRepository;
 use App\Models\JobRepository;
-use App\Models\JobStatus;
 use App\Models\UserRepository;
 use App\Models\UserStatus;
 use Exception;
@@ -78,6 +77,7 @@ class Users extends BaseController
 			if ($user == null) {
 				echo AdminViewManager::load404Error("No User found for $userId");
 			} else {
+				//TODO: View
 				return $this->getView($userId, $user);
 			}
 		} else {

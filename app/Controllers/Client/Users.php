@@ -3,12 +3,11 @@
 namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
-use App\Libraries\ViewManager;
+use App\Libraries\ClientViewManager;
 use App\Models\CountyRepository;
 use App\Models\JobApplicationRepository;
 use App\Models\JobCategoryRepository;
 use App\Models\JobRepository;
-use App\Models\JobStatus;
 use App\Models\UserRepository;
 
 class Users extends BaseController
@@ -39,9 +38,9 @@ class Users extends BaseController
 			$data = [
 				"jobs" => $jobs,
 			];
-			echo ViewManager::loadViewIntoClientMasterPage('My Jobs', 'AvailableJobsView', $data);
+			echo ClientViewManager::loadView('My Jobs', 'AvailableJobsView', $data);
 		} else {
-			echo  ViewManager::load403ErrorViewIntoClientMasterPage();
+			echo  ClientViewManager::load403Error();
 		}
 	}
 	private function isLoggedIn()
@@ -55,18 +54,18 @@ class Users extends BaseController
 			$user = $this->userRepository->find($userId);
 
 			if ($user == null) {
-				echo ViewManager::load404ErrorViewIntoClientMasterPage("No User found for $userId");
+				echo ClientViewManager::load404Error("No User found for $userId");
 			} else {
 				return $this->getView($userId, $user);
 			}
 		} else {
-			echo  ViewManager::load403ErrorViewIntoClientMasterPage();
+			echo  ClientViewManager::load403Error();
 		}
 	}
 
 	private function getView($userId, $user)
 	{
-        //Change query to get jobs completed GetJobsCompletedByAssignedUserView()
+        //TODO:Change query to get jobs completed GetJobsCompletedByAssignedUserView()
 		$jobsCompleted = $this->db->query("Call GetJobsCompletedByAssignedUserView(?)", $userId)->getResult();
 
 		$data = [
@@ -74,6 +73,6 @@ class Users extends BaseController
 			"jobsCompleted" => $jobsCompleted,
 		];
 
-        // use Myprofile view and JobView to make
-		return ViewManager::loadViewIntoClientMasterPage('User', 'UserView', $data);
+        //TODO: use Myprofile view and JobView to make
+		return ClientViewManager::loadView('User', 'UserView', $data);
 	}}
