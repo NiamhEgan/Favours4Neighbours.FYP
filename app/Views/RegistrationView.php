@@ -3,7 +3,7 @@
 	<div class="col-md-6">
 		<div class="card">
 			<header class="card-header">
-				<a href="" class="float-right btn btn-outline-primary mt-1">Log in</a>
+				
 				<h4 class="card-title mt-2">Sign up</h4>
 			</header>
 			<article class="card-body">
@@ -60,7 +60,7 @@
 								<label>County</label>
 								<?= form_dropdown('County', $countyDataSource, set_value("County"), 'class="form-control"'); ?>
 							</div> <!-- form-row.// -->
-							<div class="form-group">
+							<div class="form-group col-md-6">
 								<label>Eircode</label>
 								<input name="Eircode" type="text" class="form-control" placeholder="">
 								<small class="form-text text-muted">We'll never share your email with anyone else.</small>

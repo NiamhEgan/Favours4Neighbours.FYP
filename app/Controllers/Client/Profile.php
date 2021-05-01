@@ -60,6 +60,7 @@ class Profile extends BaseController
 		];
 		if ($this->request->getVar('SaveButton') !== null) {
 			$user = $this->executeSave($data, $userId);
+			
 		} else {
 			$user = $this->userRepository->find($userId);
 		}
