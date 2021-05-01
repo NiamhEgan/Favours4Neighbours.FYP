@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-
 class CountyRepository extends Model
 {
     protected $table      = 'county';
