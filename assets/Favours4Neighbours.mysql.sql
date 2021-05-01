@@ -1,3 +1,6 @@
+create Schema `favours4neighbours`;
+use favours4neighbours;
+
 -- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: favours4neighbours
@@ -18,10 +21,6 @@
 --
 -- Table structure for table `county`
 --
-
-create Schema `favours4neighbours`;
-
-use favours4neighbours;
 
 DROP TABLE IF EXISTS `county`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -192,57 +191,6 @@ INSERT INTO `jobstatus` VALUES (1,'Completed'),(2,'Open');
 UNLOCK TABLES;
 
 --
--- Table structure for table `jobtag`
---
-
-DROP TABLE IF EXISTS `jobtag`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `jobtag` (
-  `Job_Id` int NOT NULL,
-  `Tag_Id` int NOT NULL,
-  PRIMARY KEY (`Job_Id`,`Tag_Id`),
-  KEY `fk_Job_has_Tag_Tag1_idx` (`Tag_Id`),
-  KEY `fk_Job_has_Tag_Job1_idx` (`Job_Id`),
-  CONSTRAINT `fk_Job_has_Tag_Job1` FOREIGN KEY (`Job_Id`) REFERENCES `job` (`Id`),
-  CONSTRAINT `fk_Job_has_Tag_Tag1` FOREIGN KEY (`Tag_Id`) REFERENCES `tag` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `jobtag`
---
-
-LOCK TABLES `jobtag` WRITE;
-/*!40000 ALTER TABLE `jobtag` DISABLE KEYS */;
-/*!40000 ALTER TABLE `jobtag` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tag`
---
-
-DROP TABLE IF EXISTS `tag`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tag` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) NOT NULL,
-  PRIMARY KEY (`Id`),
-  UNIQUE KEY `Name_UNIQUE` (`Name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tag`
---
-
-LOCK TABLES `tag` WRITE;
-/*!40000 ALTER TABLE `tag` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tag` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user`
 --
 
@@ -282,113 +230,6 @@ LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` VALUES (123,'neaegan','aab1cb844c7663565888980086184921d0365a15','neaegan@gmail.com',1,'Niamh','Egan','Derry','','V95TV05','0874609667',NULL,1,'2021-04-13 16:10:30','2021-04-13 22:10:30','2021-04-28 14:30:53',NULL,NULL,1),(124,'jane.doe','aab1cb844c7663565888980086184921d0365a15','jane.doe@lit.ie',0,'Jane','Doe','LIT','Moylish','V95TV05','081 123 12',NULL,0,'2021-04-16 10:17:47','2021-04-16 16:17:47','2021-04-16 10:17:47',NULL,NULL,1),(125,'testtest','aab1cb844c7663565888980086184921d0365a15','test@gmail.com',1,'Test','Test','Derry','','V98TY56','0874564569',NULL,0,'2021-04-20 06:23:54','2021-04-20 12:23:54','2021-04-20 06:23:54',NULL,NULL,1),(126,'pault','2c08e8f5884750a7b99f6f2f342fc638db25ff31','pault@gmail.com',1,'Paul','Test','Lahinch','Ennistymon','V95 97456','0874567891',NULL,0,'2021-04-21 03:24:17','2021-04-21 09:24:17','2021-05-01 07:31:45',NULL,NULL,1),(127,'admin','aab1cb844c7663565888980086184921d0365a15','admin@gmail.com',1,'Sarah','Ryan','Favours4Neighbours','','V95TV89','061 711200',NULL,1,'2021-04-24 09:59:43','2021-04-24 09:59:43','2021-04-27 14:31:30',NULL,NULL,6),(128,'jryan','aab1cb844c7663565888980086184921d0365a15','jr@gmail.com',1,'joan','ryan','Limerick','','V95 97456','056 123456',NULL,0,'2021-04-28 07:55:47','2021-04-28 13:55:47','2021-04-28 14:32:00',NULL,NULL,1),(129,'bhaugh','aab1cb844c7663565888980086184921d0365a15','bhaugh@gmail.com',1,'Brid','Haugh','Killybegs','','V89TY29','0874567891',NULL,0,'2021-05-01 10:35:20','2021-05-01 16:35:20','2021-05-01 15:49:00',NULL,NULL,1),(130,'slonge','aab1cb844c7663565888980086184921d0365a15','slonge@gmail.com',1,'Sarah','Longe','Dromore','','V89 456','0894567891',NULL,0,'2021-05-01 11:52:28','2021-05-01 17:52:28','2021-05-01 11:52:28',NULL,NULL,1),(133,'ccurtin','aab1cb844c7663565888980086184921d0365a15','cc@gmail.com',1,'Ciara','Curtin','Clahane','Liscannor','V95 789','0894561234',NULL,0,'2021-05-01 11:59:40','2021-05-01 17:59:40','2021-05-01 11:59:40',NULL,NULL,1),(136,'Myers','aab1cb844c7663565888980086184921d0365a15','mmyers@gmail.com',1,'Mike','Myers','Liscannor Road','Lahinch','V89 123','056789456',NULL,0,'2021-05-01 12:05:46','2021-05-01 18:05:46','2021-05-01 12:19:32',NULL,NULL,1),(137,'Mdaly','aab1cb844c7663565888980086184921d0365a15','mdaly@gmail.com',1,'Mary','Daly','Derry','','h456','0894561234',NULL,0,'2021-05-01 17:52:39','2021-05-01 23:52:39','2021-05-01 17:52:39',NULL,NULL,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `userdetails`
---
-
-DROP TABLE IF EXISTS `userdetails`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `userdetails` (
-  `ID` int NOT NULL AUTO_INCREMENT,
-  `userFirstName` varchar(45) NOT NULL,
-  `userSurname` varchar(45) NOT NULL,
-  `userAddress1` varchar(45) NOT NULL,
-  `userAddress2` varchar(45) DEFAULT NULL,
-  `userEircode` varchar(45) NOT NULL,
-  `userPhone` int NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `userdetails`
---
-
-LOCK TABLES `userdetails` WRITE;
-/*!40000 ALTER TABLE `userdetails` DISABLE KEYS */;
-/*!40000 ALTER TABLE `userdetails` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `userjobskill`
---
-
-DROP TABLE IF EXISTS `userjobskill`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `userjobskill` (
-  `User_Id` int NOT NULL,
-  `Tag_Id` int NOT NULL,
-  PRIMARY KEY (`User_Id`,`Tag_Id`),
-  KEY `fk_User_has_Tag_Tag1_idx` (`Tag_Id`),
-  KEY `fk_User_has_Tag_User1_idx` (`User_Id`),
-  CONSTRAINT `fk_User_has_Tag_Tag1` FOREIGN KEY (`Tag_Id`) REFERENCES `tag` (`Id`),
-  CONSTRAINT `fk_User_has_Tag_User1` FOREIGN KEY (`User_Id`) REFERENCES `user` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `userjobskill`
---
-
-LOCK TABLES `userjobskill` WRITE;
-/*!40000 ALTER TABLE `userjobskill` DISABLE KEYS */;
-/*!40000 ALTER TABLE `userjobskill` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `userrole`
---
-
-DROP TABLE IF EXISTS `userrole`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `userrole` (
-  `Id` int NOT NULL,
-  `Name` varchar(45) NOT NULL,
-  `Description` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`Id`),
-  UNIQUE KEY `Name_UNIQUE` (`Name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `userrole`
---
-
-LOCK TABLES `userrole` WRITE;
-/*!40000 ALTER TABLE `userrole` DISABLE KEYS */;
-/*!40000 ALTER TABLE `userrole` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `userrolelink`
---
-
-DROP TABLE IF EXISTS `userrolelink`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `userrolelink` (
-  `UserRoleId` int NOT NULL,
-  `UserId` int NOT NULL,
-  PRIMARY KEY (`UserRoleId`,`UserId`),
-  KEY `fk_UserRole_has_User_User1_idx` (`UserId`),
-  KEY `fk_UserRole_has_User_UserRole_idx` (`UserRoleId`),
-  CONSTRAINT `fk_UserRole_has_User_User1` FOREIGN KEY (`UserId`) REFERENCES `user` (`Id`),
-  CONSTRAINT `fk_UserRole_has_User_UserRole` FOREIGN KEY (`UserRoleId`) REFERENCES `userrole` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `userrolelink`
---
-
-LOCK TABLES `userrolelink` WRITE;
-/*!40000 ALTER TABLE `userrolelink` DISABLE KEYS */;
-/*!40000 ALTER TABLE `userrolelink` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -995,4 +836,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-02  0:03:01
+-- Dump completed on 2021-05-02  0:05:51
