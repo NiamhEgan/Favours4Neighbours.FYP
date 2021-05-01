@@ -17,9 +17,9 @@ class Login extends BaseController
 	public function index()
 	{
 		if ($this->request->getVar("LoginButton") !== null) {
-			$this->handleLogin();
+			return $this->handleLogin();
 		} else {
-			$this->loadPage();
+			return $this->loadPage();
 		}
 	}
 	private function handleLogin()
@@ -35,13 +35,12 @@ class Login extends BaseController
 
 		if ($user != null) {
 			if ($user["Active"] == 1) {
-				//login
-				$this->loginUser($user);
+				return $this->loginUser($user);
 			} else {
-				$this->loadPageWithError("User $username has been disabled. Please contact the system administrator.");
+				return $this->loadPageWithError("User $username has been disabled. Please contact the system administrator.");
 			}
 		} else {
-			$this->loadPageWithError("Not user found for your credientials");
+			return $this->loadPageWithError("Not user found for your credientials");
 		}
 	}
 	public function logout()
@@ -50,23 +49,21 @@ class Login extends BaseController
 	}
 	private function loginUser($user)
 	{
+		$this->session->set("UserIsAdmin", $user['IsAdmin']);
 		$this->session->set("UserId", $user["Id"]);
 		$this->session->set("Username", $user["Username"]);
 
-		redirect()->to("/client/profile");
-
-		$data = ['username' => $user["Username"]];
-		echo PublicViewManager::loadView('Login', 'HomeView', $data);
+		return redirect()->to("/client/profile");
 	}
 	private function loadPageWithError($errorMessage)
 	{
 		$data = [
 			'errors' => $errorMessage,
 		];
-		echo PublicViewManager::loadView('Login', 'LoginView', $data);
+		return PublicViewManager::loadView('Login', 'LoginView', $data);
 	}
 	private function loadPage()
 	{
-		echo PublicViewManager::loadView('Login', 'LoginView');
+		return PublicViewManager::loadView('Login', 'LoginView');
 	}
 }

@@ -46,15 +46,21 @@ class Applications extends BaseController
 			return ClientViewManager::load403Error();
 		}
 	}
-
+	//
+	//	Private Functions
+	//
 	private function getMyApplicationsView($userId)
 	{
-		$jobApplications = $this->db->query("Call GetJobApplicationsViewByApplicant(?)", $userId)->getResult();
-		//TODO: accpetedJobApplications, rejectedJobApplications
+		$jobApplicationsAccepted = $this->db->query("Call GetJobApplicationsAcceptedViewByApplicant(?)", $userId)->getResult();
+		$jobApplicationsPending = $this->db->query("Call GetJobApplicationsPendingViewByApplicant(?)", $userId)->getResult();
+		$jobApplicationsRejected = $this->db->query("Call GetJobApplicationsRejectedViewByApplicant(?)", $userId)->getResult();
+		$jobApplicationsWithdrawn = $this->db->query("Call GetJobApplicationsWithdrawnViewByApplicant(?)", $userId)->getResult();
+
 		$data = [
-			'jobApplications' => $jobApplications,
-			'accpetedJobApplications' => $jobApplications,
-			'rejectedJobApplications' => $jobApplications,
+			'jobApplicationsAccepted' => $jobApplicationsAccepted,
+			'jobApplicationsPending' => $jobApplicationsPending,
+			'jobApplicationsRejected' => $jobApplicationsRejected,
+			'jobApplicationsWithdrawn' => $jobApplicationsWithdrawn,
 		];
 		return ClientViewManager::loadView('My Applications', 'MyApplicationsView', $data);
 	}
@@ -89,7 +95,7 @@ class Applications extends BaseController
 	{
 	}
 
-//ToDo not working 
+	//ToDo not working 
 	public function complete($jobId)
 	{
 		if ($this->isLoggedIn()) {
@@ -120,22 +126,30 @@ class Applications extends BaseController
 
 	public function accept($jobApplicationId)
 	{
-		$this->executeAcceptJobApplication($jobApplicationId);
-		echo "view";
+		if ($this->isLoggedIn()) {
+			$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
+			if ($jobApplication == null)
+				return ClientViewManager::load404Error("No Job Application found for Job Application #:$jobApplicationId");
+			else {
+				$this->executeAcceptJobApplication($jobApplication ,$jobApplicationId);
+				return ClientViewManager::loadView('', 'Message', ['message' => 'Application has been accepted.']);
+			}
+		} else {
+			return ClientViewManager::load403Error();
+		}
 	}
 
-	private function executeAcceptJobApplication($jobApplicationId)
+	private function executeAcceptJobApplication($jobApplication, $jobApplicationId)
 	{
-		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
-		$jobApplication["Status"] = JobApplicationStatus::Accepted;
+		$jobApplication['Status'] = JobApplicationStatus::Accepted;
 		$commandResult = $this->jobApplicationRepository->update($jobApplicationId, $jobApplication);
 
-		$job = $this->jobRepository->find($jobApplication["Job"]);
-		$job["AssignedTo"] = $jobApplication['Applicant'];
+		$job = $this->jobRepository->find($jobApplication['Job']);
+		$job['AssignedTo'] = $jobApplication['Applicant'];
 
-		$commandResult = $this->jobRepository->update($job["Id"], $job);
+		$commandResult = $this->jobRepository->update($job['Id'], $job);
 	}
-	
+
 
 	public function reject($jobApplicationId)
 	{
@@ -144,9 +158,8 @@ class Applications extends BaseController
 			if ($jobApplication == null)
 				return ClientViewManager::load404Error("No Job Application found for Job Application #:$jobApplicationId");
 			else {
-				//TODO: return $this->getAcceptView($jobApplicationId);
-				$this->executeRejectJobApplication($jobApplicationId);
-				return ClientViewManager::loadView('', 'message', ['message' => 'Application has been rejected.']);
+				$this->executeRejectJobApplication($jobApplication ,$jobApplicationId);
+				return ClientViewManager::loadView('', 'Message', ['message' => 'Application has been rejected.']);
 			}
 		} else {
 			return ClientViewManager::load403Error();
@@ -154,16 +167,10 @@ class Applications extends BaseController
 	}
 
 
-	public function executeRejectJobApplication($jobApplicationId)
+	private function executeRejectJobApplication($jobApplication ,$jobApplicationId)
 	{
-		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
-		$jobApplication["Status"] = JobApplicationStatus::Rejected;
+		$jobApplication['Status'] = JobApplicationStatus::Rejected;
 		$commandResult = $this->jobApplicationRepository->update($jobApplicationId, $jobApplication);
-
-		$job = $this->jobRepository->find($jobApplication["Job"]);
-		$job["AssignedTo"] = $jobApplication['Applicant'];
-
-		$commandResult = $this->jobRepository->update($job["Id"], $job);
 	}
 
 	public function withdraw($jobApplicationId)
@@ -173,8 +180,7 @@ class Applications extends BaseController
 			if ($jobApplication == null)
 				return ClientViewManager::load404Error("No Job Application found for Job Application #:$jobApplicationId");
 			else {
-				//TODO: return $this->getWithdrawnView($jobApplicationId);
-				$this->executeRejectJobApplication($jobApplicationId);
+				$this->executeRejectJobApplication($jobApplication, $jobApplicationId);
 				return ClientViewManager::loadView('', 'message', ['message' => 'Application has been Withdrawn.']);
 			}
 		} else {
@@ -183,21 +189,15 @@ class Applications extends BaseController
 	}
 
 
-	public function executeWithdrawJobApplication($jobApplicationId)
+	private function executeWithdrawJobApplication($jobApplication ,$jobApplicationId)
 	{
-		$jobApplication = $this->jobApplicationRepository->find($jobApplicationId);
-		$jobApplication["Status"] = JobApplicationStatus::Withdrawn;
+		$jobApplication['Status'] = JobApplicationStatus::Withdrawn;
 		$commandResult = $this->jobApplicationRepository->update($jobApplicationId, $jobApplication);
-
-		$job = $this->jobRepository->find($jobApplication["Job"]);
-		$job["AssignedTo"] = $jobApplication['Applicant'];
-
-		$commandResult = $this->jobRepository->update($job["Id"], $job);
 	}
-
 
 	public function apply($jobId)
 	{
+		//TODO SEcure Method
 		$userId = $this->session->get("UserId");
 		$jobApplication = $this->jobApplicationRepository
 			->where('Job', $jobId)
@@ -216,5 +216,4 @@ class Applications extends BaseController
 			echo ClientViewManager::loadView('Application', 'Message', $data);
 		}
 	}
-
 }

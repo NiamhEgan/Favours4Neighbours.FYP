@@ -14,12 +14,12 @@
 		</div> <!-- form-group end.// -->
 		<div class="form-group col-md-6">
 			<label>New Pasword</label>
-			<input name="NewPassword" type="text" placeholder="New Password"  class="form-control" value="">
+			<input name="NewPassword" type="password" placeholder="New Password"  class="form-control" value="">
 		</div> <!-- form-group end.// -->
 		
 		<div class="form-group col-md-6">
 			<label>Re-enter New Password</label>
-			<input name="ConfirmNewPassword" type="text" placeholder="Confirm New Password"  class="form-control" value=" ">
+			<input name="ConfirmNewPassword" type="password" placeholder="Confirm New Password"  class="form-control" value=" ">
 		</div> <!-- form-group end.// -->
 	
 

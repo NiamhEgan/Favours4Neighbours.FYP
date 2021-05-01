@@ -15,14 +15,14 @@
 	</thead>
 	<tbody>
 		<tr>
-			<th scope="row"><?= $job['JobDetails']; ?></th>
-			<td><?= $job['JobCounty']; ?></td>
-			<td><?= $job['JobPrice']; ?></td>
-			<td><?= $job['DurationEstimate']; ?></td>
+			<th scope="row"><?= $job->JobDetails; ?></th>
+			<td><?= $job->JobCounty; ?></td>
+			<td><?= $job->JobPrice; ?></td>
+			<td><?= $job->DurationEstimate; ?></td>
 			<td></td>
 			<td></td>
 			<td></td>
-			<td><a href="/client/jobs/apply/<?= $job['Id']; ?>">Apply</a></td>
+			<td><a href="/client/jobs/apply/<?= $job->Id; ?>">Apply</a></td>
 		</tr>
 	</tbody>
 </table>

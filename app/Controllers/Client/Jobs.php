@@ -238,12 +238,11 @@ class Jobs extends BaseController
 	public function viewtender($jobId)
 	{
 		if ($this->isLoggedIn()) {
-			$job = $this->jobRepository->find($jobId);
-
+			$job = $this->db->query("Call GetJobViewById(?)", $jobId)->getRow();
 			if ($job == null) {
 				echo ClientViewManager::load404Error("No Job found for $jobId");
 			} else {
-				return $this->getTenderView($jobId, $job);
+				return $this->getTenderView($job);
 			}
 		} else {
 			echo  ClientViewManager::load403Error();
@@ -268,11 +267,9 @@ class Jobs extends BaseController
 
 
 
-	private function getTenderView($jobId, $job)
+	private function getTenderView($job)
 	{
-		$data = [
-			"job" => $job,
-		];
+		$data = ["job" => $job];
 
 		return ClientViewManager::loadView('View Job', 'JobTenderView', $data);
 	}
