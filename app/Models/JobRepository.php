@@ -16,15 +16,15 @@ class JobRepository extends Model
     protected $returnType     = 'array';
 
     protected $allowedFields = [
-        "CreatedBy",
-        "DurationEstimate",
-        "DateCreated",
-        "EquipmentRequired",
-        "JobDetails",
-        "JobCategory",
-        "JobCounty",
-        "JobPrice",
-        "JobStatus",
+        'AssignedTo',
+        'CreatedBy',
+        'DurationEstimate',
+        'EquipmentRequired',
+        'JobCategory',
+        'JobCounty',
+        'JobDetails',
+        'JobPrice',
+        'JobStatus',
     ];
 
     protected $useTimestamps = true;

@@ -46,6 +46,11 @@
 							<?= form_dropdown("JobCounty", $jobCountyDataSource, set_value("JobCounty", $job["JobCounty"]), 'class="form-control"'); ?>
 						</div> <!-- County form-group.// -->
 
+						<div class="form-group">
+							<label>Status</label>
+							<?= form_dropdown("JobStatus", $jobStatusDataSource, set_value("JobStatus", $job["JobStatus"]), 'class="form-control"'); ?>
+						</div> <!-- County form-group.// -->
+
 
 						<div class="form-group">
 							<button name="SaveButton" type="submit" class="btn btn-primary btn-block">Save</button>
@@ -55,9 +60,7 @@
 		</div>
 		<?php if (!empty($errors)) : ?>
 			<div class="alert alert-danger">
-				<?php foreach ($errors as $field => $error) : ?>
-					<p><?= $error ?></p>
-				<?php endforeach ?>
+					<p><?= $errors ?></p>
 			</div>
 		<?php endif ?>
 	</div>

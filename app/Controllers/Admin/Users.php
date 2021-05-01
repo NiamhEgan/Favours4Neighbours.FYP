@@ -78,12 +78,14 @@ class Users extends BaseController
 				echo AdminViewManager::load404Error("No User found for $userId");
 			} else {
 				//TODO: View
-				return $this->getView($userId, $user);
+				return AdminViewManager::loadView('Users', 'UsersView', $user);
 			}
 		} else {
 			echo  AdminViewManager::load403Error();
 		}
 	}
+
+
 
 
 
@@ -193,8 +195,24 @@ class Users extends BaseController
 			return AdminViewManager::loadView('Users', 'SearchUsersView', $data);
 	}
 
-	public function resetPassword()
+
+	public function resetpassword()
 	{
+		if ($this->isLoggedIn()) {
+			return $this->getResetPasswordView();
+		} else {
+			return AdminViewManager::load403Error();
+		}
+	}
+
+	
+	private function getResetPasswordView()
+	{
+		$data = [];
+		if ($this->request->getVar("ChangePasswordButton") !== null) {
+			$this->executeChangePassword($data);
+		}
+		return ClientViewManager::loadView('Change Password', 'AdminChangePasswordView', $data);
 	}
 	public function suspendedUsers()
 	{

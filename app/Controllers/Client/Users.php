@@ -31,21 +31,17 @@ class Users extends BaseController
 
 	public function index()
 	{
-        //???
 		if ($this->isLoggedIn()) {
-			$userId = $this->session->get("UserId");
-			$jobs = $this->db->query("Call GetAvailableJobsView(?)", $userId)->getResult();
-			$data = [
-				"jobs" => $jobs,
-			];
-			echo ClientViewManager::loadView('My Jobs', 'AvailableJobsView', $data);
+			$users = $this->userRepository->findAll();
+			$data = ['users' => $users,];
+			echo ClientViewManager::loadView('Users', 'UsersView', $data);
 		} else {
-			echo  ClientViewManager::load403Error();
+			echo ClientViewManager::load403Error();
 		}
 	}
 	private function isLoggedIn()
 	{
-		return ($this->session->get("UserId") !== null);
+		return ($this->session->get('UserId') !== null);
 	}
 
 	public function view($userId)
@@ -65,12 +61,11 @@ class Users extends BaseController
 
 	private function getView($userId, $user)
 	{
-        //TODO:Change query to get jobs completed GetJobsCompletedByAssignedUserView()
-		$jobsCompleted = $this->db->query("Call GetJobsCompletedByAssignedUserView(?)", $userId)->getResult();
+		$jobsCompleted = $this->db->query("Call GetJobsCompletedByApplicant(?)", $userId)->getResult();
 
 		$data = [
 			"user" => $user,
-			"jobsCompleted" => $jobsCompleted,
+			"jobs" => $jobsCompleted,
 		];
 
         //TODO: use Myprofile view and JobView to make

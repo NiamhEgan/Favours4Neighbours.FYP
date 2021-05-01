@@ -13,14 +13,12 @@ class Registration extends BaseController
 	{
 		$this->UserRepository = new UserRepository();
 		$this->CountyRepository = new CountyRepository();
+		helper('array');
 		helper('ArrayTransformer');
 	}
 	public function index()
 	{
-		helper('array');
-		$data = [
-			"countyDataSource" => transformObjectArray($this->CountyRepository->findAll(), "ID_county", "county")
-		];
+		$data = ['countyDataSource' => transformObjectArray($this->CountyRepository->findAll(), "ID_county", "county")];
 		if ($this->request->getVar("RegisterButton") !== null) {
 			$userValuesArray = $this->createUserValuesArrayFromPostArray();
 			try {
@@ -28,9 +26,10 @@ class Registration extends BaseController
 				return redirect()->to("/login");
 			} catch (Exception $e) {
 				$data['errors'] = $this->UserRepository->errors();
+				return PublicViewManager::loadView('Registration', 'RegistrationView', $data);
 			}
 		} else
-		return PublicViewManager::loadView('Registration', 'RegistrationView', $data);
+			return PublicViewManager::loadView('Registration', 'RegistrationView', $data);
 	}
 
 	private function createUserValuesArrayFromPostArray()

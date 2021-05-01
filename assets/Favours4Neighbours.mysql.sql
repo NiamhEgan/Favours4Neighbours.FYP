@@ -1,5 +1,4 @@
-create Schema `favours4neighbours`;
-use favours4neighbours;
+
 
 -- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --

@@ -1,4 +1,4 @@
-<title> Home </title>
+<title>Home</title>
 <div class="jumbotron text-center">
 <h1>Welcome to Favours4Neighbours <?php echo $username;?>!</h1>
 <p>The neighbourhood application linking you with your neighbourhood</p>
