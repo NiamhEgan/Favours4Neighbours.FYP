@@ -2,23 +2,45 @@
 
 ## How to install and Run
 
-Clone the project from github. 
+Clone the project from github. https://github.com/NiamhEgan/Favours4Neighbours.FYP
+or unzip the project file and save to your apprpriate folder on your machine such as htdocs 
 
 
 
-Install the database in 'assets\Favours4Neighbours.mysql.sql' first
+Restore and Install the database in 'assets\Favours4Neighbours.mysql.sql' first
 
 ` mysql -u {user} -p favours4neighbours < ` to create a database
 
 ` mysql.exe --defaults-file="C:\Users\Niamh\AppData\Local\Temp\tmpw4r4vsoa.cnf"  --protocol=tcp --host=127.0.0.1 --user=root --port=3306 --default-character-set=utf8 --comments --database=newschema  < "C:\\Users\\Niamh\\Documents\\GitHub\\Favours4Neighbours.FYP\\assets\\Favours4Neighbours.mysql.sql"`
 
-`composer i` to install required codeigniter packages
+
+Download Composer from https://getcomposer.org/ 
+`composer i` to install required codeigniter packages 
 
 edit .env file database variables to match yours
  
 `php spark serve` to run the website.
 
+## Log in details 
+Admin log in 
+username: admin
+password: letmein
+
+
+Client log in
+username: myers
+password: letmein
+
+Client log in
+username: gerry
+password: letmein
+
 ## About this project
+
+This application provides a means for people to create jobs that they want done and apply for jobs that they would like to do. it is inteded to be a neighbourhood app where people can create and apply for small jobs that are non contact COVID-19 friendly jobs. 
+the job can be created statign the amount of money if any that you are willing to pay to get the job done. 
+The user can create jobs they want done and apply for jobs they want to do if they want to. 
+
 
 
 # CodeIgniter 4 Application Starter

@@ -3,7 +3,6 @@
 	<thead>
 		<tr>
 			<th scope="col">Date</th>
-			<th scope="col">Created By</th>
 			<th scope="col">Details</th>
 			<th scope="col">Equipment Required</th>
 			<th scope="col">County</th>
@@ -16,7 +15,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php if ($jobs != null) : ?>
+		
 			<?php foreach ($jobs as $job) : ?>
 				<tr>
 					<td><?= $job->updated_at; ?></td>
@@ -26,19 +25,11 @@
 					<td><?= $job->JobCounty; ?></td>
 					<td><?= $job->DurationEstimate; ?></td>
 					<td><?= $job->JobPrice; ?></td>
-					<td>
-						<?php if ($job->JobCategoryId != null) : ?>
-							<a href="/JobCategory/<?= $job->JobCategoryId; ?>"><?= $job->JobCategory; ?></a>
-						<?php endif ?>
-					</td>
-					<td><a href="/client/jobs/viewtender/<?= $job->Id; ?>">View Applicants</a></td>
+					<td><?= $job->JobCategory; ?></td>
+					<td><a href="/admin/jobs/view/<?= $job->Id; ?>">View deatils</a></td>
 				</tr>
 			<?php endforeach ?>
-		<?php endif ?>
+		
 	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="8"></td><a href="">New Job Posts in the last 7 days</a>
-		</tr>
-	</tfoot>
+
 </table>

@@ -198,7 +198,7 @@ class Jobs extends BaseController
 	{
 		if ($this->isLoggedIn()) {
 			$userID = $this->session->get("UserId");
-			$jobs = $this->db->query("Call GetMyCompletedJobs(?)", $userID)->getResult();
+			$jobs = $this->db->query("Call GetJobsCompletedByApplicant(?)", $userID)->getResult();
 			$data = ["jobs" => $jobs];
 
 			return ClientViewManager::loadView('My Completed Jobs', 'MyCompletedJobsView', $data);
