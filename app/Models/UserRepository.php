@@ -15,20 +15,21 @@ class UserRepository extends Model
     protected $returnType     = 'array';
 
     protected $allowedFields = [
-        "Active",
-        "AddressLine1",
-        "AddressLine2",
-        "Bio",
-        "Eircode",
-        "email",
-        "FirstName",
-        "Gender",
-        "Password",
-        "Surname",
-        "Telephone",
-        "Username",
-        "Photo",
-        "IsAdmin",
+        'Active',
+        'AddressLine1',
+        'AddressLine2',
+        'Bio',
+        'County',
+        'Eircode',
+        'email',
+        'FirstName',
+        'Gender',
+        'Password',
+        'Surname',
+        'Telephone',
+        'Username',
+        'Photo',
+        'IsAdmin',
 
     ];
 
@@ -55,7 +56,7 @@ class UserRepository extends Model
 
     public function createPasswordHash($plainTextPassword)
     {
-        return hash("ripemd160", $plainTextPassword);
+        return hash('ripemd160', $plainTextPassword);
     }
 }
 /**

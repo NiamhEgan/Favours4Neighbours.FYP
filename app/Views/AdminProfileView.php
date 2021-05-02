@@ -14,18 +14,18 @@
 		</tr>
 	</thead>
 	<tbody>
-			<tr>
-				<th scope="row"><?= $profile["FirstName"]; ?></th>
-				<td><?= $profile["Surname"]; ?></td>
-		<td><?= $profile["Telephone"]; ?></td>
-		<td><?= $profile["Eircode"]; ?></td>
-				<td></td>
-				<td></td>
-				
-				<td><a href="/admin/profile/edit/<?= $profile["Id"]; ?>">Edit Profile</a></td>
-			
-			
-			</tr>
+		<tr>
+			<th scope="row"><?= $profile["FirstName"]; ?></th>
+			<td><?= $profile["Surname"]; ?></td>
+			<td><?= $profile["Telephone"]; ?></td>
+			<td><?= $profile["Eircode"]; ?></td>
+			<td></td>
+			<td></td>
+
+			<td><a href="/admin/profile/edit/">Edit Profile</a></td>
+
+
+		</tr>
 	</tbody>
 
 </table>

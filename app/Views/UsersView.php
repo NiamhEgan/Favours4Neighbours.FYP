@@ -28,7 +28,7 @@
 					<td><a href="/admin/users/view/<?= $user['Id']; ?>">View Details</a></td>
 					<td><a href="/admin/users/edit/<?= $user['Id']; ?>">Edit</a></td>
 					<td><a href="/admin/users/resetpassword/<?= $user['Id']; ?>">Reset Password</a></td>
-					<td><a href="/admin/users/suspend/<?= $user['Id']; ?>">Suspend</a></td>
+				
 				</tr>
 
 			<?php endforeach ?>
